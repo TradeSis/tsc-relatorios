@@ -1,11 +1,15 @@
 <?php
 include_once __DIR__ . "/../config.php";
 include_once "header.php";
-include_once ROOT . "/sistema/database/loginAplicativo.php";
 
-$nivelMenuLogin = buscaLoginAplicativo($_SESSION['idLogin'], 'Relatorios');
+if(!isset($_SESSION['nomeAplicativo']) || isset($_SESSION['nomeAplicativo']) && $_SESSION['nomeAplicativo'] !== 'Relatorios'){
+    $_SESSION['nomeAplicativo'] = 'Relatorios';
+    include_once ROOT . "/sistema/database/loginAplicativo.php";
 
-$nivelMenu = $nivelMenuLogin['nivelMenu'];
+    $nivelMenuLogin = buscaLoginAplicativo($_SESSION['idLogin'], $_SESSION['nomeAplicativo']);
+    $_SESSION['nivelMenu'] = $nivelMenuLogin['nivelMenu'];
+}
+echo json_encode($_SESSION);
 ?>
 <!doctype html>
 <html lang="pt-BR">
@@ -38,7 +42,7 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                             $tab = $_GET['tab'];
                         }
                         ?>
-                        <?php if ($nivelMenu >= 2) {
+                        <?php if ($_SESSION['nivelMenu'] >= 2) {
                             if ($tab == '') {
                                 $tab = 'relatorios';
                             } ?>
@@ -61,8 +65,12 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         $getTab = '';
                     } ?>
                     <select class="form-select mt-2 ts-selectSubMenuAplicativos" id="subtabRelatorios">
+                        
+                        <?php if ($_SESSION['nivelMenu'] >= 2) { ?>
                         <option value="<?php echo URLROOT ?>/crediario/?tab=relatorios" 
                         <?php if ($getTab == "relatorios") {echo " selected ";} ?>>Relatórios</option>
+                        <?php } ?>
+
                     </select>
                 </div>
 
