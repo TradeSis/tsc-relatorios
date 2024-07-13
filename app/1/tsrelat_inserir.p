@@ -59,7 +59,7 @@ then do:
 end.
 
 def var lcjsonentrada as longchar.
-lcjsonentrada =  "\{\"parametros\": [" + ttentrada.parametrosJSON + "] \}".
+lcjsonentrada =  "~{~"parametros~": [" + ttentrada.parametrosJSON + "] ~}".
 
 /*put unformatted string(lcjsonentrada).
   message "MESSAGE" string(lcjsonentrada). 
@@ -97,4 +97,5 @@ hsaida  = temp-table tttsrelat:handle.
 lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
 
 put unformatted string(vlcSaida).
+
 
