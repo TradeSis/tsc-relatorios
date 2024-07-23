@@ -47,6 +47,11 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                                 <?php if ($tab == "relatorios") {echo " active ";} ?>" 
                                 href="?tab=relatorios" role="tab">Relatórios</a>
                             </li>
+                            <li class="nav-item mr-1">
+                                <a class="nav-link 
+                                <?php if ($tab == "lucas") {echo " active ";} ?>" 
+                                href="?tab=lucas" role="tab">Lucas</a>
+                            </li>
                         <?php }
                            ?>
                     </ul>
@@ -77,6 +82,9 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
 
             if ($tab == "relatorios") {
                 $src = "relatorios/";
+            }
+            if ($tab == "lucas") {
+                $src = "lucas/";
             }
 
             if ($src !== "") {

@@ -245,6 +245,30 @@ if (isset($_GET['operacao'])) {
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
                 header('Location: ../relatorios/pogersin11.php'); 
         }
+
+        //-RESUMO MENSAL DO CAIXA
+        if ($operacao == "fin_cre02") {
+                $parametros = array(
+                        'etbcod' => $_POST['codigoFilial'],
+                        'cliente' => $_POST['cliente'],
+                        'dtinicial' => $_POST['dataInicial'],
+                        'dtfinal' => $_POST['dataFinal'],
+                        'relatoriogeral' => $_POST['relatoriogeral'],
+                        'sel-mod' => $_POST['modalidade'],
+                        'consultalp' => $_POST['consideralp'],
+                        'considerarfeirao' => $_POST['considerafeirao'],
+                );
+                $apiEntrada = array(
+                        'usercod' => $_POST['usercod'],
+                        'progcod' => $_POST['progcod'],
+                        'relatnom' => $_POST['relatnom'],
+                        'parametros' => $parametros,
+                        'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
+                );
+                $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
+                
+                header('Location: ../lucas/fin_cre02.php'); 
+        }
 }
 
 ?>
