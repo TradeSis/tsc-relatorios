@@ -55,7 +55,7 @@ $filial = $filial[2];
                         <div class="form-group col">
                             <label>Filial</label>
                             <?php if ($filial <= 0) { ?>
-                                <input type="number" class="form-control" name="codigoFilial">
+                                <input type="number" class="form-control" name="codigoFilial" value="0">
                             <?php } else { ?>
                                 <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" readonly>
                             <?php } ?>
@@ -91,7 +91,7 @@ $filial = $filial[2];
                         <div class="form-group col">
                             <label>Modalidade</label>
                             <select class="form-control" name="modalidade[]" multiple style="height: 120px; overflow-y: hidden;">
-                                <option value="CRE">CRE</option>
+                                <option value="CRE" selected>CRE</option>
                                 <option value="CP">CP</option>
                                 <option value="CP0">CP0</option>
                                 <option value="CP1">CP1</option>

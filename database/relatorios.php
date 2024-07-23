@@ -248,15 +248,21 @@ if (isset($_GET['operacao'])) {
 
         //-RESUMO MENSAL DO CAIXA
         if ($operacao == "fin_cre02") {
-                $parametros = array(
-                        'etbcod' => $_POST['codigoFilial'],
-                        'cliente' => $_POST['cliente'],
+                $modalidade = $_POST['modalidade'];
+                if(count($modalidade) == 1){
+                        $modalidade = implode($_POST['modalidade']);
+                }else{
+                        $modalidade = implode(",", $_POST['modalidade']); 
+                }
+                $parametros = array("parametros" => array(array(
+                        'etbcod' => intval($_POST['codigoFilial']),
+                        'cliente' => ($_POST['cliente'] == 'Geral' ? true : false),
                         'dtinicial' => $_POST['dataInicial'],
                         'dtfinal' => $_POST['dataFinal'],
-                        'relatoriogeral' => $_POST['relatoriogeral'],
-                        'sel-mod' => $_POST['modalidade'],
-                        'consultalp' => $_POST['consideralp'],
-                        'considerarfeirao' => $_POST['considerafeirao'],
+                        'relatoriogeral' => ($_POST['relatoriogeral'] == 'Sim' ? true : false),
+                        'sel-mod' => $modalidade,
+                        'consultalp' => ($_POST['consideralp'] == 'Sim' ? true : false),
+                        'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)))
                 );
                 $apiEntrada = array(
                         'usercod' => $_POST['usercod'],
