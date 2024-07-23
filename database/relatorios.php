@@ -64,12 +64,12 @@ if (isset($_GET['operacao'])) {
         
         //-EXTRATO DE COBRANCA SIMPLES
         if ($operacao == "loj_cred01") {
-                $parametros = array(
+                $parametros = array("parametros" => array(array(
                         'posicao' => $_POST['posicao'],
                         'codigoFilial' => $_POST['codigoFilial'],
                         'dataInicial' => $_POST['dataInicial'],
                         'dataFinal' => $_POST['dataFinal'],
-                        'ordem' => $_POST['ordem'],
+                        'ordem' => $_POST['ordem']))
                 );
                 $apiEntrada = array(
                         'usercod' => $_POST['usercod'],

@@ -59,7 +59,7 @@ then do:
 end.
 
 def var lcjsonentrada as longchar.
-lcjsonentrada =  "~{~"parametros~": [" + ttentrada.parametrosJSON + "] ~}".
+lcjsonentrada =  ttentrada.parametrosJSON.
 
 /*put unformatted string(lcjsonentrada).
   message "MESSAGE" string(lcjsonentrada). 
