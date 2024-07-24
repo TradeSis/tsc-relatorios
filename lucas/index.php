@@ -28,6 +28,12 @@ include_once '../head.php';
           } ?>"
             href="?tab=lucas&stab=fin_cre02" role="tab" style="font-size:12px" >Resumo Mensal do Caixa</a>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link ts-tabConfig <?php if ($stab == "recper") {
+            echo " active ";
+          } ?>"
+            href="?tab=lucas&stab=recper" role="tab" style="font-size:12px" >Recebimento por período</a>
+        </li>
        
 
       </ul>
@@ -38,6 +44,9 @@ include_once '../head.php';
 
           if ($stab == "fin_cre02") {
             $ssrc = "fin_cre02.php";
+          }
+          if ($stab == "recper") {
+            $ssrc = "recper.php";
           }
           
 

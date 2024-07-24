@@ -83,21 +83,21 @@ $filial = $filial[2];
                     <div class="row">
                         <div class="form-group col">
                             <label>Relatório geral</label>
-                            <select class="form-control" name="relatoriogeral">
+                            <select class="form-control" name="relatoriogeral" id="ralatoriogeral">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Modalidade</label>
-                            <select class="form-control" name="modalidade[]" multiple style="height: 120px; overflow-y: hidden;">
-                                <option value="CRE" selected>CRE</option>
-                                <option value="CP">CP</option>
-                                <option value="CP0">CP0</option>
-                                <option value="CP1">CP1</option>
-                                <option value="CP2">CP2</option>
+                            <select class="form-control" name="modalidade[]" id="ralatoriogeral" multiple style="height: 90px; overflow-y: hidden;">
+                                <option value="CP0" class="teste">CP0</option>
+                                <option value="CP1" class="teste">CP1</option>
+                                <option value="CPN" class="teste">CPN</option>
+                                <option value="CRE" class="cre" selected>CRE</option>
                             </select>
                         </div>
+                      
                     </div>
                     <div class="row">
                         <div class="form-group col">
@@ -127,6 +127,34 @@ $filial = $filial[2];
     <!-- LOCAL PARA COLOCAR OS JS -->
 
     <?php include_once ROOT . "/vendor/footer_js.php"; ?>
+
+    <script>
+        window.onmousedown = function (e) {
+            var el = e.target;
+            if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
+                e.preventDefault();
+
+                // toggle selection
+                if (el.hasAttribute('selected')) el.removeAttribute('selected');
+                else el.setAttribute('selected', '');
+
+                // hack para corrigir comportamento inconsistente
+                var select = el.parentNode.cloneNode(true);
+                el.parentNode.parentNode.replaceChild(select, el.parentNode);
+            }
+        }
+
+        $("#ralatoriogeral").change(function() {
+            if($("#ralatoriogeral").val() == 'Nao'){
+                $(".teste").prop("selected", false);
+                $(".cre").prop("selected", true);
+            }
+            if($("#ralatoriogeral").val() == 'Sim'){
+                $(".teste").prop("selected", true);
+                $(".cre").prop("selected", true); 
+            }  
+        });
+    </script>
 
     <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
