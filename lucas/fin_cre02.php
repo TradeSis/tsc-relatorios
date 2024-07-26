@@ -6,7 +6,7 @@ include_once '../database/relatorios.php';
 
 $progcod="fin_cre02";
 $relatorios = buscaRelatorios($progcod);
-//echo json_encode($relatorios);
+
 ?>
 
 <!doctype html>

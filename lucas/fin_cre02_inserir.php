@@ -3,7 +3,9 @@
 
 include_once('../head.php');
 $filial = explode(".", $_SERVER['REMOTE_ADDR']);
-$filial = $filial[2];
+$filial = isset($filial[2]);
+
+$progcod="fin_cre02";
 ?>
 
 <!doctype html>
@@ -17,7 +19,9 @@ $filial = $filial[2];
 
 <body class="bg-transparent">
 
-    <div class="container" style="width:700px">
+    <?php include_once '../agendamento/agendamento_modal.php' ?>
+
+    <div class="container pt-3" style="width:700px">
         <div class="card shadow">
             <div class="card-header border-1">
                 <div class="row">
@@ -31,7 +35,7 @@ $filial = $filial[2];
             </div>
             <div class="container" style="margin-top: 10px">
 
-                <form action="../database/relatorios.php?operacao=fin_cre02" method="post">
+                <form action="../database/relatorios.php?operacao=fin_cre02" method="post"> 
                     <div class="row">
                         <div class="col">
                             <label>Usuário</label>
@@ -55,15 +59,20 @@ $filial = $filial[2];
                         <div class="form-group col">
                             <label>Filial</label>
                             <?php if ($filial <= 0) { ?>
-                                <input type="number" class="form-control" name="codigoFilial" value="0">
+                                <input type="number" class="form-control" name="codigoFilial" id="codigoFilial" value="0">
                             <?php } else { ?>
-                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" readonly>
+                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" id="codigoFilial" readonly>
                             <?php } ?>
-                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                         </div>
                         <div class="form-group col">
+                            <label>Nome Filial</label>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-6">
                             <label>Cliente</label>
-                            <select class="form-control" name="cliente">
+                            <select class="form-control" name="cliente" id="cliente">
                                 <option value="Geral">Geral</option>
                                 <option value="Facil">Facil</option>
                             </select>
@@ -73,54 +82,55 @@ $filial = $filial[2];
                     <div class="row">
                         <div class="form-group col">
                             <label>Data Inicial</label>
-                            <input type="date" class="form-control" name="dataInicial">
+                            <input type="date" class="form-control" name="dataInicial" id="dataInicial">
                         </div>
                         <div class="form-group col">
                             <label>Data Final</label>
-                            <input type="date" class="form-control" name="dataFinal">
+                            <input type="date" class="form-control" name="dataFinal" id="dataFinal">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col">
                             <label>Relatório geral</label>
-                            <select class="form-control" name="relatoriogeral" id="ralatoriogeral">
+                            <select class="form-control" name="relatoriogeral" id="relatoriogeral">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
                         <div class="form-group col">
-                            <label>Modalidade</label>
-                            <select class="form-control" name="modalidade[]" id="ralatoriogeral" multiple style="height: 90px; overflow-y: hidden;">
-                                <option value="CP0" class="teste">CP0</option>
-                                <option value="CP1" class="teste">CP1</option>
-                                <option value="CPN" class="teste">CPN</option>
+                            <label>Selecione Modalidades</label>
+                            <select class="form-control" name="modalidade[]" id="modalidade" multiple style="height: 90px; overflow-y: hidden;">
                                 <option value="CRE" class="cre" selected>CRE</option>
+                                <option value="CP0" class="sel-mod">CP0</option>
+                                <option value="CP1" class="sel-mod">CP1</option>
+                                <option value="CPN" class="sel-mod">CPN</option>
                             </select>
                         </div>
-                      
+
                     </div>
                     <div class="row">
                         <div class="form-group col">
                             <label>Considera apenas LP</label>
-                            <select class="form-control" name="consideralp">
+                            <select class="form-control" name="consideralp" id="consideralp">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Considerar apenas feirao</label>
-                            <select class="form-control" name="considerafeirao">
+                            <select class="form-control" name="considerafeirao" id="considerafeirao">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
                     </div>
-
-                    <div class="card-footer bg-transparent" style="text-align:right">
-                        <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
-                    </div>
-                </form>
             </div>
+            <div class="card-footer bg-transparent mt-2" style="text-align:right">
+                <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
+                </form>
+                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento">Agendar Relatório</button>
+            </div>
+
         </div>
     </div>
 
@@ -129,30 +139,113 @@ $filial = $filial[2];
     <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
     <script>
-        window.onmousedown = function (e) {
+        $(document).ready(function() {
+         
+            $("#formAgendamento").submit(function(event) {
+                
+                event.preventDefault();
+                var formData = new FormData(this);
+                //formulario de parametros
+                formData.append("codigoFilial", $("#codigoFilial").val());
+                formData.append("cliente", $("#cliente").val());
+                formData.append("dataInicial", $("#dataInicial").val());
+                formData.append("dataFinal", $("#dataFinal").val());
+                formData.append("relatoriogeral", $("#relatoriogeral").val());
+                formData.append("modalidade", $("#modalidade").val());
+                formData.append("consideralp", $("#consideralp").val());
+                formData.append("considerafeirao", $("#considerafeirao").val());
+                /* for (var pair2 of formData.entries()) {
+                    console.log(pair2[0] + " - " + pair2[1]);
+                } */
+               
+                $.ajax({
+                    url: "../database/agendamento.php?operacao=inserir",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: refreshPage,
+                });
+            });
+
+            function refreshPage() {
+                window.location.reload();
+            }
+        });
+
+        // modifica efeito de seleção do select modalidade
+        window.onmousedown = function(e) {
             var el = e.target;
             if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
                 e.preventDefault();
 
-                // toggle selection
                 if (el.hasAttribute('selected')) el.removeAttribute('selected');
                 else el.setAttribute('selected', '');
 
-                // hack para corrigir comportamento inconsistente
                 var select = el.parentNode.cloneNode(true);
                 el.parentNode.parentNode.replaceChild(select, el.parentNode);
             }
         }
-
-        $("#ralatoriogeral").change(function() {
-            if($("#ralatoriogeral").val() == 'Nao'){
-                $(".teste").prop("selected", false);
+        // selecionar todos os itens do select modalidade
+        $("#relatoriogeral").change(function() {
+            if ($("#relatoriogeral").val() == 'Nao') {
+                $(".sel-mod").prop("selected", false);
                 $(".cre").prop("selected", true);
             }
-            if($("#ralatoriogeral").val() == 'Sim'){
-                $(".teste").prop("selected", true);
-                $(".cre").prop("selected", true); 
-            }  
+            if ($("#relatoriogeral").val() == 'Sim') {
+                $(".sel-mod").prop("selected", true);
+                $(".cre").prop("selected", true);
+            }
+        });
+        // select de periodicidade
+        $("#periodicidade").change(function() {
+            if ($("#periodicidade").val() == 'U') {
+                $("#unico").removeClass("d-none");
+                $("#diario").addClass("d-none");
+                $("#semanal").addClass("d-none");
+                $("#quinzenal").addClass("d-none");
+                $("#mensal").addClass("d-none");
+            }
+            if ($("#periodicidade").val() == 'D') {
+                $("#diario").removeClass("d-none");
+                $("#unico").addClass("d-none");
+                $("#semanal").addClass("d-none");
+                $("#quinzenal").addClass("d-none");
+                $("#mensal").addClass("d-none");
+            }
+            if ($("#periodicidade").val() == 'S') {
+                $("#semanal").removeClass("d-none");
+                $("#unico").addClass("d-none");
+                $("#diario").addClass("d-none");
+                $("#quinzenal").addClass("d-none");
+                $("#mensal").addClass("d-none");
+            }
+            if ($("#periodicidade").val() == 'Q') {
+                $("#quinzenal").removeClass("d-none");
+                $("#unico").addClass("d-none");
+                $("#diario").addClass("d-none");
+                $("#semanal").addClass("d-none");
+                $("#mensal").addClass("d-none");
+                $(".mensal").prop("disabled", true);
+                $(".quinzenal").prop("disabled", false);
+            }
+            if ($("#periodicidade").val() == 'M') {
+                $("#mensal").removeClass("d-none");
+                $("#unico").addClass("d-none");
+                $("#diario").addClass("d-none");
+                $("#semanal").addClass("d-none");
+                $("#quinzenal").addClass("d-none");
+                $(".quinzenal").prop("disabled", true);
+                $(".mensal").prop("disabled", false);
+            }
+        });
+
+
+        //input limitando em dois digitos
+        $(document).ready(function() {
+            $("#inputdoisdig").keyup(function() {
+                $("#inputdoisdig").val(this.value.match(/[0-9]*/));
+            });
         });
     </script>
 

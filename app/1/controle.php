@@ -25,6 +25,10 @@ if ($metodo=="GET"){
         include 'tsrelat_inserir.php';
       break;
 
+      case "agendamento":
+        include 'agendamento_inserir.php';
+      break;
+
       default:
         $jsonSaida = json_decode(json_encode(
         array("status" => "400",
