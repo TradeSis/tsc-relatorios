@@ -34,8 +34,20 @@ include_once '../head.php';
           } ?>"
             href="?tab=lucas&stab=recper" role="tab" style="font-size:12px" >Recebimento por período</a>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link ts-tabConfig <?php if ($stab == "frrescart_v1801") {
+            echo " active ";
+          } ?>"
+            href="?tab=lucas&stab=frrescart_v1801" role="tab" style="font-size:12px" >Controle de Carteira</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link ts-tabConfig <?php if ($stab == "rec-moe-nov") {
+            echo " active ";
+          } ?>"
+            href="?tab=lucas&stab=rec-moe-nov" role="tab" style="font-size:12px" >Novações Caixa/Filial</a>
+        </li>
        
-
+        
       </ul>
     </div>
     <div class="col-md-10">
@@ -47,6 +59,12 @@ include_once '../head.php';
           }
           if ($stab == "recper") {
             $ssrc = "recper.php";
+          }
+          if ($stab == "frrescart_v1801") {
+            $ssrc = "frrescart_v1801.php";
+          }
+          if ($stab == "rec-moe-nov") {
+            $ssrc = "rec-moe-nov.php";
           }
           
 

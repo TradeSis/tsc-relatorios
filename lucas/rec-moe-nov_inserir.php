@@ -5,10 +5,7 @@ include_once('../head.php');
 $filial = explode(":", $_SERVER['REMOTE_ADDR']);
 $filial = isset($filial[2]);
 
-//echo json_encode($filial);
-//echo json_encode($_SERVER['REMOTE_ADDR']);
-
-$progcod = "fin_cre02";
+$progcod = "rec-moe-nov";
 ?>
 
 <!doctype html>
@@ -29,7 +26,7 @@ $progcod = "fin_cre02";
             <div class="card-header border-1">
                 <div class="row">
                     <div class="col-10">
-                        <h4 class="col">Resumo Mensal do Caixa</h4>
+                        <h4 class="col">Novações Caixa/Filial</h4>
                     </div>
                     <div class="col-sm" style="text-align:right">
                         <a href="#" onclick="history.back()" role="button" class="btn btn-primary btn-sm">Voltar</a>
@@ -38,7 +35,7 @@ $progcod = "fin_cre02";
             </div>
             <div class="container" style="margin-top: 10px">
 
-                <form action="../database/relatorios.php?operacao=fin_cre02" method="post">
+                <form action="../database/relatorios.php?operacao=rec-moe-nov" method="post">
                     <div class="row">
                         <div class="col">
                             <label>Usuário</label>
@@ -49,16 +46,16 @@ $progcod = "fin_cre02";
                         <div class="col">
                             <label>Programa</label>
                             <div class="form-group">
-                                <input type="text" name="progcod" class="form-control" value="fin_cre02" autocomplete="off" readonly>
+                                <input type="text" name="progcod" class="form-control" value="rec-moe-nov" autocomplete="off" readonly>
                             </div>
                         </div>
 
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="Resumo Mensal do Caixa" autocomplete="off" readonly>
+                        <input type="text" name="relatnom" class="form-control" value="Novações Caixa/Filial" autocomplete="off" readonly>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="form-group col">
                             <label>Filial</label>
                             <?php if ($filial <= 0) { ?>
@@ -73,34 +70,21 @@ $progcod = "fin_cre02";
                             <input type="text" class="form-control" readonly>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-6">
-                            <label>Cliente</label>
-                            <select class="form-control" name="cliente" id="cliente">
-                                <option value="Geral">Geral</option>
-                                <option value="Facil">Facil</option>
-                            </select>
-                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
+                    <div class="row mt-2">
+                        <div class="form-group col-2">
+                            <label class="mt-4">Periodo de: </label>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Data Inicial</label>
+                        <div class="form-group col mt-3">
                             <input type="date" class="form-control" name="dataInicial" id="dataInicial">
                         </div>
-                        <div class="form-group col">
-                            <label>Data Final</label>
+                        <div class="form-group col-1">
+                            <label class="mt-4">Até: </label>
+                        </div>
+                        <div class="form-group col mt-3">
                             <input type="date" class="form-control" name="dataFinal" id="dataFinal">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Relatório geral</label>
-                            <select class="form-control" name="relatoriogeral" id="relatoriogeral">
-                                <option value="Nao">Nao</option>
-                                <option value="Sim">Sim</option>
-                            </select>
-                        </div>
+                    <div class="row mt-2">
                         <div class="form-group col">
                             <label>Selecione Modalidades</label>
                             <select class="form-control" name="modalidade[]" id="modalidade" multiple style="height: 90px; overflow-y: hidden;">
@@ -108,16 +92,6 @@ $progcod = "fin_cre02";
                                 <option value="CP0" class="sel-mod">CP0</option>
                                 <option value="CP1" class="sel-mod">CP1</option>
                                 <option value="CPN" class="sel-mod">CPN</option>
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Considera apenas LP</label>
-                            <select class="form-control" name="consideralp" id="consideralp">
-                                <option value="Nao">Nao</option>
-                                <option value="Sim">Sim</option>
                             </select>
                         </div>
                         <div class="form-group col">
@@ -151,19 +125,16 @@ $progcod = "fin_cre02";
                 var formData = new FormData(this);
                 //formulario de parametros
                 formData.append("codigoFilial", $("#codigoFilial").val());
-                formData.append("cliente", $("#cliente").val());
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
-                formData.append("relatoriogeral", $("#relatoriogeral").val());
                 formData.append("modalidade", $("#modalidade").val());
-                formData.append("consideralp", $("#consideralp").val());
                 formData.append("considerafeirao", $("#considerafeirao").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */
 
                 $.ajax({
-                    url: "../database/agendamento.php?relatorio=fin_cre02",
+                    url: "../database/agendamento.php?relatorio=rec-moe-nov",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -190,17 +161,6 @@ $progcod = "fin_cre02";
                 el.parentNode.parentNode.replaceChild(select, el.parentNode);
             }
         }
-        // selecionar todos os itens do select modalidade
-        $("#relatoriogeral").change(function() {
-            if ($("#relatoriogeral").val() == 'Nao') {
-                $(".sel-mod").prop("selected", false);
-                $(".cre").prop("selected", true);
-            }
-            if ($("#relatoriogeral").val() == 'Sim') {
-                $(".sel-mod").prop("selected", true);
-                $(".cre").prop("selected", true);
-            }
-        });
     </script>
     <!-- js com script usando no modal -->
     <script src="../agendamento/agendamento.js"></script>

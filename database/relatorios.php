@@ -275,6 +275,36 @@ if (isset($_GET['operacao'])) {
                 
                 header('Location: ../lucas/fin_cre02.php'); 
         }
+
+        //-RESUMO MENSAL DO CAIXA
+        if ($operacao == "recper") {
+                $modalidade = $_POST['modalidade'];
+                if(count($modalidade) == 1){
+                        $modalidade = implode($_POST['modalidade']);
+                }else{
+                        $modalidade = implode(",", $_POST['modalidade']); 
+                }
+                $parametros = array("parametros" => array(array(
+                        'etbcod' => intval($_POST['codigoFilial']),
+                        'pgdtinicial' => $_POST['periodoVencInicial'],
+                        'pgdtfinal' => $_POST['periodoVencFinal'],
+                        'pvdtinical' => $_POST['periodoPagInicial'],
+                        'pvdtfinal' => $_POST['periodoPagFinal'],
+                        'consultalp' => ($_POST['consideralp'] == 'Sim' ? true : false),
+                        'sel-mod' => $modalidade,
+                        'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)))
+                );
+                $apiEntrada = array(
+                        'usercod' => $_POST['usercod'],
+                        'progcod' => $_POST['progcod'],
+                        'relatnom' => $_POST['relatnom'],
+                        'parametros' => $parametros,
+                        'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
+                );
+                $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
+                
+                header('Location: ../lucas/recper.php'); 
+        }
 }
 
 ?>

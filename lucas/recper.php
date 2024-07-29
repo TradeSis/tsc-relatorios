@@ -4,8 +4,9 @@
 include_once '../head.php';
 include_once '../database/relatorios.php';
 
-$progcod="fin_cre02";
+$progcod="recper";
 $relatorios = buscaRelatorios($progcod);
+
 ?>
 
 <!doctype html>
@@ -23,7 +24,7 @@ $relatorios = buscaRelatorios($progcod);
             <div class="card-header">
                 <div class="row">
                     <div class="col-10">
-                        <h3 class="col">Resumo Mensal do Caixa</h3>
+                        <h3 class="col">Recebimento por período</h3>
                     </div>
                     <div class="col-1" style="text-align:right">
                         <a href="#" role="button" class="btn btn-info btn-sm" style="margin-left:-20px" onClick="window.location.reload()">
@@ -31,7 +32,7 @@ $relatorios = buscaRelatorios($progcod);
                         </a>
                     </div>
                     <div class="col-1" style="text-align:right">
-                        <a href="fin_cre02_inserir.php" role="button" class="btn btn-success btn-sm">Novo</a>
+                        <a href="recper_inserir.php" role="button" class="btn btn-success btn-sm">Novo</a>
                     </div>
                 </div>
             </div>
