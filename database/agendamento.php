@@ -78,8 +78,8 @@ if (isset($_GET['relatorio'])) {
         if ($relatorio == "cdleld") {
                 $parametros = array(
                         "parametros" => array(array(
-                                'etb_ini' => $_POST['dataInicial'],
-                                'etb_fim' => $_POST['dataFinal']
+                                'etb_ini' => $_POST['etb_ini'],
+                                'etb_fim' => $_POST['etb_fim']
                         ))
                 );
         }

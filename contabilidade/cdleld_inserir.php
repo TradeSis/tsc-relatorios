@@ -60,15 +60,15 @@ $progcod = "cdleld";
                             <label class="mt-1">EP - Clientes com dias de pagamento de: </label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dataInicial" id="dataInicial">
+                            <input type="text" class="form-control text-end" name="etb_ini" id="etb_ini" value="1" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off">
                         </div>
                         <div class="form-group col-1">
                             <label class="mt-4">Até: </label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dataFinal" id="dataFinal">
+                            <input type="text" class="form-control text-end" name="etb_fim" id="etb_fim" value="30" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off">
                         </div>
-                    </div>       
+                    </div>
             </div><!-- container -->
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
@@ -91,8 +91,8 @@ $progcod = "cdleld";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("dataInicial", $("#dataInicial").val());
-                formData.append("dataFinal", $("#dataFinal").val());
+                formData.append("etb_ini", $("#etb_ini").val());
+                formData.append("etb_fim", $("#etb_fim").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */
@@ -112,29 +112,10 @@ $progcod = "cdleld";
             }
         });
 
-        // modifica efeito de seleção do select modalidade
-        window.onmousedown = function(e) {
-            var el = e.target;
-            if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
-                e.preventDefault();
-
-                if (el.hasAttribute('selected')) el.removeAttribute('selected');
-                else el.setAttribute('selected', '');
-
-                var select = el.parentNode.cloneNode(true);
-                el.parentNode.parentNode.replaceChild(select, el.parentNode);
-            }
-        }
-        // selecionar todos os itens do select modalidade
-        $("#relatoriogeral").change(function() {
-            if ($("#relatoriogeral").val() == 'Nao') {
-                $(".sel-mod").prop("selected", false);
-                $(".cre").prop("selected", true);
-            }
-            if ($("#relatoriogeral").val() == 'Sim') {
-                $(".sel-mod").prop("selected", true);
-                $(".cre").prop("selected", true);
-            }
+        $(document).ready(function() {
+            $("#inputdoisdig").keyup(function() {
+                $("#inputdoisdig").val(this.value.match(/[0-9]*/));
+            });
         });
     </script>
     <!-- js com script usando no modal -->
