@@ -23,7 +23,7 @@ $relatorios = buscaRelatorios($progcod);
             <div class="card-header">
                 <div class="row">
                     <div class="col-10">
-                        <h3 class="col">Controle de Carteira</h3>
+                        <h3 class="col">Controle de Carteira (NOVO)</h3>
                     </div>
                     <div class="col-1" style="text-align:right">
                         <a href="#" role="button" class="btn btn-info btn-sm" style="margin-left:-20px" onClick="window.location.reload()">

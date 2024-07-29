@@ -26,7 +26,7 @@ $progcod = "frrescart_v1801";
             <div class="card-header border-1">
                 <div class="row">
                     <div class="col-10">
-                        <h4 class="col">Resumo Mensal do Caixa</h4>
+                        <h4 class="col">Controle de Carteira (NOVO)</h4>
                     </div>
                     <div class="col-sm" style="text-align:right">
                         <a href="#" onclick="history.back()" role="button" class="btn btn-primary btn-sm">Voltar</a>
@@ -53,7 +53,7 @@ $progcod = "frrescart_v1801";
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="Controle de Carteira" autocomplete="off" readonly>
+                        <input type="text" name="relatnom" class="form-control" value="Controle de Carteira (NOVO)" autocomplete="off" readonly>
                     </div>
                     <div class="row mt-2">
                         <div class="form-group col-6">

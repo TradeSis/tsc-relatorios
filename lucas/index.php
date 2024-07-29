@@ -38,7 +38,7 @@ include_once '../head.php';
           <a class="nav-link ts-tabConfig <?php if ($stab == "frrescart_v1801") {
             echo " active ";
           } ?>"
-            href="?tab=lucas&stab=frrescart_v1801" role="tab" style="font-size:12px" >Controle de Carteira</a>
+            href="?tab=lucas&stab=frrescart_v1801" role="tab" style="font-size:12px" >Controle de Carteira (NOVO)</a>
         </li>
         <li class="nav-item ">
           <a class="nav-link ts-tabConfig <?php if ($stab == "rec-moe-nov") {
