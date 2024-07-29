@@ -102,6 +102,13 @@ $progcod = "frrescart_v1801";
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
+                        <div class="form-group col">
+                            <label>Filial 17</label>
+                            <select class="form-control" name="fil17" id="fil17">
+                                <option value="nova">Nova</option>
+                                <option value="antiga">Antiga</option>
+                            </select>
+                        </div>
                     </div>
             </div><!-- container -->
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
@@ -131,6 +138,7 @@ $progcod = "frrescart_v1801";
                 formData.append("clinovos", $("#clinovos").val());
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("considerafeirao", $("#considerafeirao").val());
+                formData.append("fil17", $("#fil17").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */

@@ -58,7 +58,8 @@ if (isset($_GET['relatorio'])) {
                                 'dtfinal' => $_POST['dataFinal'],
                                 'clinovos' => ($_POST['clinovos'] == 'Sim' ? true : false),
                                 'sel-mod' => $_POST['modalidade'],
-                                'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
+                                'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
+                                'fil17' => $_POST['fil17']
                         ))
                 );
         }
