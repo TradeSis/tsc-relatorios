@@ -119,8 +119,8 @@ $progcod = "recper";
                     </div>
             </div><!-- container -->
             <div class="card-footer bg-transparent text-end">
-                </form>
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
+                </form>
                 <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento">Agendar Relatório</button>
             </div>
 

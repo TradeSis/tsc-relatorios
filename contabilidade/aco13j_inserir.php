@@ -5,7 +5,7 @@ include_once('../head.php');
 $filial = explode(":", $_SERVER['REMOTE_ADDR']);
 $filial = isset($filial[2]);
 
-$progcod = "aco13js";
+$progcod = "aco13j";
 ?>
 
 <!doctype html>
@@ -35,7 +35,7 @@ $progcod = "aco13js";
             </div>
             <div class="container" style="margin-top: 10px">
 
-                <form action="../database/relatorios.php?operacao=aco13js" method="post">
+                <form action="../database/relatorios.php?operacao=aco13j" method="post">
                     <div class="row">
                         <div class="col">
                             <label>Usuário</label>
@@ -46,7 +46,7 @@ $progcod = "aco13js";
                         <div class="col">
                             <label>Programa</label>
                             <div class="form-group">
-                                <input type="text" name="progcod" class="form-control" value="aco13js" autocomplete="off" readonly>
+                                <input type="text" name="progcod" class="form-control" value="aco13j" autocomplete="off" readonly>
                             </div>
                         </div>
 
