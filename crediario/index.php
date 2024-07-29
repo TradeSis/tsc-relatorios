@@ -26,28 +26,46 @@ include_once '../head.php';
           <a class="nav-link ts-tabConfig <?php if ($stab == "fin_cre02") {
             echo " active ";
           } ?>"
-            href="?tab=lucas&stab=fin_cre02" role="tab" style="font-size:12px" >Resumo Mensal do Caixa</a>
+            href="?tab=crediario&stab=fin_cre02" role="tab" style="font-size:12px" >Resumo Mensal do Caixa</a>
         </li>
         <li class="nav-item ">
           <a class="nav-link ts-tabConfig <?php if ($stab == "recper") {
             echo " active ";
           } ?>"
-            href="?tab=lucas&stab=recper" role="tab" style="font-size:12px" >Recebimento por período</a>
+            href="?tab=crediario&stab=recper" role="tab" style="font-size:12px" >Recebimento por período</a>
         </li>
         <li class="nav-item ">
           <a class="nav-link ts-tabConfig <?php if ($stab == "frrescart_v1801") {
             echo " active ";
           } ?>"
-            href="?tab=lucas&stab=frrescart_v1801" role="tab" style="font-size:12px" >Controle de Carteira (NOVO)</a>
+            href="?tab=crediario&stab=frrescart_v1801" role="tab" style="font-size:12px" >Controle de Carteira (NOVO)</a>
         </li>
         <li class="nav-item ">
           <a class="nav-link ts-tabConfig <?php if ($stab == "rec-moe-nov") {
             echo " active ";
           } ?>"
-            href="?tab=lucas&stab=rec-moe-nov" role="tab" style="font-size:12px" >Novações Caixa/Filial</a>
+            href="?tab=crediario&stab=rec-moe-nov" role="tab" style="font-size:12px" >Novações Caixa/Filial</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link ts-tabConfig <?php if ($stab == "frsalcart_v2002") {
+            echo " active ";
+          } ?>"
+            href="?tab=crediario&stab=frsalcart_v2002" role="tab" style="font-size:12px" >Vencidos e a Vencer (NOVO)</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link ts-tabConfig <?php if ($stab == "resliq") {
+            echo " active ";
+          } ?>"
+            href="?tab=crediario&stab=resliq" role="tab" style="font-size:12px" >Resumo liquidações p/periodo geral</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link ts-tabConfig <?php if ($stab == "connov01_v0718") {
+            echo " active ";
+          } ?>"
+            href="?tab=crediario&stab=connov01_v0718" role="tab" style="font-size:12px" > Novações por filial ok</a>
         </li>
        
-        
+       
       </ul>
     </div>
     <div class="col-md-10">
@@ -65,6 +83,15 @@ include_once '../head.php';
           }
           if ($stab == "rec-moe-nov") {
             $ssrc = "rec-moe-nov.php";
+          }
+          if ($stab == "frsalcart_v2002") {
+            $ssrc = "frsalcart_v2002.php";
+          }
+          if ($stab == "resliq") {
+            $ssrc = "resliq.php";
+          }
+          if ($stab == "connov01_v0718") {
+            $ssrc = "connov01_v0718.php";
           }
           
 

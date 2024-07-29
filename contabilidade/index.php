@@ -28,7 +28,18 @@ include_once '../head.php';
           } ?>"
             href="?tab=contabilidade&stab=cdleld" role="tab" style="font-size:12px" >EP Pagamentos</a>
         </li>
-       
+        <li class="nav-item ">
+          <a class="nav-link ts-tabConfig <?php if ($stab == "cdleld2") {
+            echo " active ";
+          } ?>"
+            href="?tab=contabilidade&stab=cdleld2" role="tab" style="font-size:12px" >CDC Pagamentos</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link ts-tabConfig <?php if ($stab == "aco13j") {
+            echo " active ";
+          } ?>"
+            href="?tab=contabilidade&stab=aco13j" role="tab" style="font-size:12px" >CP-CDC Acordos gerados na data TIT</a>
+        </li>
         
       </ul>
     </div>
@@ -38,6 +49,12 @@ include_once '../head.php';
 
           if ($stab == "cdleld") {
             $ssrc = "cdleld.php";
+          }
+          if ($stab == "cdleld2") {
+            $ssrc = "cdleld2.php";
+          }
+          if ($stab == "aco13j") {
+            $ssrc = "aco13j.php";
           }
           
 

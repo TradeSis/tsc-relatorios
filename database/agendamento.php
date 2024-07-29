@@ -6,9 +6,6 @@ include_once('../conexao.php');
 if (isset($_GET['relatorio'])) {
 
         $relatorio = $_GET['relatorio'];
-        $arquivo = fopen("C:TRADESIS/tmp/LOG.txt", "a");
-        fwrite($arquivo, 'POST' . json_encode($_POST) . "\n");
-        fclose($arquivo);
         
         $periododias = isset($_POST["periododias"]) && $_POST["periododias"] !== "" ? $_POST["periododias"] : null;
         $semanaldia1 = isset($_POST["semanaldia1"]) && $_POST["semanaldia1"] !== "" ? $_POST["semanaldia1"] : null;
@@ -79,12 +76,71 @@ if (isset($_GET['relatorio'])) {
         if ($relatorio == "cdleld") {
                 $parametros = array(
                         "parametros" => array(array(
-                                'etb_ini' => $_POST['etb_ini'],
-                                'etb_fim' => $_POST['etb_fim']
+                                'etb_ini' => intval($_POST['etb_ini']),
+                                'etb_fim' => intval($_POST['etb_fim'])
                         ))
                 );
         }
 
+        if ($relatorio == "frsalcart_v2002") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'cre' => ($_POST['cliente'] == 'Geral' ? true : false),
+                                'codigoFilial' => intval($_POST['codigoFilial']), /* estabelecimento */
+                                'mod-sel' => $_POST['modalidade'],
+                                'dataInical' => $_POST['dataInicial'],
+                                'dataFinal' => $_POST['dataFinal'],
+                                'dataReferencia' => $_POST['dataReferencia'],
+                                'consulta-parcelas-LP' => ($_POST['consideralp'] == 'Sim' ? true : false),
+                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
+                                'abreporanoemi' => ($_POST['anoEmissao'] == 'Sim' ? true : false),
+                                'clinovos' => ($_POST['clinovos'] == 'Sim' ? true : false),
+                                'porestab' => ($_POST['porfilial'] == 'Sim' ? true : false)
+                        ))
+                );
+        }
+
+        if ($relatorio == "resliq") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'mod-sel' => $_POST['modalidade'],
+                                'dataInical' => $_POST['dataInicial'],
+                                'dataFinal' => $_POST['dataFinal'],
+                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
+                        ))
+                );
+        }
+
+        if ($relatorio == "cdleld2") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'etb_ini' => intval($_POST['etb_ini']),
+                                'etb_fim' => intval($_POST['etb_fim'])
+                        ))
+                );
+        }
+
+        if ($relatorio == "connov01_v0718") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'codigoFilial' => intval($_POST['codigoFilial']),
+                                'mod-sel' => $_POST['modalidade'],
+                                'dataInical' => $_POST['dataInicial'],
+                                'dataFinal' => $_POST['dataFinal'],
+                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
+                        ))
+                );
+        }
+
+        if ($relatorio == "aco13j") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dataInical' => $_POST['dataInicial'],
+                                'dataFinal' => $_POST['dataFinal']
+                        ))
+                );
+        }
+        
         $apiEntrada = array(
                 'dtprocessar' => $_POST['dtprocessar'],
                 'hrprocessar' => $hrprocessar,
@@ -100,9 +156,6 @@ if (isset($_GET['relatorio'])) {
                 'diasemana3' =>  $_POST['diasemana3'],
                 'diasemana1' =>  $_POST['diasemana1'],
         );
-        $arquivo = fopen("C:TRADESIS/tmp/LOG.txt", "a");
-        fwrite($arquivo, 'APIENTRADA' . json_encode($apiEntrada) . "\n");
-        fclose($arquivo);
        
         $relatorios = chamaAPI(null, '/relatorios/agendamento', json_encode($apiEntrada), 'PUT');
 }

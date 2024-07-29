@@ -49,8 +49,8 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                             </li>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
-                                <?php if ($tab == "lucas") {echo " active ";} ?>" 
-                                href="?tab=lucas" role="tab">Lucas</a>
+                                <?php if ($tab == "crediario") {echo " active ";} ?>" 
+                                href="?tab=crediario" role="tab">Crediário</a>
                             </li>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
@@ -71,8 +71,14 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         $getTab = '';
                     } ?>
                     <select class="form-select mt-2 ts-selectSubMenuAplicativos" id="subtabRelatorios">
-                        <option value="<?php echo URLROOT ?>/crediario/?tab=relatorios" 
+                        <option value="<?php echo URLROOT ?>/relatorios/?tab=relatorios" 
                         <?php if ($getTab == "relatorios") {echo " selected ";} ?>>Relatórios</option>
+
+                        <option value="<?php echo URLROOT ?>/relatorios/?tab=crediario" 
+                        <?php if ($getTab == "crediario") {echo " selected ";} ?>>Crediário</option>
+
+                        <option value="<?php echo URLROOT ?>/relatorios/?tab=contabilidade" 
+                        <?php if ($getTab == "contabilidade") {echo " selected ";} ?>>Contabilidade</option>
                     </select>
                 </div>
 
@@ -88,8 +94,8 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
             if ($tab == "relatorios") {
                 $src = "relatorios/";
             }
-            if ($tab == "lucas") {
-                $src = "lucas/";
+            if ($tab == "crediario") {
+                $src = "crediario/";
             }
             if ($tab == "contabilidade") {
                 $src = "contabilidade/";
