@@ -17,28 +17,41 @@ include_once(__DIR__ . '/../header.php');
     <div class="container-fluid pt-4">
 
         <div class="list-group">
-            <a href="frrescart_v1801.php" class="list-group-item">
+            <a href="rec-moe-nov.php" class="list-group-item">
                 <div class="row g-0">
                     <div class="col-1 text-center " style="width: 50px;">
                         <i class="bi bi-file-earmark-text" style="font-size: 35px;"></i>
                     </div>
                     <div class="col ms-2 me-auto">
-                        <div class="fw-bold">CONTROLE DE CARTEIRA</div>
+                        <div class="fw-bold">Novações Caixa/Filial</div>
                         descricao
                     </div>
                 </div>
             </a>
-            <a href="frsalcart_v2002.php" class="list-group-item">
+            <a href="aco13j.php" class="list-group-item">
                 <div class="row g-0">
                     <div class="col-1 text-center " style="width: 50px;">
                         <i class="bi bi-file-earmark-text" style="font-size: 35px;"></i>
                     </div>
                     <div class="col ms-2 me-auto">
-                        <div class="fw-bold">VENCIDOS E A VENCER</div>
+                        <div class="fw-bold">CP-CDC Acordos gerados na data</div>
                         descricao
                     </div>
                 </div>
             </a>
+            <a href="connov01_v0718.php" class="list-group-item">
+                <div class="row g-0">
+                    <div class="col-1 text-center " style="width: 50px;">
+                        <i class="bi bi-file-earmark-text" style="font-size: 35px;"></i>
+                    </div>
+                    <div class="col ms-2 me-auto">
+                        <div class="fw-bold">Novações por filial</div>
+                        descricao
+                    </div>
+                </div>
+            </a>
+            
+   
 
         </div>
 

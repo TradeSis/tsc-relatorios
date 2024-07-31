@@ -2,6 +2,19 @@
 
 include_once('../conexao.php');
 
+function buscaAgendamento($progcod)
+{
+
+        $entrada = array(
+                'progcod' => $progcod
+        );
+
+        $apiEntrada = array(
+                'entrada' => array($entrada)
+        );
+        $relatorios = chamaAPI(null, '/relatorios/agendamento', json_encode($apiEntrada), 'GET');
+        return $relatorios;
+}
 
 if (isset($_GET['relatorio'])) {
 
@@ -127,7 +140,8 @@ if (isset($_GET['relatorio'])) {
                                 'mod-sel' => $_POST['modalidade'],
                                 'dataInical' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
-                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
+                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
+                                'vindex' => $_POST['vindex']
                         ))
                 );
         }
@@ -137,6 +151,48 @@ if (isset($_GET['relatorio'])) {
                         "parametros" => array(array(
                                 'dataInical' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal']
+                        ))
+                );
+        }
+
+        if ($relatorio == "loj_cred01") { // OBS: REVISAR PARAMETROS
+                $parametros = array(
+                        "parametros" => array(array(
+                                'posicao' => $_POST['posicao'],
+                                'codigoFilial' => intval($_POST['codigoFilial']),
+                                'dataInicial' => $_POST['dataInicial'],
+                                'dataFinal' => $_POST['dataFinal'],
+                                'ordem' => $_POST['ordem']
+                        ))
+                );
+        }
+
+        if ($relatorio == "loj_cre01_ma") { // OBS: REVISAR PARAMETROS
+                $parametros = array(
+                        "parametros" => array(array(
+                                'modalidade' => $_POST['modalidade'],
+                                'posicao' => $_POST['posicao'],
+                                'codigoFilial' => intval($_POST['codigoFilial']),
+                                'dataInicial' => $_POST['dataInicial'],
+                                'dataFinal' => $_POST['dataFinal'],
+                                'consideralp' => $_POST['consideralp'],
+                                'considerafeirao' => $_POST['considerafeirao'],
+                                'ordem' => $_POST['ordem']
+                        ))
+                );
+        }
+
+        if ($relatorio == "loj_cre01_ma") { // OBS: REVISAR PARAMETROS
+                $parametros = array(
+                        "parametros" => array(array(
+                                'posicao' => $_POST['posicao'],
+                                'modalidade' => $modalidade,
+                                'codigoFilial' => intval($_POST['codigoFilial']),
+                                'dataInical' => $_POST['dataInicial'],
+                                'dataFinal' => $_POST['dataFinal'],
+                                'consultalp' => ($_POST['consideralp'] == 'Sim' ? true : false),
+                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
+                                'alfa' => ($_POST['alfa'] == 'Sim' ? true : false)
                         ))
                 );
         }
@@ -158,4 +214,5 @@ if (isset($_GET['relatorio'])) {
         );
        
         $relatorios = chamaAPI(null, '/relatorios/agendamento', json_encode($apiEntrada), 'PUT');
+        
 }

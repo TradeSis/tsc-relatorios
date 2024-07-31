@@ -1,14 +1,13 @@
 <?php
-// lucas 23022024 - criado programa
+// lucas 120320204 id884 bootstrap local - alterado head
 
 include_once('../head.php');
-$filial = explode(":", $_SERVER['REMOTE_ADDR']);
+$filial = explode(".", $_SERVER['REMOTE_ADDR']);
 $filial = isset($filial[2]);
 
-$progcod = "connov01_v0718";
+$progcod = "loj_cre01_ma";
 ?>
 
-<!doctype html>
 <html lang="pt-BR">
 
 <head>
@@ -26,7 +25,7 @@ $progcod = "connov01_v0718";
             <div class="card-header border-1">
                 <div class="row">
                     <div class="col-10">
-                        <h4 class="col">Novações por filial ok</h4>
+                        <h4 class="col">Posição de cliente por periodo - A</h4>
                     </div>
                     <div class="col-sm" style="text-align:right">
                         <a href="#" onclick="history.back()" role="button" class="btn btn-primary btn-sm">Voltar</a>
@@ -35,7 +34,7 @@ $progcod = "connov01_v0718";
             </div>
             <div class="container" style="margin-top: 10px">
 
-                <form action="../database/relatorios.php?operacao=connov01_v0718" method="post">
+                <form action="../database/relatorios.php?operacao=loj_cre01_ma" method="post">
                     <div class="row">
                         <div class="col">
                             <label>Usuário</label>
@@ -46,31 +45,40 @@ $progcod = "connov01_v0718";
                         <div class="col">
                             <label>Programa</label>
                             <div class="form-group">
-                                <input type="text" name="progcod" class="form-control" value="connov01_v0718" autocomplete="off" readonly>
+                                <input type="text" name="progcod" class="form-control" value="loj_cre01_ma" autocomplete="off" readonly>
                             </div>
                         </div>
-
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="Novações por filial ok" autocomplete="off" readonly>
+                        <input type="text" name="relatnom" class="form-control" value="Posicao de cliente por periodo - A" autocomplete="off" readonly>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>Modalidade</label>
+                            <select class="form-control" name="modalidade" id="modalidade">
+                                <option value="crediario">Crediario</option>
+                                <option value="emprestimos">Emprestimos</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label>Posição</label>
+                            <select class="form-control" name="posicao" id="posicao">
+                                <option value="1">Posição 1</option>
+                                <option value="2">Posição 2</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group col">
                             <label>Filial</label>
                             <?php if ($filial <= 0) { ?>
-                                <input type="number" class="form-control" name="codigoFilial" id="codigoFilial" value="0">
+                                <input type="number" class="form-control" name="codigoFilial" id="codigoFilial">
                             <?php } else { ?>
                                 <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" id="codigoFilial" readonly>
                             <?php } ?>
                             <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                         </div>
-                        <div class="form-group col">
-                            <label>Nome Filial</label>
-                            <input type="text" class="form-control" readonly>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="form-group col">
                             <label>Data Inicial</label>
                             <input type="date" class="form-control" name="dataInicial" id="dataInicial">
@@ -81,13 +89,11 @@ $progcod = "connov01_v0718";
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-6">
-                            <label>Selecione Modalidades</label>
-                            <select class="form-control" name="modalidade[]" id="modalidade" multiple style="height: 90px; overflow-y: hidden;">
-                                <option value="CRE" class="cre" selected>CRE</option>
-                                <option value="CP0" class="sel-mod">CP0</option>
-                                <option value="CP1" class="sel-mod">CP1</option>
-                                <option value="CPN" class="sel-mod">CPN</option>
+                        <div class="form-group col">
+                            <label>Considera apenas LP</label>
+                            <select class="form-control" name="consideralp" id="consideralp">
+                                <option value="Nao">Nao</option>
+                                <option value="Sim">Sim</option>
                             </select>
                         </div>
                         <div class="form-group col">
@@ -95,6 +101,16 @@ $progcod = "connov01_v0718";
                             <select class="form-control" name="considerafeirao" id="considerafeirao">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
+                            <label>Ordenação</label>
+                            <select class="form-control" name="ordem" id="ordem">
+                                <option value="1">Alfabetica</option>
+                                <option value="2">Vencimento</option>
+                                <option value="3">Bairro</option>
+                                <option value="4">Valor Vencido</option>
+                                <option value="5">Novação</option>
                             </select>
                         </div>
                     </div>
@@ -120,44 +136,36 @@ $progcod = "connov01_v0718";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("codigoFilial", $("#codigoFilial").val());
                 formData.append("modalidade", $("#modalidade").val());
+                formData.append("posicao", $("#posicao").val());
+                formData.append("codigoFilial", $("#codigoFilial").val());
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
+                formData.append("consideralp", $("#consideralp").val());
                 formData.append("considerafeirao", $("#considerafeirao").val());
+                formData.append("ordem", $("#ordem").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */
 
                 $.ajax({
-                    url: "../database/agendamento.php?relatorio=connov01_v0718",
+                    url: "../database/agendamento.php?relatorio=loj_cre01_ma",
                     type: 'POST',
                     data: formData,
                     processData: false,
                     contentType: false,
-                    success: refreshPage,
+                    success: refreshPage
                 });
             });
 
             function refreshPage() {
                 window.location.reload();
+                var url = window.location.href;
+                url = url.replace('_inserir', '')
+                window.location.href = url;
             }
         });
 
-        // modifica efeito de seleção do select modalidade
-        window.onmousedown = function(e) {
-            var el = e.target;
-            if (el.tagName.toLowerCase() == 'option' && el.parentNode.hasAttribute('multiple')) {
-                e.preventDefault();
-
-                if (el.hasAttribute('selected')) el.removeAttribute('selected');
-                else el.setAttribute('selected', '');
-
-                var select = el.parentNode.cloneNode(true);
-                el.parentNode.parentNode.replaceChild(select, el.parentNode);
-            }
-        }
-  
     </script>
     <!-- js com script usando no modal -->
     <script src="../agendamento/agendamento.js"></script>

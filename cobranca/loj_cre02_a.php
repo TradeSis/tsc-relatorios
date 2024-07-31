@@ -5,7 +5,7 @@ include_once '../head.php';
 include_once '../database/relatorios.php';
 include_once '../database/agendamento.php';
 
-$progcod = "frsalcart_v2002";
+$progcod = "loj_cre02_a";
 $relatorios = buscaRelatorios($progcod);
 $agendamentos = buscaAgendamento($progcod);
 ?>
@@ -24,7 +24,7 @@ $agendamentos = buscaAgendamento($progcod);
     <div class="container-fluid pt-3">
         <div class="row">
             <div class="col">
-                <h5>Vencidos e a Vencer</h5>
+                <h5>Posição cliente por período - A</h5>
             </div>
             <div class="col text-end">
                 <a href="index.php" role="button" class="btn btn-primary btn-sm">Voltar</a>
@@ -49,18 +49,17 @@ $agendamentos = buscaAgendamento($progcod);
                     Atualizar
                 </a>
 
-                <a href="frsalcart_v2002_inserir.php" role="button" class="btn btn-success btn-sm">Novo</a>
+                <a href="loj_cre02_a_inserir.php" role="button" class="btn btn-success btn-sm">Novo</a>
 
             </div>
         </div>
-
 
         <div class="tab-content">
 
             <!-- RELATORIOS -->
             <div class="tab-pane fade show active" id="relatorios" role="tabpanel" aria-labelledby="relatorios-tab">
                 <div class="container-fluid p-0 m-0">
-
+                  
                     <div class="table table-responsive mt-2">
                         <table class="table table-sm table-hover table-bordered">
                             <thead class="thead-light">
@@ -128,11 +127,9 @@ $agendamentos = buscaAgendamento($progcod);
 
             <!-- AGENDAMENTOS -->
             <?php include_once '../agendamento/agendamento_table.php' ?>
-
+            
 
         </div><!-- tab-content -->
-
-
 
         <!-- LOCAL PARA COLOCAR OS JS -->
 

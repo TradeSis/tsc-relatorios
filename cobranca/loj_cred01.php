@@ -1,11 +1,12 @@
 <?php
-// lucas 23022024 - criado programa
+// lucas 120320204 id884 bootstrap local - alterado head
+// gabriel 09022023 15:35
 
 include_once '../head.php';
 include_once '../database/relatorios.php';
 include_once '../database/agendamento.php';
 
-$progcod = "frsalcart_v2002";
+$progcod = "loj_cred01";
 $relatorios = buscaRelatorios($progcod);
 $agendamentos = buscaAgendamento($progcod);
 ?>
@@ -24,7 +25,7 @@ $agendamentos = buscaAgendamento($progcod);
     <div class="container-fluid pt-3">
         <div class="row">
             <div class="col">
-                <h5>Vencidos e a Vencer</h5>
+                <h5>Extrato de cobrança simples</h5>
             </div>
             <div class="col text-end">
                 <a href="index.php" role="button" class="btn btn-primary btn-sm">Voltar</a>
@@ -49,11 +50,10 @@ $agendamentos = buscaAgendamento($progcod);
                     Atualizar
                 </a>
 
-                <a href="frsalcart_v2002_inserir.php" role="button" class="btn btn-success btn-sm">Novo</a>
+                <a href="loj_cred01_inserir.php" role="button" class="btn btn-success btn-sm">Novo</a>
 
             </div>
         </div>
-
 
         <div class="tab-content">
 
@@ -131,10 +131,6 @@ $agendamentos = buscaAgendamento($progcod);
 
 
         </div><!-- tab-content -->
-
-
-
-        <!-- LOCAL PARA COLOCAR OS JS -->
 
         <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 

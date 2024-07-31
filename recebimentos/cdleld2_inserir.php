@@ -5,7 +5,7 @@ include_once('../head.php');
 $filial = explode(":", $_SERVER['REMOTE_ADDR']);
 $filial = isset($filial[2]);
 
-$progcod = "aco13j";
+$progcod = "cdleld2";
 ?>
 
 <!doctype html>
@@ -26,7 +26,7 @@ $progcod = "aco13j";
             <div class="card-header border-1">
                 <div class="row">
                     <div class="col-10">
-                        <h4 class="col">CP-CDC Acordos gerados na data TIT</h4>
+                        <h4 class="col">CDC Pagamentos</h4>
                     </div>
                     <div class="col-sm" style="text-align:right">
                         <a href="#" onclick="history.back()" role="button" class="btn btn-primary btn-sm">Voltar</a>
@@ -35,7 +35,7 @@ $progcod = "aco13j";
             </div>
             <div class="container" style="margin-top: 10px">
 
-                <form action="../database/relatorios.php?operacao=aco13j" method="post">
+                <form action="../database/relatorios.php?operacao=cdleld2" method="post">
                     <div class="row">
                         <div class="col">
                             <label>Usuário</label>
@@ -46,27 +46,27 @@ $progcod = "aco13j";
                         <div class="col">
                             <label>Programa</label>
                             <div class="form-group">
-                                <input type="text" name="progcod" class="form-control" value="aco13j" autocomplete="off" readonly>
+                                <input type="text" name="progcod" class="form-control" value="cdleld2" autocomplete="off" readonly>
                             </div>
                         </div>
 
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="CP-CDC Acordos gerados na data TIT" autocomplete="off" readonly>
+                        <input type="text" name="relatnom" class="form-control" value="CDC Pagamentos" autocomplete="off" readonly>
                     </div>
                     <div class="row mt-2">
                         <div class="form-group col">
-                            <label class="mt-4">Contratos emitidos de: </label>
+                            <label class="mt-1">CRE - Clientes com dias de pagamento de: </label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dataInicial" id="dataInicial" value="1" autocomplete="off">
+                            <input type="text" class="form-control text-end" name="etb_ini" id="etb_ini" value="1" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off">
                         </div>
                         <div class="form-group col-1">
                             <label class="mt-4">Até: </label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dataFinal" id="dataFinal" value="30" autocomplete="off">
+                            <input type="text" class="form-control text-end" name="etb_fim" id="etb_fim" value="30" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off">
                         </div>
                     </div>
             </div><!-- container -->
@@ -91,14 +91,14 @@ $progcod = "aco13j";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("dataInicial", $("#dataInicial").val());
-                formData.append("dataFinal", $("#dataFinal").val());
+                formData.append("etb_ini", $("#etb_ini").val());
+                formData.append("etb_fim", $("#etb_fim").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */
 
                 $.ajax({
-                    url: "../database/agendamento.php?relatorio=aco13j",
+                    url: "../database/agendamento.php?relatorio=cdleld2",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -109,9 +109,17 @@ $progcod = "aco13j";
 
             function refreshPage() {
                 window.location.reload();
+                var url = window.location.href;
+                url = url.replace('_inserir', '')
+                window.location.href = url;
             }
         });
 
+        $(document).ready(function() {
+            $("#inputdoisdig").keyup(function() {
+                $("#inputdoisdig").val(this.value.match(/[0-9]*/));
+            });
+        });
     </script>
     <!-- js com script usando no modal -->
     <script src="../agendamento/agendamento.js"></script>

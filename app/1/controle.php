@@ -10,6 +10,10 @@ if ($metodo=="GET"){
       case "listagem":
         include 'tsrelat.php';
       break;
+
+      case "agendamento":
+        include 'tsrelagend.php';
+      break;
       default:
         $jsonSaida = json_decode(json_encode(
         array("status" => "400",

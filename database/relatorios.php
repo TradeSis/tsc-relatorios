@@ -82,7 +82,7 @@ if (isset($_GET['operacao'])) {
                 );
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../relatorios/loj_cred01.php');
+                header('Location: ../cobranca/loj_cred01.php');
         }
 
         //-POSICAO DE CLIENTE POR PERIODO - A
@@ -106,7 +106,7 @@ if (isset($_GET['operacao'])) {
                 );
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../relatorios/loj_cre01_ma.php');
+                header('Location: ../cobranca/loj_cre01_ma.php');
         }
 
         //-POSICAO DE CLIENTE POR PERIODO - B
@@ -277,7 +277,7 @@ if (isset($_GET['operacao'])) {
                 );
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../crediario/');
+                header('Location: ../recebimentos/fin_cre02.php');
         }
 
         //-RESUMO MENSAL DO CAIXA
@@ -310,7 +310,7 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../crediario/');
+                header('Location: ../recebimentos/recper.php');
         }
 
         //-CONTROLE DE CARTEIRA (NOVO)
@@ -342,7 +342,7 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../crediario/');
+                header('Location: ../crediario/frrescart_v1801.php');
         }
 
         //-NOVAÇÕES CAIXA/FILIAL
@@ -372,7 +372,7 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../crediario/');
+                header('Location: ../novacoes/rec-moe-nov.php');
         }
 
         //-VENCIDOS E A VENCER (NOVO)
@@ -408,7 +408,7 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../crediario/');
+                header('Location: ../crediario/frsalcart_v2002.php');
         }
 
         //-RESUMO LIQUIDACOES P/PERIODO GERAL
@@ -437,7 +437,7 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../crediario/');
+                header('Location: ../recebimentos/resliq.php');
         }
 
          //-NOVAÇÕES POR FILIAL OK
@@ -454,7 +454,8 @@ if (isset($_GET['operacao'])) {
                                 'mod-sel' => $modalidade,
                                 'dataInical' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
-                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
+                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
+                                'vindex' => intval($_POST['vindex'])
                         ))
                 );
                 $apiEntrada = array(
@@ -467,7 +468,7 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../crediario/');
+                header('Location: ../novacoes/connov01_v0718.php');
         }
 
         //-EP PAGAMENTOS
@@ -488,7 +489,7 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../contabilidade/');
+                header('Location: ../recebimentos/cdleld.php');
         }
 
         //-CDC PAGAMENTOS
@@ -509,7 +510,7 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../contabilidade/');
+                header('Location: ../recebimentos/cdleld2.php');
         }
         
         //-CDC PAGAMENTOS
@@ -530,6 +531,39 @@ if (isset($_GET['operacao'])) {
 
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
-                header('Location: ../contabilidade/');
+                header('Location: ../novacoes/aco13j.php');
+        }
+
+        //-POSICAO DE CLIENTE POR PERIODO - A // OBS: REVISAR PARAMETROS
+        if ($operacao == "loj_cre02_a") {
+                $modalidade = $_POST['modalidade'];
+                if (count($modalidade) == 1) {
+                        $modalidade = implode($_POST['modalidade']);
+                } else {
+                        $modalidade = implode(",", $_POST['modalidade']);
+                }
+                $parametros = array(
+                        "parametros" => array(array(
+                                'posicao' => $_POST['posicao'],
+                                'modalidade' => $modalidade,
+                                'codigoFilial' => intval($_POST['codigoFilial']),
+                                'dataInical' => $_POST['dataInicial'],
+                                'dataFinal' => $_POST['dataFinal'],
+                                'consultalp' => ($_POST['consideralp'] == 'Sim' ? true : false),
+                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
+                                'alfa' => ($_POST['alfa'] == 'Sim' ? true : false)
+                        ))
+                );
+                $apiEntrada = array(
+                        'usercod' => $_POST['usercod'],
+                        'progcod' => $_POST['progcod'],
+                        'relatnom' => $_POST['relatnom'],
+                        'parametros' => $parametros,
+                        'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
+                );
+
+                $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
+
+                header('Location: ../novacoes/loj_cre02_a.php');
         }
 }

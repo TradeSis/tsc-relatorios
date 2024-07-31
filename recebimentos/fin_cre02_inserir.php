@@ -5,7 +5,7 @@ include_once('../head.php');
 $filial = explode(":", $_SERVER['REMOTE_ADDR']);
 $filial = isset($filial[2]);
 
-$progcod = "frsalcart_v2002";
+$progcod = "fin_cre02";
 ?>
 
 <!doctype html>
@@ -26,7 +26,7 @@ $progcod = "frsalcart_v2002";
             <div class="card-header border-1">
                 <div class="row">
                     <div class="col-10">
-                        <h4 class="col">Vencidos e a Vencer (NOVO)</h4>
+                        <h4 class="col">Resumo Mensal do Caixa</h4>
                     </div>
                     <div class="col-sm" style="text-align:right">
                         <a href="#" onclick="history.back()" role="button" class="btn btn-primary btn-sm">Voltar</a>
@@ -35,7 +35,7 @@ $progcod = "frsalcart_v2002";
             </div>
             <div class="container" style="margin-top: 10px">
 
-                <form action="../database/relatorios.php?operacao=frsalcart_v2002" method="post">
+                <form action="../database/relatorios.php?operacao=fin_cre02" method="post">
                     <div class="row">
                         <div class="col">
                             <label>Usuário</label>
@@ -46,14 +46,29 @@ $progcod = "frsalcart_v2002";
                         <div class="col">
                             <label>Programa</label>
                             <div class="form-group">
-                                <input type="text" name="progcod" class="form-control" value="frsalcart_v2002" autocomplete="off" readonly>
+                                <input type="text" name="progcod" class="form-control" value="fin_cre02" autocomplete="off" readonly>
                             </div>
                         </div>
 
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="Vencidos e a Vencer (NOVO)" autocomplete="off" readonly>
+                        <input type="text" name="relatnom" class="form-control" value="Resumo Mensal do Caixa" autocomplete="off" readonly>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>Filial</label>
+                            <?php if ($filial <= 0) { ?>
+                                <input type="number" class="form-control" name="codigoFilial" id="codigoFilial" value="0">
+                            <?php } else { ?>
+                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" id="codigoFilial" readonly>
+                            <?php } ?>
+                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
+                        </div>
+                        <div class="form-group col">
+                            <label>Nome Filial</label>
+                            <input type="text" class="form-control" readonly>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
@@ -66,7 +81,24 @@ $progcod = "frsalcart_v2002";
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-6">
+                        <div class="form-group col">
+                            <label>Data Inicial</label>
+                            <input type="date" class="form-control" name="dataInicial" id="dataInicial">
+                        </div>
+                        <div class="form-group col">
+                            <label>Data Final</label>
+                            <input type="date" class="form-control" name="dataFinal" id="dataFinal">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col">
+                            <label>Relatório geral</label>
+                            <select class="form-control" name="relatoriogeral" id="relatoriogeral">
+                                <option value="Nao">Nao</option>
+                                <option value="Sim">Sim</option>
+                            </select>
+                        </div>
+                        <div class="form-group col">
                             <label>Selecione Modalidades</label>
                             <select class="form-control" name="modalidade[]" id="modalidade" multiple style="height: 90px; overflow-y: hidden;">
                                 <option value="CRE" class="cre" selected>CRE</option>
@@ -75,42 +107,9 @@ $progcod = "frsalcart_v2002";
                                 <option value="CPN" class="sel-mod">CPN</option>
                             </select>
                         </div>
-                        <div class="form-group col-6">
-                            <label>Estabelecimento</label>
-                            <input type="number" placeholder="Vazio = Geral" class="form-control" name="codigoFilial" id="codigoFilial">
-                        </div>
+
                     </div>
                     <div class="row">
-                        <div class="form-group col-2">
-                            <label>Por Filial</label>
-                            <select class="form-control" name="porfilial" id="porfilial">
-                                <option value="Nao">Nao</option>
-                                <option value="Sim">Sim</option>
-                            </select>
-                        </div>
-                        <div class="form-group col porfilial d-none">
-                            <div class="row">
-                                <!-- Por Filal = Sim -->
-                                <div class="form-group col-3">
-                                    <label class="mt-4">Periodo de: </label>
-                                </div>
-                                <div class="form-group col-4 mt-3">
-                                    <input type="date" class="form-control" name="dataInicial" id="dataInicial" disabled>
-                                </div>
-                                <div class="form-group col-1">
-                                    <label class="mt-4">Até: </label>
-                                </div>
-                                <div class="form-group col-4 mt-3">
-                                    <input type="date" class="form-control" name="dataFinal" id="dataFinal" disabled>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col">
-                            <label>Data Referencia</label>
-                            <input type="date" class="form-control" name="dataReferencia" id="dataReferencia">
-                        </div>
                         <div class="form-group col">
                             <label>Considera apenas LP</label>
                             <select class="form-control" name="consideralp" id="consideralp">
@@ -126,24 +125,6 @@ $progcod = "frsalcart_v2002";
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-4 mt-4">
-                            <label>Abre por Ano de Emissao</label>
-                            <select class="form-control" name="anoEmissao" id="anoEmissao">
-                                <option value="Nao">Nao</option>
-                                <option value="Sim">Sim</option>
-                            </select>
-                        </div>
-                        <div class="form-group col-8">
-                            <label>Somente clientes novos (até 30 pagas) que atrasaram parcela(s):</label>
-                            <select class="form-control" name="clinovos" id="clinovos">
-                                <option value="Nao">Nao</option>
-                                <option value="Sim">Sim</option>
-                            </select>
-                        </div>
-                    </div>
-
-
             </div><!-- container -->
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
@@ -166,23 +147,20 @@ $progcod = "frsalcart_v2002";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("cliente", $("#cliente").val());
-                formData.append("modalidade", $("#modalidade").val());
                 formData.append("codigoFilial", $("#codigoFilial").val());
-                formData.append("porfilial", $("#porfilial").val());
+                formData.append("cliente", $("#cliente").val());
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
-                formData.append("dataReferencia", $("#dataReferencia").val());
+                formData.append("relatoriogeral", $("#relatoriogeral").val());
+                formData.append("modalidade", $("#modalidade").val());
                 formData.append("consideralp", $("#consideralp").val());
                 formData.append("considerafeirao", $("#considerafeirao").val());
-                formData.append("anoEmissao", $("#anoEmissao").val());
-                formData.append("clinovos", $("#clinovos").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */
 
                 $.ajax({
-                    url: "../database/agendamento.php?relatorio=frsalcart_v2002",
+                    url: "../database/agendamento.php?relatorio=fin_cre02",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -212,17 +190,15 @@ $progcod = "frsalcart_v2002";
                 el.parentNode.parentNode.replaceChild(select, el.parentNode);
             }
         }
-        // select de por filial, abre campos de dataInicial e dataFinal
-        $("#porfilial").change(function() {
-            if ($("#porfilial").val() == 'Sim') {
-                $(".porfilial").removeClass("d-none");
-                $("#dataInicial").prop("disabled", false);
-                $("#dataFinal").prop("disabled", false);
+        // selecionar todos os itens do select modalidade
+        $("#relatoriogeral").change(function() {
+            if ($("#relatoriogeral").val() == 'Nao') {
+                $(".sel-mod").prop("selected", false);
+                $(".cre").prop("selected", true);
             }
-            if ($("#porfilial").val() == 'Nao') {
-                $(".porfilial").addClass("d-none");
-                $("#dataInicial").prop("disabled", true);
-                $("#dataFinal").prop("disabled", true);
+            if ($("#relatoriogeral").val() == 'Sim') {
+                $(".sel-mod").prop("selected", true);
+                $(".cre").prop("selected", true);
             }
         });
     </script>

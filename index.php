@@ -54,9 +54,25 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                             </li>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
+                                <?php if ($tab == "recebimentos") {echo " active ";} ?>" 
+                                href="?tab=recebimentos" role="tab">Recebimentos</a>
+                            </li>
+                            <li class="nav-item mr-1">
+                                <a class="nav-link 
                                 <?php if ($tab == "contabilidade") {echo " active ";} ?>" 
                                 href="?tab=contabilidade" role="tab">Contabilidade</a>
                             </li>
+                            <li class="nav-item mr-1">
+                                <a class="nav-link 
+                                <?php if ($tab == "cobranca") {echo " active ";} ?>" 
+                                href="?tab=cobranca" role="tab">Cobrança</a>
+                            </li>
+                            <li class="nav-item mr-1">
+                                <a class="nav-link 
+                                <?php if ($tab == "novacoes") {echo " active ";} ?>" 
+                                href="?tab=novacoes" role="tab">Novações</a>
+                            </li>
+                            
                         <?php }
                            ?>
                     </ul>
@@ -77,8 +93,17 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
                         <option value="<?php echo URLROOT ?>/relatorios/?tab=crediario" 
                         <?php if ($getTab == "crediario") {echo " selected ";} ?>>Crediário</option>
 
+                        <option value="<?php echo URLROOT ?>/relatorios/?tab=recebimentos" 
+                        <?php if ($getTab == "recebimentos") {echo " selected ";} ?>>Recebimentos</option>
+
                         <option value="<?php echo URLROOT ?>/relatorios/?tab=contabilidade" 
                         <?php if ($getTab == "contabilidade") {echo " selected ";} ?>>Contabilidade</option>
+
+                        <option value="<?php echo URLROOT ?>/relatorios/?tab=cobranca" 
+                        <?php if ($getTab == "cobranca") {echo " selected ";} ?>>Cobrança</option>
+
+                        <option value="<?php echo URLROOT ?>/relatorios/?tab=novacoes" 
+                        <?php if ($getTab == "novacoes") {echo " selected ";} ?>>Novações</option>
                     </select>
                 </div>
 
@@ -97,10 +122,19 @@ $nivelMenu = $nivelMenuLogin['nivelMenu'];
             if ($tab == "crediario") {
                 $src = "crediario/";
             }
+            if ($tab == "recebimentos") {
+                $src = "recebimentos/";
+            }
             if ($tab == "contabilidade") {
                 $src = "contabilidade/";
             }
-
+            if ($tab == "cobranca") {
+                $src = "cobranca/";
+            }
+            if ($tab == "novacoes") {
+                $src = "novacoes/";
+            }
+            
             if ($src !== "") {
                 //echo URLROOT ."/cadastros/". $src;
             ?>

@@ -17,24 +17,35 @@ include_once(__DIR__ . '/../header.php');
     <div class="container-fluid pt-4">
 
         <div class="list-group">
-            <a href="frrescart_v1801.php" class="list-group-item">
+            <a href="loj_cre01_ma.php" class="list-group-item">
                 <div class="row g-0">
                     <div class="col-1 text-center " style="width: 50px;">
                         <i class="bi bi-file-earmark-text" style="font-size: 35px;"></i>
                     </div>
                     <div class="col ms-2 me-auto">
-                        <div class="fw-bold">CONTROLE DE CARTEIRA</div>
+                        <div class="fw-bold">Posição cliente por período - A</div>
                         descricao
                     </div>
                 </div>
             </a>
-            <a href="frsalcart_v2002.php" class="list-group-item">
+            <a href="loj_cre02_a.php" class="list-group-item">
                 <div class="row g-0">
                     <div class="col-1 text-center " style="width: 50px;">
                         <i class="bi bi-file-earmark-text" style="font-size: 35px;"></i>
                     </div>
                     <div class="col ms-2 me-auto">
-                        <div class="fw-bold">VENCIDOS E A VENCER</div>
+                        <div class="fw-bold">Posição cliente por período - A</div>
+                        descricao
+                    </div>
+                </div>
+            </a>
+            <a href="loj_cred01.php" class="list-group-item">
+                <div class="row g-0">
+                    <div class="col-1 text-center " style="width: 50px;">
+                        <i class="bi bi-file-earmark-text" style="font-size: 35px;"></i>
+                    </div>
+                    <div class="col ms-2 me-auto">
+                        <div class="fw-bold">Extrato de Cobrança Simples</div>
                         descricao
                     </div>
                 </div>
