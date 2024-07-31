@@ -101,7 +101,7 @@ if (isset($_GET['relatorio'])) {
                                 'cre' => ($_POST['cliente'] == 'Geral' ? true : false),
                                 'codigoFilial' => intval($_POST['codigoFilial']), /* estabelecimento */
                                 'mod-sel' => $_POST['modalidade'],
-                                'dataInical' => $_POST['dataInicial'],
+                                'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
                                 'dataReferencia' => $_POST['dataReferencia'],
                                 'consulta-parcelas-LP' => ($_POST['consideralp'] == 'Sim' ? true : false),
@@ -138,10 +138,10 @@ if (isset($_GET['relatorio'])) {
                         "parametros" => array(array(
                                 'codigoFilial' => intval($_POST['codigoFilial']),
                                 'mod-sel' => $_POST['modalidade'],
-                                'dataInical' => $_POST['dataInicial'],
+                                'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
                                 'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
-                                'vindex' => $_POST['vindex']
+                                'vindex' => $_POST['ordenacao']
                         ))
                 );
         }
@@ -149,7 +149,7 @@ if (isset($_GET['relatorio'])) {
         if ($relatorio == "aco13j") {
                 $parametros = array(
                         "parametros" => array(array(
-                                'dataInical' => $_POST['dataInicial'],
+                                'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal']
                         ))
                 );

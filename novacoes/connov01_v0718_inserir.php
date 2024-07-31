@@ -99,12 +99,12 @@ $progcod = "connov01_v0718";
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col">
-                            <label>Ordem</label>
-                            <select class="form-control" name="vindex" id="vindex">
-                                <option value="0">ANALITICO</option>
-                                <option value="1">SINTETICO</option>
-                                <option value="2">POR DATA</option>
+                        <div class="form-group col-6">
+                            <label>Ordenação</label>
+                            <select class="form-control" name="ordenacao" id="ordenacao">
+                                <option value="1">ANALITICO</option>
+                                <option value="2">SINTETICO</option>
+                                <option value="3">POR DATA</option>
                             </select>
                         </div>
                     </div>
@@ -135,7 +135,7 @@ $progcod = "connov01_v0718";
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
                 formData.append("considerafeirao", $("#considerafeirao").val());
-                formData.append("vindex", $("#vindex").val());
+                formData.append("ordenacao", $("#ordenacao").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */

@@ -89,7 +89,13 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td class="text-center"><?php echo $relatorio['nomeArquivo'] ?></td>
                                         <td class="text-center"><?php echo $relatorio['REMOTE_ADDR'] ?></td>
                                         <td class="text-center">
-                                            <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" data-posicao="<?php echo $relatorio['parametros']['posicao'] ?>" data-codigoFilial="<?php echo $relatorio['parametros']['codigoFilial'] ?>" data-dataInicial="<?php echo $relatorio['parametros']['dataInicial'] ?>" data-dataFinal="<?php echo $relatorio['parametros']['dataFinal'] ?>" data-ordem="<?php echo $relatorio['parametros']['ordem'] ?>">Parâmetros</a>
+                                            <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" 
+                                            data-posicao="<?php echo $relatorio['parametros']['posicao'] ?>" 
+                                            data-codigoFilial="<?php echo $relatorio['parametros']['codigoFilial'] ?>" 
+                                            data-dataInicial="<?php echo $relatorio['parametros']['dataInicial'] ?>" 
+                                            data-dataFinal="<?php echo $relatorio['parametros']['dataFinal'] ?>" 
+                                            data-ordem="<?php echo $relatorio['parametros']['ordem'] ?>"
+                                            >Parâmetros</a>
                                         </td>
                                         <td class="text-center">
                                             <a class="btn btn-sm" href="visualizar.php?nomeArquivo=<?php echo $relatorio['nomeArquivo'] ?>">Visualizar</a>

@@ -54,6 +54,7 @@ $progcod = "aco13j";
                     <label>Nome do relatório</label>
                     <div class="form-group">
                         <input type="text" name="relatnom" class="form-control" value="CP-CDC Acordos gerados na data TIT" autocomplete="off" readonly>
+                        <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                     </div>
                     <div class="row mt-2">
                         <div class="form-group col">
