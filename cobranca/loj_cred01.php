@@ -140,7 +140,7 @@ $agendamentos = buscaAgendamento($progcod);
                             </div>
                             <div class="row">
                                 <div class="form-group col-6">
-                                    <label>ordem</label>
+                                    <label>Ordenação</label>
                                     <input type="text" class="form-control" id="ordem" readonly>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@ $agendamentos = buscaAgendamento($progcod);
                 var codigoFilial = $(this).attr("data-codigoFilial");
                 var dataInicial = $(this).attr("data-dataInicial");
                 var dataFinal = $(this).attr("data-dataFinal");
-                var ordem = $(this).attr("data-ordem");
+                var ordem = $(this).attr("data-ordem") == "0" ? "Vencimento" : "Alfabetica";
 
                 $('#posicao').val(posicao);
                 $('#codigoFilial').val(codigoFilial);
@@ -177,6 +177,9 @@ $agendamentos = buscaAgendamento($progcod);
 
             // formata data no formato AAAA-MM-DD para DD/MM/AAAA
             function formatarData(data) {
+                if(data == "" || data == null){
+                    return " ";
+                }
                 resultado = data.split("-");
 
                 vdia = resultado[2];

@@ -194,6 +194,9 @@ $agendamentos = buscaAgendamento($progcod);
 
             // formata data no formato AAAA-MM-DD para DD/MM/AAAA
             function formatarData(data) {
+                if(data == "" || data == null){
+                    return " ";
+                }
                 resultado = data.split("-");
 
                 vdia = resultado[2];

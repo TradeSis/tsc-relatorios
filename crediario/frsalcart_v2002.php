@@ -148,32 +148,34 @@ $agendamentos = buscaAgendamento($progcod);
                                     <input type="text" class="form-control" id="dataFinal" readonly>
                                 </div>
                                 <div class="form-group col">
-                                    <label>Data Referencia</label>
+                                    <label>Data Referência</label>
                                     <input type="text" class="form-control" id="dataReferencia" readonly>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
-                                    <label>considerafeirao</label>
+                                    <label>Considerar apenas feirao</label>
                                     <input type="text" class="form-control" id="considerafeirao" readonly>
                                 </div>
                                 <div class="form-group col">
-                                    <label>consideralp</label>
+                                    <label>Considera apenas LP</label>
                                     <input type="text" class="form-control" id="consideralp" readonly>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
-                                    <label>abreporanoemi</label>
+                                    <label>Abre por Ano de Emissao</label>
                                     <input type="text" class="form-control" id="abreporanoemi" readonly>
                                 </div>
                                 <div class="form-group col">
-                                    <label>clinovos</label>
-                                    <input type="text" class="form-control" id="clinovos" readonly>
-                                </div>
-                                <div class="form-group col">
-                                    <label>porestab</label>
+                                    <label>Abre por Ano de Emissao</label>
                                     <input type="text" class="form-control" id="porestab" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Somente clientes novos (até 30 pagas) que atrasaram parcela(s):</label>
+                                    <input type="text" class="form-control" id="clinovos" readonly>
                                 </div>
                             </div>
                         </div>
@@ -224,6 +226,9 @@ $agendamentos = buscaAgendamento($progcod);
 
             // formata data no formato AAAA-MM-DD para DD/MM/AAAA
             function formatarData(data) {
+                if(data == "" || data == null){
+                    return " ";
+                }
                 resultado = data.split("-");
 
                 vdia = resultado[2];
@@ -232,7 +237,9 @@ $agendamentos = buscaAgendamento($progcod);
 
                 return vdia + '/' + vmes + '/' + vano;
             }
+
         </script>
+
         <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
 </body>

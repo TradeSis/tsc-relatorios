@@ -54,6 +54,7 @@ $progcod = "resliq";
                     <label>Nome do relatório</label>
                     <div class="form-group">
                         <input type="text" name="relatnom" class="form-control" value="Resumo liquidações p/periodo geral" autocomplete="off" readonly>
+                        <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                     </div>
                     <div class="row">
                         <div class="form-group col-6">

@@ -88,39 +88,74 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td class="text-center"><?php echo $relatorio['nomeArquivo'] ?></td>
                                         <td class="text-center"><?php echo $relatorio['REMOTE_ADDR'] ?></td>
                                         <td class="text-center">
-                                            <a class="btn btn-sm" href="#" data-toggle="modal" data-target="#parametros-modal-<?php echo $relatorio['IDRelat'] ?>">Parâmetros</a>
+                                            <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" 
+                                            data-dtinicial="<?php echo $relatorio['parametros']['dtinicial'] ?>" 
+                                            data-dtfinal="<?php echo $relatorio['parametros']['dtfinal'] ?>" 
+                                            data-clinovos="<?php echo $relatorio['parametros']['clinovos'] ?>" 
+                                            data-modalidade="<?php echo $relatorio['parametros']['sel-mod'] ?>" 
+                                            data-considerarfeirao="<?php echo $relatorio['parametros']['considerarfeirao'] ?>"
+                                            data-fil17="<?php echo $relatorio['parametros']['fil17'] ?>"
+                                            >Parâmetros</a>
                                         </td>
                                         <td class="text-center">
                                             <a class="btn btn-sm" href="visualizar.php?nomeArquivo=<?php echo $relatorio['nomeArquivo'] ?>">Visualizar</a>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="parametros-modal-<?php echo $relatorio['IDRelat'] ?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="ModalLabel">Parâmetros do Relatorio</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="col">
-                                                        <label>Posição</label>
-                                                        <input type="text" class="form-control" value="<?php echo $relatorio['parametros']['posicao'] ?>" readonly>
-                                                        <label>Filial</label>
-                                                        <input type="text" class="form-control" value="<?php echo $relatorio['parametros']['codigoFilial'] ?>" readonly>
-                                                        <label>Data Inicial</label>
-                                                        <input type="text" class="form-control" value="<?php echo date('d/m/Y', strtotime($relatorio['parametros']['dataInicial'])) ?>" readonly>
-                                                        <label>Data Final</label>
-                                                        <input type="text" class="form-control" value="<?php echo date('d/m/Y', strtotime($relatorio['parametros']['dataFinal'])) ?>" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
                             <?php }
                             } ?>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Parâmetros -->
+            <div class="modal fade" id="parametros-modal" tabindex="-1" aria-labelledby="parametros-modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Parâmetros do Relatório</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Cliente</label>
+                                    <input type="text" class="form-control" id="cliente" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Data Inicial</label>
+                                    <input type="text" class="form-control" id="dtinicial" readonly>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Data Final</label>
+                                    <input type="text" class="form-control" id="dtfinal" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Somente clientes novos(até 30 pagas) que atrasaram parcela(s):</label>
+                                    <input type="text" class="form-control" id="clinovos" readonly>
+                                </div>
+                                <div class="form-group col mt-4">
+                                    <label>Modalidade</label>
+                                    <input type="text" class="form-control" id="modalidade" readonly>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Considerar apenas feirao</label>
+                                    <input type="text" class="form-control" id="considerarfeirao" readonly>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Filial 17</label>
+                                    <input type="text" class="form-control" id="fil17" readonly>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,6 +170,42 @@ $agendamentos = buscaAgendamento($progcod);
 
         <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
+        <script>
+            $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
+                var cliente = $(this).attr("data-cliente") == true ? "Geral": "Filial";
+                var dtinicial = $(this).attr("data-dtinicial");
+                var dtfinal = $(this).attr("data-dtfinal");
+                var clinovos = $(this).attr("data-clinovos") == true ? "Sim": "Não";
+                var modalidade = $(this).attr("data-modalidade");
+                var considerarfeirao = $(this).attr("data-considerarfeirao") == true ? "Sim": "Não";
+                var fil17 = $(this).attr("data-fil17") == true ? "Sim": "Não";
+
+                $('#cliente').val(cliente);
+                $('#dtinicial').val(formatarData(dtinicial));
+                $('#dtfinal').val(formatarData(dtfinal));
+                $('#clinovos').val(clinovos);
+                $('#modalidade').val(modalidade);
+                $('#considerarfeirao').val(considerarfeirao);
+                $('#fil17').val(fil17);
+
+                $('#parametros-modal').modal('show');
+
+            });
+
+            // formata data no formato AAAA-MM-DD para DD/MM/AAAA
+            function formatarData(data) {
+                if(data == "" || data == null){
+                    return " ";
+                }
+                resultado = data.split("-");
+
+                vdia = resultado[2];
+                vmes = resultado[1];
+                vano = resultado[0];
+
+                return vdia + '/' + vmes + '/' + vano;
+            }
+        </script>
         <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
 </body>

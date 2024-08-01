@@ -54,6 +54,7 @@ $progcod = "frsalcart_v2002";
                     <label>Nome do relatório</label>
                     <div class="form-group">
                         <input type="text" name="relatnom" class="form-control" value="Vencidos e a Vencer (NOVO)" autocomplete="off" readonly>
+                        <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
@@ -192,10 +193,12 @@ $progcod = "frsalcart_v2002";
             });
 
             function refreshPage() {
-                window.location.reload();
+                /* window.location.reload();
                 var url = window.location.href;
                 url = url.replace('_inserir', '')
-                window.location.href = url;
+                window.location.href = url; */
+                const toast = new bootstrap.Toast(toastContent);
+        toast.show();
             }
         });
 

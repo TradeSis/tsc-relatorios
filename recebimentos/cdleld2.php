@@ -72,7 +72,7 @@ $agendamentos = buscaAgendamento($progcod);
                                     <th class="text-center">Nome do arquivo</th>
                                     <th class="text-center">REMOTE_ADDR</th>
                                     <th class="text-center">Parâmetros</th>
-                                    <th class="text-center">PDF</th>
+                                    <!-- <th class="text-center">PDF</th> -->
                                 </tr>
                             </thead>
                             <?php
@@ -88,39 +88,42 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td class="text-center"><?php echo $relatorio['nomeArquivo'] ?></td>
                                         <td class="text-center"><?php echo $relatorio['REMOTE_ADDR'] ?></td>
                                         <td class="text-center">
-                                            <a class="btn btn-sm" href="#" data-toggle="modal" data-target="#parametros-modal-<?php echo $relatorio['IDRelat'] ?>">Parâmetros</a>
+                                            <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" 
+                                            data-etbIni="<?php echo $relatorio['parametros']['etb_ini'] ?>" 
+                                            data-etbFim="<?php echo $relatorio['parametros']['etb_fim'] ?>" 
+                                            >Parâmetros</a>
                                         </td>
-                                        <td class="text-center">
+                                        <!-- <td class="text-center">
                                             <a class="btn btn-sm" href="visualizar.php?nomeArquivo=<?php echo $relatorio['nomeArquivo'] ?>">Visualizar</a>
-                                        </td>
+                                        </td> -->
                                     </tr>
-                                    <div class="modal fade" id="parametros-modal-<?php echo $relatorio['IDRelat'] ?>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="ModalLabel">Parâmetros do Relatorio</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="col">
-                                                        <label>Posição</label>
-                                                        <input type="text" class="form-control" value="<?php echo $relatorio['parametros']['posicao'] ?>" readonly>
-                                                        <label>Filial</label>
-                                                        <input type="text" class="form-control" value="<?php echo $relatorio['parametros']['codigoFilial'] ?>" readonly>
-                                                        <label>Data Inicial</label>
-                                                        <input type="text" class="form-control" value="<?php echo date('d/m/Y', strtotime($relatorio['parametros']['dataInicial'])) ?>" readonly>
-                                                        <label>Data Final</label>
-                                                        <input type="text" class="form-control" value="<?php echo date('d/m/Y', strtotime($relatorio['parametros']['dataFinal'])) ?>" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                             <?php }
                             } ?>
                         </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Parâmetros -->
+            <div class="modal fade" id="parametros-modal" tabindex="-1" aria-labelledby="parametros-modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Parâmetros do Relatório</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Dia Inicial</label>
+                                    <input type="text" class="form-control" id="etbIni" readonly>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Dia Final</label>
+                                    <input type="text" class="form-control" id="etbFim" readonly>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -135,6 +138,18 @@ $agendamentos = buscaAgendamento($progcod);
 
         <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
+        <script>
+            $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
+                var etbIni = $(this).attr("data-etbIni");
+                var etbFim = $(this).attr("data-etbFim");
+
+                $('#etbIni').val(etbIni);
+                $('#etbFim').val(etbFim);
+
+                $('#parametros-modal').modal('show');
+
+            });
+        </script>
         <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
 </body>

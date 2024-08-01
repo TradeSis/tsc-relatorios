@@ -291,10 +291,10 @@ if (isset($_GET['operacao'])) {
                 $parametros = array(
                         "parametros" => array(array(
                                 'etbcod' => intval($_POST['codigoFilial']),
-                                'pgdtinicial' => $_POST['periodoVencInicial'],
-                                'pgdtfinal' => $_POST['periodoVencFinal'],
-                                'pvdtinical' => $_POST['periodoPagInicial'],
-                                'pvdtfinal' => $_POST['periodoPagFinal'],
+                                'pgdtinicial' => $_POST['periodoPagInicial'],
+                                'pgdtfinal' => $_POST['periodoPagFinal'],
+                                'pvdtinical' => $_POST['periodoVenInicial'],
+                                'pvdtfinal' => $_POST['periodoVenFinal'],
                                 'consultalp' => ($_POST['consideralp'] == 'Sim' ? true : false),
                                 'sel-mod' => $modalidade,
                                 'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
@@ -422,7 +422,7 @@ if (isset($_GET['operacao'])) {
                 $parametros = array(
                         "parametros" => array(array(
                                 'mod-sel' => $modalidade,
-                                'dataInical' => $_POST['dataInicial'],
+                                'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
                                 'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
                         ))
