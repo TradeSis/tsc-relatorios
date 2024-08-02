@@ -80,7 +80,7 @@ $progcod = "resliq";
                     <div class="row">
                         <div class="form-group col-6">
                             <label>Considerar apenas feirao</label>
-                            <select class="form-control" name="considerafeirao" id="considerafeirao">
+                            <select class="form-control" name="feirao-nome-limpo" id="feirao-nome-limpo">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
@@ -113,7 +113,7 @@ $progcod = "resliq";
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
-                formData.append("considerafeirao", $("#considerafeirao").val());
+                formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */

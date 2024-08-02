@@ -89,7 +89,7 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td class="text-center"><?php echo $relatorio['REMOTE_ADDR'] ?></td>
                                         <td class="text-center">
                                             <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" 
-                                            data-codigoFilial="<?php echo $relatorio['parametros']['etbcod'] ?>" 
+                                            data-etbcod="<?php echo $relatorio['parametros']['etbcod'] ?>" 
                                             data-dtinicial="<?php echo $relatorio['parametros']['dtinicial'] ?>" 
                                             data-dtfinal="<?php echo $relatorio['parametros']['dtfinal'] ?>" 
                                             data-modalidade="<?php echo $relatorio['parametros']['sel-mod'] ?>" 
@@ -120,7 +120,7 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label>Filial</label>
-                                    <input type="text" class="form-control" id="codigoFilial" readonly>
+                                    <input type="text" class="form-control" id="etbcod" readonly>
                                 </div>
                             </div>
                             <div class="row">
@@ -160,13 +160,13 @@ $agendamentos = buscaAgendamento($progcod);
 
         <script>
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
-                var codigoFilial = $(this).attr("data-codigoFilial");
+                var etbcod = $(this).attr("data-etbcod");
                 var dtinicial = $(this).attr("data-dtinicial");
                 var dtfinal = $(this).attr("data-dtfinal");
                 var modalidade = $(this).attr("data-modalidade");
                 var considerarfeirao = $(this).attr("data-considerarfeirao") == true ? "Sim" : "Não";
 
-                $('#codigoFilial').val(codigoFilial);
+                $('#etbcod').val(etbcod);
                 $('#dtinicial').val(formatarData(dtinicial));
                 $('#dtfinal').val(formatarData(dtfinal));
                 $('#modalidade').val(modalidade);

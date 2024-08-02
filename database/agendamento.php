@@ -33,14 +33,14 @@ if (isset($_GET['relatorio'])) {
         if ($relatorio == "fin_cre02") {
                 $parametros = array(
                         "parametros" => array(array(
-                                'etbcod' => intval($_POST['codigoFilial']),
-                                'cliente' => ($_POST['cliente'] == 'Geral' ? true : false),
-                                'dtinicial' => $_POST['dataInicial'],
-                                'dtfinal' => $_POST['dataFinal'],
-                                'relatoriogeral' => ($_POST['relatoriogeral'] == 'Sim' ? true : false),
+                                'etbcod' => intval($_POST['etbcod']),
+                                'cre' => ($_POST['cre'] == 'Geral' ? true : false),
+                                'dtini' => $_POST['dtini'],
+                                'dtfin' => $_POST['dtfin'],
+                                'relatorio-geral' => ($_POST['relatorio-geral'] == 'Sim' ? true : false),
                                 'sel-mod' => $_POST['modalidade'],
-                                'consultalp' => ($_POST['consideralp'] == 'Sim' ? true : false),
-                                'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
+                                'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
+                                'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
                 );
         }
@@ -48,14 +48,14 @@ if (isset($_GET['relatorio'])) {
         if ($relatorio == "recper") {
                 $parametros = array(
                         "parametros" => array(array(
-                                'etbcod' => intval($_POST['codigoFilial']),
-                                'pgdtinicial' => $_POST['periodoPagInicial'],
-                                'pgdtfinal' => $_POST['periodoPagFinal'],
-                                'pvdtinical' => $_POST['periodoVenInicial'],
-                                'pvdtfinal' => $_POST['periodoVenFinal'],
-                                'consultalp' => ($_POST['consideralp'] == 'Sim' ? true : false),
+                                'etbcod' => intval($_POST['etbcod']),
+                                'dti' => $_POST['dti'],
+                                'dtf' => $_POST['dtf'],
+                                'dtveni' => $_POST['dtveni'],
+                                'dtvenf' => $_POST['dtvenf'],
+                                'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
                                 'sel-mod' => $_POST['modalidade'],
-                                'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
+                                'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
                 );
         }
@@ -63,13 +63,13 @@ if (isset($_GET['relatorio'])) {
         if ($relatorio == "frrescart_v1801") {
                 $parametros = array(
                         "parametros" => array(array(
-                                'cliente' => ($_POST['cliente'] == 'Geral' ? true : false),
-                                'dtinicial' => $_POST['dataInicial'],
-                                'dtfinal' => $_POST['dataFinal'],
+                                'cre' => ($_POST['cre'] == 'Geral' ? true : false),
+                                'dti' => $_POST['dti'],
+                                'dtf' => $_POST['dtf'],
                                 'clinovos' => ($_POST['clinovos'] == 'Sim' ? true : false),
                                 'sel-mod' => $_POST['modalidade'],
-                                'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
-                                'fil17' => $_POST['fil17']
+                                'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
+                                'vindex' => $_POST['vindex']
                         ))
                 );
         }
@@ -77,7 +77,7 @@ if (isset($_GET['relatorio'])) {
         if ($relatorio == "rec-moe-nov") {
                 $parametros = array(
                         "parametros" => array(array(
-                                'etbcod' => intval($_POST['codigoFilial']),
+                                'etbcod' => intval($_POST['etbcod']),
                                 'dtinicial' => $_POST['dataInicial'],
                                 'dtfinal' => $_POST['dataFinal'],
                                 'sel-mod' => $_POST['modalidade'],
@@ -98,17 +98,17 @@ if (isset($_GET['relatorio'])) {
         if ($relatorio == "frsalcart_v2002") {
                 $parametros = array(
                         "parametros" => array(array(
-                                'cre' => ($_POST['cliente'] == 'Geral' ? true : false),
+                                'cre' => ($_POST['cre'] == 'Geral' ? true : false),
                                 'codigoFilial' => intval($_POST['codigoFilial']), /* estabelecimento */
                                 'mod-sel' => $_POST['modalidade'],
                                 'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
                                 'dataReferencia' => $_POST['dataReferencia'],
-                                'consulta-parcelas-LP' => ($_POST['consideralp'] == 'Sim' ? true : false),
-                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
-                                'abreporanoemi' => ($_POST['anoEmissao'] == 'Sim' ? true : false),
+                                'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
+                                'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
+                                'abreporanoemi' => ($_POST['abreporanoemi'] == 'Sim' ? true : false),
                                 'clinovos' => ($_POST['clinovos'] == 'Sim' ? true : false),
-                                'porestab' => ($_POST['porfilial'] == 'Sim' ? true : false)
+                                'porestab' => ($_POST['porestab'] == 'Sim' ? true : false)
                         ))
                 );
         }
@@ -119,7 +119,7 @@ if (isset($_GET['relatorio'])) {
                                 'mod-sel' => $_POST['modalidade'],
                                 'dataInical' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
-                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
+                                'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
                 );
         }
@@ -140,8 +140,8 @@ if (isset($_GET['relatorio'])) {
                                 'mod-sel' => $_POST['modalidade'],
                                 'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
-                                'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),
-                                'vindex' => $_POST['ordenacao']
+                                'considerarFeirao' => ($_POST['considerarFeirao'] == 'Sim' ? true : false),
+                                'vindex' => intval($_POST['vindex'])
                         ))
                 );
         }
@@ -155,14 +155,14 @@ if (isset($_GET['relatorio'])) {
                 );
         }
 
-        if ($relatorio == "loj_cred01") { // OBS: REVISAR PARAMETROS
+        if ($relatorio == "loj_cred01") { 
                 $parametros = array(
                         "parametros" => array(array(
                                 'posicao' => $_POST['posicao'],
                                 'codigoFilial' => intval($_POST['codigoFilial']),
                                 'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
-                                'ordem' => $_POST['ordem']
+                                'alfa' => ($_POST['alfa'] == "1" ? true : false)
                         ))
                 );
         }

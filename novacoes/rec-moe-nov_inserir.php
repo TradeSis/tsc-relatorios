@@ -59,9 +59,9 @@ $progcod = "rec-moe-nov";
                         <div class="form-group col">
                             <label>Filial</label>
                             <?php if ($filial <= 0) { ?>
-                                <input type="number" class="form-control" name="codigoFilial" id="codigoFilial" value="0">
+                                <input type="number" class="form-control" name="etbcod" id="etbcod" value="0">
                             <?php } else { ?>
-                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" id="codigoFilial" readonly>
+                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="etbcod" id="etbcod" readonly>
                             <?php } ?>
                             <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                         </div>
@@ -124,7 +124,7 @@ $progcod = "rec-moe-nov";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("codigoFilial", $("#codigoFilial").val());
+                formData.append("etbcod", $("#etbcod").val());
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
                 formData.append("modalidade", $("#modalidade").val());

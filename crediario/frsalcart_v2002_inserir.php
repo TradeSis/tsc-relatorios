@@ -59,7 +59,7 @@ $progcod = "frsalcart_v2002";
                     <div class="row">
                         <div class="form-group col-6">
                             <label>Cliente</label>
-                            <select class="form-control" name="cliente" id="cliente">
+                            <select class="form-control" name="cre" id="cre">
                                 <option value="Geral">Geral</option>
                                 <option value="Facil">Facil</option>
                             </select>
@@ -84,12 +84,12 @@ $progcod = "frsalcart_v2002";
                     <div class="row">
                         <div class="form-group col-2">
                             <label>Por Filial</label>
-                            <select class="form-control" name="porfilial" id="porfilial">
+                            <select class="form-control" name="porestab" id="porestab">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
-                        <div class="form-group col porfilial d-none">
+                        <div class="form-group col porestab d-none">
                             <div class="row">
                                 <!-- Por Filal = Sim -->
                                 <div class="form-group col-3">
@@ -114,14 +114,14 @@ $progcod = "frsalcart_v2002";
                         </div>
                         <div class="form-group col">
                             <label>Considera apenas LP</label>
-                            <select class="form-control" name="consideralp" id="consideralp">
+                            <select class="form-control" name="consulta-parcelas-LP" id="consulta-parcelas-LP">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Considerar apenas feirao</label>
-                            <select class="form-control" name="considerafeirao" id="considerafeirao">
+                            <select class="form-control" name="feirao-nome-limpo" id="feirao-nome-limpo">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
@@ -130,7 +130,7 @@ $progcod = "frsalcart_v2002";
                     <div class="row">
                         <div class="form-group col-4 mt-4">
                             <label>Abre por Ano de Emissao</label>
-                            <select class="form-control" name="anoEmissao" id="anoEmissao">
+                            <select class="form-control" name="abreporanoemi" id="abreporanoemi">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
@@ -167,16 +167,16 @@ $progcod = "frsalcart_v2002";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("cliente", $("#cliente").val());
+                formData.append("cre", $("#cre").val());
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("codigoFilial", $("#codigoFilial").val());
-                formData.append("porfilial", $("#porfilial").val());
+                formData.append("porestab", $("#porestab").val());
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
                 formData.append("dataReferencia", $("#dataReferencia").val());
-                formData.append("consideralp", $("#consideralp").val());
-                formData.append("considerafeirao", $("#considerafeirao").val());
-                formData.append("anoEmissao", $("#anoEmissao").val());
+                formData.append("consulta-parcelas-LP", $("#consulta-parcelas-LP").val());
+                formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
+                formData.append("abreporanoemi", $("#abreporanoemi").val());
                 formData.append("clinovos", $("#clinovos").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
@@ -193,12 +193,10 @@ $progcod = "frsalcart_v2002";
             });
 
             function refreshPage() {
-                /* window.location.reload();
+                window.location.reload();
                 var url = window.location.href;
                 url = url.replace('_inserir', '')
-                window.location.href = url; */
-                const toast = new bootstrap.Toast(toastContent);
-        toast.show();
+                window.location.href = url; 
             }
         });
 
@@ -216,14 +214,14 @@ $progcod = "frsalcart_v2002";
             }
         }
         // select de por filial, abre campos de dataInicial e dataFinal
-        $("#porfilial").change(function() {
-            if ($("#porfilial").val() == 'Sim') {
-                $(".porfilial").removeClass("d-none");
+        $("#porestab").change(function() {
+            if ($("#porestab").val() == 'Sim') {
+                $(".porestab").removeClass("d-none");
                 $("#dataInicial").prop("disabled", false);
                 $("#dataFinal").prop("disabled", false);
             }
-            if ($("#porfilial").val() == 'Nao') {
-                $(".porfilial").addClass("d-none");
+            if ($("#porestab").val() == 'Nao') {
+                $(".porestab").addClass("d-none");
                 $("#dataInicial").prop("disabled", true);
                 $("#dataFinal").prop("disabled", true);
             }

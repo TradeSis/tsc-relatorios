@@ -96,8 +96,8 @@ $agendamentos = buscaAgendamento($progcod);
                                             data-dataInicial="<?php echo $relatorio['parametros']['dataInicial'] ?>" 
                                             data-dataFinal="<?php echo $relatorio['parametros']['dataFinal'] ?>"
                                             data-dataReferencia="<?php echo $relatorio['parametros']['dataReferencia'] ?>" 
-                                            data-considerafeirao="<?php echo $relatorio['parametros']['consulta-parcelas-LP'] ?>" 
-                                            data-consideralp="<?php echo $relatorio['parametros']['feirao-nome-limpo'] ?>" 
+                                            data-feiraonomelimpo="<?php echo $relatorio['parametros']['feirao-nome-limpo'] ?>" 
+                                            data-consultaparcelasLP="<?php echo $relatorio['parametros']['consulta-parcelas-LP'] ?>" 
                                             data-abreporanoemi="<?php echo $relatorio['parametros']['abreporanoemi'] ?>" 
                                             data-clinovos="<?php echo $relatorio['parametros']['clinovos'] ?>"
                                             data-porestab="<?php echo $relatorio['parametros']['porestab'] ?>"
@@ -155,11 +155,11 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Considerar apenas feirao</label>
-                                    <input type="text" class="form-control" id="considerafeirao" readonly>
+                                    <input type="text" class="form-control" id="feirao-nome-limpo" readonly>
                                 </div>
                                 <div class="form-group col">
                                     <label>Considera apenas LP</label>
-                                    <input type="text" class="form-control" id="consideralp" readonly>
+                                    <input type="text" class="form-control" id="consulta-parcelas-LP" readonly>
                                 </div>
                             </div>
                             <div class="row">
@@ -202,7 +202,7 @@ $agendamentos = buscaAgendamento($progcod);
                 var dataInicial = $(this).attr("data-dataInicial");
                 var dataFinal = $(this).attr("data-dataFinal");
                 var dataReferencia = $(this).attr("data-dataReferencia");
-                var considerafeirao = $(this).attr("data-considerafeirao") == true ? "Sim" : "Não";
+                var feiraonomelimpo = $(this).attr("data-feiraonomelimpo") == true ? "Sim" : "Não";
                 var consideralp = $(this).attr("data-consideralp")  == true ? "Sim" : "Não";
                 var abreporanoemi = $(this).attr("data-abreporanoemi")  == true ? "Sim" : "Não";
                 var clinovos = $(this).attr("data-clinovos")  == true ? "Sim" : "Não";
@@ -214,8 +214,8 @@ $agendamentos = buscaAgendamento($progcod);
                 $('#dataInicial').val(formatarData(dataInicial));
                 $('#dataFinal').val(formatarData(dataFinal));
                 $('#dataReferencia').val(formatarData(dataReferencia));
-                $('#considerafeirao').val(considerafeirao);
-                $('#consideralp').val(consideralp);
+                $('#feirao-nome-limpo').val(feiraonomelimpo);
+                $('#consulta-parcelas-LP').val(consideralp);
                 $('#abreporanoemi').val(abreporanoemi);
                 $('#clinovos').val(clinovos);
                 $('#porestab').val(porestab);

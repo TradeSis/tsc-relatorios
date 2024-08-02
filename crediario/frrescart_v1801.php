@@ -89,12 +89,12 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td class="text-center"><?php echo $relatorio['REMOTE_ADDR'] ?></td>
                                         <td class="text-center">
                                             <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" 
-                                            data-dtinicial="<?php echo $relatorio['parametros']['dtinicial'] ?>" 
-                                            data-dtfinal="<?php echo $relatorio['parametros']['dtfinal'] ?>" 
-                                            data-clinovos="<?php echo $relatorio['parametros']['clinovos'] ?>" 
+                                            data-cre="<?php echo $relatorio['parametros']['cre'] ?>" 
+                                            data-dti="<?php echo $relatorio['parametros']['dti'] ?>" 
+                                            data-dtf="<?php echo $relatorio['parametros']['dtf'] ?>" 
                                             data-modalidade="<?php echo $relatorio['parametros']['sel-mod'] ?>" 
-                                            data-considerarfeirao="<?php echo $relatorio['parametros']['considerarfeirao'] ?>"
-                                            data-fil17="<?php echo $relatorio['parametros']['fil17'] ?>"
+                                            data-feiraonomelimpo="<?php echo $relatorio['parametros']['feirao-nome-limpo'] ?>"
+                                            data-vindex="<?php echo $relatorio['parametros']['vindex'] ?>"
                                             >Parâmetros</a>
                                         </td>
                                         <td class="text-center">
@@ -122,17 +122,17 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Cliente</label>
-                                    <input type="text" class="form-control" id="cliente" readonly>
+                                    <input type="text" class="form-control" id="cre" readonly>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Data Inicial</label>
-                                    <input type="text" class="form-control" id="dtinicial" readonly>
+                                    <input type="text" class="form-control" id="dti" readonly>
                                 </div>
                                 <div class="form-group col">
                                     <label>Data Final</label>
-                                    <input type="text" class="form-control" id="dtfinal" readonly>
+                                    <input type="text" class="form-control" id="dtf" readonly>
                                 </div>
                             </div>
                             <div class="row">
@@ -148,11 +148,11 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Considerar apenas feirao</label>
-                                    <input type="text" class="form-control" id="considerarfeirao" readonly>
+                                    <input type="text" class="form-control" id="feirao-nome-limpo" readonly>
                                 </div>
                                 <div class="form-group col">
                                     <label>Filial 17</label>
-                                    <input type="text" class="form-control" id="fil17" readonly>
+                                    <input type="text" class="form-control" id="vindex" readonly>
                                 </div>
                             </div>
                         </div>
@@ -172,21 +172,21 @@ $agendamentos = buscaAgendamento($progcod);
 
         <script>
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
-                var cliente = $(this).attr("data-cliente") == true ? "Geral": "Filial";
-                var dtinicial = $(this).attr("data-dtinicial");
-                var dtfinal = $(this).attr("data-dtfinal");
+                var cre = $(this).attr("data-cre") == true ? "Geral": "Filial";
+                var dti = $(this).attr("data-dti");
+                var dtf = $(this).attr("data-dtf");
                 var clinovos = $(this).attr("data-clinovos") == true ? "Sim": "Não";
                 var modalidade = $(this).attr("data-modalidade");
-                var considerarfeirao = $(this).attr("data-considerarfeirao") == true ? "Sim": "Não";
-                var fil17 = $(this).attr("data-fil17") == true ? "Sim": "Não";
+                var feiraonomelimpo = $(this).attr("data-feirao-nome-limpo") == true ? "Sim": "Não";
+                var vindex = $(this).attr("data-vindex") == true ? "Sim": "Não";
 
-                $('#cliente').val(cliente);
-                $('#dtinicial').val(formatarData(dtinicial));
-                $('#dtfinal').val(formatarData(dtfinal));
+                $('#cre').val(cre);
+                $('#dti').val(formatarData(dti));
+                $('#dtf').val(formatarData(dtf));
                 $('#clinovos').val(clinovos);
                 $('#modalidade').val(modalidade);
-                $('#considerarfeirao').val(considerarfeirao);
-                $('#fil17').val(fil17);
+                $('#feirao-nome-limpo').val(feiraonomelimpo);
+                $('#vindex').val(vindex);
 
                 $('#parametros-modal').modal('show');
 

@@ -59,9 +59,9 @@ $progcod = "recper";
                         <div class="form-group col">
                             <label>Filial</label>
                             <?php if ($filial <= 0) { ?>
-                                <input type="number" class="form-control" name="codigoFilial" id="codigoFilial" value="0">
+                                <input type="number" class="form-control" name="etbcod" id="etbcod" value="0">
                             <?php } else { ?>
-                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" id="codigoFilial" readonly>
+                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="etbcod" id="etbcod" readonly>
                             <?php } ?>
                             <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                         </div>
@@ -75,10 +75,10 @@ $progcod = "recper";
                             <label class="mt-4">Periodo de Pagamento:</label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="periodoPagInicial" id="periodoPagInicial">
+                            <input type="date" class="form-control" name="dti" id="dti">
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="periodoPagFinal" id="periodoPagFinal">
+                            <input type="date" class="form-control" name="dtf" id="dtf">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -86,16 +86,16 @@ $progcod = "recper";
                             <label class="mt-4">Periodo de Vencimento:</label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="periodoVenInicial" id="periodoVenInicial">
+                            <input type="date" class="form-control" name="dtveni" id="dtveni">
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="periodoVenFinal" id="periodoVenFinal">
+                            <input type="date" class="form-control" name="dtvenf" id="dtvenf">
                         </div>
                     </div>
                     <div class="row mt-2">
                         <div class="form-group col">
                             <label>Considera apenas LP</label>
-                            <select class="form-control" name="consideralp" id="consideralp">
+                            <select class="form-control" name="consulta-parcelas-LP" id="consulta-parcelas-LP">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
@@ -111,7 +111,7 @@ $progcod = "recper";
                         </div>
                         <div class="form-group col">
                             <label>Considerar apenas feirao</label>
-                            <select class="form-control" name="considerafeirao" id="considerafeirao">
+                            <select class="form-control" name="feirao-nome-limpo" id="feirao-nome-limpo">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
@@ -139,14 +139,14 @@ $progcod = "recper";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("codigoFilial", $("#codigoFilial").val());
-                formData.append("periodoPagInicial", $("#periodoPagInicial").val());
-                formData.append("periodoPagFinal", $("#periodoPagFinal").val());
-                formData.append("periodoVenInicial", $("#periodoVenInicial").val());
-                formData.append("periodoVenFinal", $("#periodoVenFinal").val());
-                formData.append("consideralp", $("#consideralp").val());
+                formData.append("etbcod", $("#etbcod").val());
+                formData.append("dti", $("#dti").val());
+                formData.append("dtf", $("#dtf").val());
+                formData.append("dtveni", $("#dtveni").val());
+                formData.append("dtvenf", $("#dtvenf").val());
+                formData.append("consulta-parcelas-LP", $("#consulta-parcelas-LP").val());
                 formData.append("modalidade", $("#modalidade").val());
-                formData.append("considerafeirao", $("#considerafeirao").val());
+                formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
                 for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 }

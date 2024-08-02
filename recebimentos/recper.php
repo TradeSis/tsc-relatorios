@@ -89,14 +89,14 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td class="text-center"><?php echo $relatorio['REMOTE_ADDR'] ?></td>
                                         <td class="text-center">
                                             <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" 
-                                            data-codigoFilial="<?php echo $relatorio['parametros']['etbcod'] ?>" 
-                                            data-pgdtinicial="<?php echo $relatorio['parametros']['pgdtinicial'] ?>" 
-                                            data-pgdtfinal="<?php echo $relatorio['parametros']['pgdtfinal'] ?>" 
-                                            data-pvdtinical="<?php echo $relatorio['parametros']['pvdtinical'] ?>" 
-                                            data-pvdtfinal="<?php echo $relatorio['parametros']['pvdtfinal'] ?>"
-                                            data-consultalp="<?php echo $relatorio['parametros']['consultalp'] ?>"
+                                            data-etbcod="<?php echo $relatorio['parametros']['etbcod'] ?>" 
+                                            data-dti="<?php echo $relatorio['parametros']['dti'] ?>" 
+                                            data-dtf="<?php echo $relatorio['parametros']['dtf'] ?>" 
+                                            data-dtveni="<?php echo $relatorio['parametros']['dtveni'] ?>" 
+                                            data-dtvenf="<?php echo $relatorio['parametros']['dtvenf'] ?>"
+                                            data-consultaparcelasLP="<?php echo $relatorio['parametros']['consulta-parcelas-LP'] ?>"
                                             data-modalidade="<?php echo $relatorio['parametros']['sel-mod'] ?>"
-                                            data-considerarfeirao="<?php echo $relatorio['parametros']['considerarfeirao'] ?>"
+                                            data-feiraonomelimpo="<?php echo $relatorio['parametros']['feirao-nome-limpo'] ?>"
                                             >Parâmetros</a>
                                         </td>
                                         <td class="text-center">
@@ -123,33 +123,33 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label>Filial</label>
-                                    <input type="text" class="form-control" id="codigoFilial" readonly>
+                                    <input type="text" class="form-control" id="etbcod" readonly>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Pagamento Inicial</label>
-                                    <input type="text" class="form-control" id="pgdtinicial" readonly>
+                                    <input type="text" class="form-control" id="dti" readonly>
                                 </div>
                                 <div class="form-group col">
                                     <label>Pagamento Final</label>
-                                    <input type="text" class="form-control" id="pgdtfinal" readonly>
+                                    <input type="text" class="form-control" id="dtf" readonly>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Vencimento Inicial</label>
-                                    <input type="text" class="form-control" id="pvdtinical" readonly>
+                                    <input type="text" class="form-control" id="dtveni" readonly>
                                 </div>
                                 <div class="form-group col">
                                     <label>Vencimento Final</label>
-                                    <input type="text" class="form-control" id="pvdtfinal" readonly>
+                                    <input type="text" class="form-control" id="dtvenf" readonly>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Considera apenas LP</label>
-                                    <input type="text" class="form-control" id="consultalp" readonly>
+                                    <input type="text" class="form-control" id="consulta-parcelas-LP" readonly>
                                 </div>
                                 <div class="form-group col">
                                     <label>modalidade</label>
@@ -159,7 +159,7 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label>Considerar apenas feirao</label>
-                                    <input type="text" class="form-control" id="considerarfeirao" readonly>
+                                    <input type="text" class="form-control" id="feirao-nome-limpo" readonly>
                                 </div>
                             </div>
                         </div>
@@ -179,24 +179,24 @@ $agendamentos = buscaAgendamento($progcod);
 
         <script>
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
-                var codigoFilial = $(this).attr("data-codigoFilial");
-                var pgdtinicial = $(this).attr("data-pgdtinicial");
-                var pgdtfinal = $(this).attr("data-pgdtfinal");
-                var pvdtinical = $(this).attr("data-pvdtinical");
-                var pvdtfinal = $(this).attr("data-pvdtfinal");
-                var consultalp = $(this).attr("data-consultalp") == true ? "Sim" : "Não";
+                var etbcod = $(this).attr("data-etbcod");
+                var dti = $(this).attr("data-dti");
+                var dtf = $(this).attr("data-dtf");
+                var dtveni = $(this).attr("data-dtveni");
+                var dtvenf = $(this).attr("data-dtvenf");
+                var consultaparcelasLP = $(this).attr("data-consultaparcelasLP") == true ? "Sim" : "Não";
                 var modalidade = $(this).attr("data-modalidade");
-                var considerarfeirao = $(this).attr("data-considerarfeirao") == true ? "Sim" : "Não";
+                var feiraonomelimpo = $(this).attr("data-feiraonomelimpo") == true ? "Sim" : "Não";
 
 
-                $('#codigoFilial').val(codigoFilial);
-                $('#pgdtinicial').val(formatarData(pgdtinicial));
-                $('#pgdtfinal').val(formatarData(pgdtfinal));
-                $('#pvdtinical').val(formatarData(pvdtinical));
-                $('#pvdtfinal').val(formatarData(pvdtfinal));
-                $('#consultalp').val(consultalp);
+                $('#etbcod').val(etbcod);
+                $('#dti').val(formatarData(dti));
+                $('#dtf').val(formatarData(dtf));
+                $('#dtveni').val(formatarData(dtveni));
+                $('#dtvenf').val(formatarData(dtvenf));
+                $('#consulta-parcelas-LP').val(consultaparcelasLP);
                 $('#modalidade').val(modalidade);
-                $('#considerarfeirao').val(considerarfeirao);
+                $('#feirao-nome-limpo').val(feiraonomelimpo);
 
                 $('#parametros-modal').modal('show');
 

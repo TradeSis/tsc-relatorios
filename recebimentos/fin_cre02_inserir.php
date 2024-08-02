@@ -59,9 +59,9 @@ $progcod = "fin_cre02";
                         <div class="form-group col">
                             <label>Filial</label>
                             <?php if ($filial <= 0) { ?>
-                                <input type="number" class="form-control" name="codigoFilial" id="codigoFilial" value="0">
+                                <input type="number" class="form-control" name="etbcod" id="etbcod" value="0">
                             <?php } else { ?>
-                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" id="codigoFilial" readonly>
+                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="etbcod" id="etbcod" readonly>
                             <?php } ?>
                             <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                         </div>
@@ -73,7 +73,7 @@ $progcod = "fin_cre02";
                     <div class="row">
                         <div class="form-group col-6">
                             <label>Cliente</label>
-                            <select class="form-control" name="cliente" id="cliente">
+                            <select class="form-control" name="cre" id="cre">
                                 <option value="Geral">Geral</option>
                                 <option value="Facil">Facil</option>
                             </select>
@@ -83,17 +83,17 @@ $progcod = "fin_cre02";
                     <div class="row">
                         <div class="form-group col">
                             <label>Data Inicial</label>
-                            <input type="date" class="form-control" name="dataInicial" id="dataInicial">
+                            <input type="date" class="form-control" name="dtini" id="dtini">
                         </div>
                         <div class="form-group col">
                             <label>Data Final</label>
-                            <input type="date" class="form-control" name="dataFinal" id="dataFinal">
+                            <input type="date" class="form-control" name="dtfin" id="dtfin">
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col">
                             <label>Relatório geral</label>
-                            <select class="form-control" name="relatoriogeral" id="relatoriogeral">
+                            <select class="form-control" name="relatorio-geral" id="relatorio-geral">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
@@ -112,14 +112,14 @@ $progcod = "fin_cre02";
                     <div class="row">
                         <div class="form-group col">
                             <label>Considera apenas LP</label>
-                            <select class="form-control" name="consideralp" id="consideralp">
+                            <select class="form-control" name="consulta-parcelas-LP" id="consulta-parcelas-LP">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Considerar apenas feirao</label>
-                            <select class="form-control" name="considerafeirao" id="considerafeirao">
+                            <select class="form-control" name="feirao-nome-limpo" id="feirao-nome-limpo">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
@@ -147,14 +147,14 @@ $progcod = "fin_cre02";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("codigoFilial", $("#codigoFilial").val());
-                formData.append("cliente", $("#cliente").val());
-                formData.append("dataInicial", $("#dataInicial").val());
-                formData.append("dataFinal", $("#dataFinal").val());
-                formData.append("relatoriogeral", $("#relatoriogeral").val());
+                formData.append("etbcod", $("#etbcod").val());
+                formData.append("cre", $("#cre").val());
+                formData.append("dtini", $("#dtini").val());
+                formData.append("dtfin", $("#dtfin").val());
+                formData.append("relatorio-geral", $("#relatorio-geral").val());
                 formData.append("modalidade", $("#modalidade").val());
-                formData.append("consideralp", $("#consideralp").val());
-                formData.append("considerafeirao", $("#considerafeirao").val());
+                formData.append("consulta-parcelas-LP", $("#consulta-parcelas-LP").val());
+                formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */
@@ -191,12 +191,12 @@ $progcod = "fin_cre02";
             }
         }
         // selecionar todos os itens do select modalidade
-        $("#relatoriogeral").change(function() {
-            if ($("#relatoriogeral").val() == 'Nao') {
+        $("#relatorio-geral").change(function() {
+            if ($("#relatorio-geral").val() == 'Nao') {
                 $(".sel-mod").prop("selected", false);
                 $(".cre").prop("selected", true);
             }
-            if ($("#relatoriogeral").val() == 'Sim') {
+            if ($("#relatorio-geral").val() == 'Sim') {
                 $(".sel-mod").prop("selected", true);
                 $(".cre").prop("selected", true);
             }

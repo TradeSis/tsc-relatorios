@@ -94,7 +94,7 @@ $agendamentos = buscaAgendamento($progcod);
                                             data-codigoFilial="<?php echo $relatorio['parametros']['codigoFilial'] ?>" 
                                             data-dataInicial="<?php echo $relatorio['parametros']['dataInicial'] ?>" 
                                             data-dataFinal="<?php echo $relatorio['parametros']['dataFinal'] ?>" 
-                                            data-ordem="<?php echo $relatorio['parametros']['ordem'] ?>"
+                                            data-alfa="<?php echo $relatorio['parametros']['alfa'] ?>"
                                             >Parâmetros</a>
                                         </td>
                                         <td class="text-center">
@@ -141,7 +141,7 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label>Ordenação</label>
-                                    <input type="text" class="form-control" id="ordem" readonly>
+                                    <input type="text" class="form-control" id="alfa" readonly>
                                 </div>
                             </div>
                         </div>
@@ -163,13 +163,13 @@ $agendamentos = buscaAgendamento($progcod);
                 var codigoFilial = $(this).attr("data-codigoFilial");
                 var dataInicial = $(this).attr("data-dataInicial");
                 var dataFinal = $(this).attr("data-dataFinal");
-                var ordem = $(this).attr("data-ordem") == "0" ? "Vencimento" : "Alfabetica";
+                var alfa = $(this).attr("data-alfa") == "0" ? "Vencimento" : "Alfabetica";
 
                 $('#posicao').val(posicao);
                 $('#codigoFilial').val(codigoFilial);
                 $('#dataInicial').val(formatarData(dataInicial));
                 $('#dataFinal').val(formatarData(dataFinal));
-                $('#ordem').val(ordem);
+                $('#alfa').val(alfa);
 
                 $('#parametros-modal').modal('show');
 

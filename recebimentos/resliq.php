@@ -92,7 +92,7 @@ $agendamentos = buscaAgendamento($progcod);
                                             data-modalidade="<?php echo $relatorio['parametros']['mod-sel'] ?>" 
                                             data-dataInicial="<?php echo $relatorio['parametros']['dataInicial'] ?>" 
                                             data-dataFinal="<?php echo $relatorio['parametros']['dataFinal'] ?>"  
-                                            data-considerafeirao="<?php echo $relatorio['parametros']['feirao-nome-limpo'] ?>"
+                                            data-feiraonomelimpo="<?php echo $relatorio['parametros']['feirao-nome-limpo'] ?>"
                                             >Parâmetros</a>
                                         </td>
                                         <td class="text-center">
@@ -135,7 +135,7 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col-6">
                                     <label>Considerar apenas feirao</label>
-                                    <input type="text" class="form-control" id="considerafeirao" readonly>
+                                    <input type="text" class="form-control" id="feirao-nome-limpo" readonly>
                                 </div>
                             </div>
                         </div>
@@ -158,12 +158,12 @@ $agendamentos = buscaAgendamento($progcod);
                 var modalidade = $(this).attr("data-modalidade");
                 var dataInicial = $(this).attr("data-dataInicial");
                 var dataFinal = $(this).attr("data-dataFinal");
-                var considerafeirao = $(this).attr("data-considerafeirao") == true ? "Sim" : "Não";
+                var feiraonomelimpo = $(this).attr("data-feiraonomelimpo") == true ? "Sim" : "Não";
 
                 $('#modalidade').val(modalidade);
                 $('#dataInicial').val(formatarData(dataInicial));
                 $('#dataFinal').val(formatarData(dataFinal));
-                $('#considerafeirao').val(considerafeirao);
+                $('#feirao-nome-limpo').val(feiraonomelimpo);
 
                 $('#parametros-modal').modal('show');
 

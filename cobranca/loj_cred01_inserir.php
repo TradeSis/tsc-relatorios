@@ -85,7 +85,7 @@ $progcod = "loj_cred01";
                         </div>
                         <div class="form-group col">
                             <label>Ordenação</label>
-                            <select class="form-control" name="ordem" id="ordem">
+                            <select class="form-control" name="alfa" id="alfa">
                                 <option value="1">Alfabetica</option>
                                 <option value="0">Vencimento</option>
                             </select>
@@ -118,7 +118,7 @@ $progcod = "loj_cred01";
                 formData.append("codigoFilial", $("#codigoFilial").val());
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
-                formData.append("ordem", $("#ordem").val());
+                formData.append("alfa", $("#alfa").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */

@@ -59,7 +59,7 @@ $progcod = "frrescart_v1801";
                     <div class="row mt-2">
                         <div class="form-group col-6">
                             <label>Cliente</label>
-                            <select class="form-control" name="cliente" id="cliente">
+                            <select class="form-control" name="cre" id="cre">
                                 <option value="Geral">Geral</option>
                                 <option value="Facil">Facil</option>
                             </select>
@@ -69,11 +69,11 @@ $progcod = "frrescart_v1801";
                     <div class="row mt-2">
                         <div class="form-group col">
                             <label>Data Inicial</label>
-                            <input type="date" class="form-control" name="dataInicial" id="dataInicial">
+                            <input type="date" class="form-control" name="dti" id="dti">
                         </div>
                         <div class="form-group col">
                             <label>Data Final</label>
-                            <input type="date" class="form-control" name="dataFinal" id="dataFinal">
+                            <input type="date" class="form-control" name="dtf" id="dtf">
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -98,16 +98,16 @@ $progcod = "frrescart_v1801";
                     <div class="row mt-2">
                         <div class="form-group col-6">
                             <label>Considerar apenas feirao</label>
-                            <select class="form-control" name="considerafeirao" id="considerafeirao">
+                            <select class="form-control" name="feirao-nome-limpo" id="feirao-nome-limpo">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
                         </div>
                         <div class="form-group col">
                             <label>Filial 17</label>
-                            <select class="form-control" name="fil17" id="fil17">
-                                <option value="nova">Nova</option>
-                                <option value="antiga">Antiga</option>
+                            <select class="form-control" name="vindex" id="vindex">
+                                <option value="1">Nova</option>
+                                <option value="2">Antiga</option>
                             </select>
                         </div>
                     </div>
@@ -133,13 +133,13 @@ $progcod = "frrescart_v1801";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
-                formData.append("cliente", $("#cliente").val());
-                formData.append("dataInicial", $("#dataInicial").val());
-                formData.append("dataFinal", $("#dataFinal").val());
+                formData.append("cre", $("#cre").val());
+                formData.append("dti", $("#dti").val());
+                formData.append("dtf", $("#dtf").val());
                 formData.append("clinovos", $("#clinovos").val());
                 formData.append("modalidade", $("#modalidade").val());
-                formData.append("considerafeirao", $("#considerafeirao").val());
-                formData.append("fil17", $("#fil17").val());
+                formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
+                formData.append("vindex", $("#vindex").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */

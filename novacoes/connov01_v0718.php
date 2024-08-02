@@ -93,8 +93,8 @@ $agendamentos = buscaAgendamento($progcod);
                                             data-modalidade="<?php echo $relatorio['parametros']['mod-sel'] ?>" 
                                             data-dataInicial="<?php echo $relatorio['parametros']['dataInicial'] ?>" 
                                             data-dataFinal="<?php echo $relatorio['parametros']['dataFinal'] ?>" 
-                                            data-considerafeirao="<?php echo $relatorio['parametros']['feirao-nome-limpo'] ?>" 
-                                            data-ordenacao="<?php echo $relatorio['parametros']['vindex'] ?>"
+                                            data-considerarFeirao="<?php echo $relatorio['parametros']['considerarFeirao'] ?>" 
+                                            data-vindex="<?php echo $relatorio['parametros']['vindex'] ?>"
                                             >Parâmetros</a>
                                         </td>
                                         <td class="text-center">
@@ -141,11 +141,11 @@ $agendamentos = buscaAgendamento($progcod);
                             <div class="row">
                                 <div class="form-group col">
                                     <label>Considerar apenas feirao</label>
-                                    <input type="text" class="form-control" id="considerafeirao" readonly>
+                                    <input type="text" class="form-control" id="considerarFeirao" readonly>
                                 </div>
                                 <div class="form-group col">
                                     <label>Ordenação</label>
-                                    <input type="text" class="form-control" id="ordenacao" readonly>
+                                    <input type="text" class="form-control" id="vindex" readonly>
                                 </div>
                             </div>
                         </div>
@@ -169,24 +169,24 @@ $agendamentos = buscaAgendamento($progcod);
                 var modalidade = $(this).attr("data-modalidade");
                 var dataInicial = $(this).attr("data-dataInicial");
                 var dataFinal = $(this).attr("data-dataFinal");
-                var considerafeirao = $(this).attr("data-considerafeirao") == true ? "Sim" : "Não";
-                var ordenacao = $(this).attr("data-ordenacao");
-                if (ordenacao == "1") {
-                    ordenacao = "ANALITICO";
+                var considerarFeirao = $(this).attr("data-considerarFeirao") == true ? "Sim" : "Não";
+                var vindex = $(this).attr("data-vindex");
+                if (vindex == "1") {
+                    vindex = "ANALITICO";
                 }
-                if (ordenacao == "2") {
-                    ordenacao = "SINTETICO";
+                if (vindex == "2") {
+                    vindex = "SINTETICO";
                 }
-                if (ordenacao == "3") {
-                    ordenacao = "POR DATA";
+                if (vindex == "3") {
+                    vindex = "POR DATA";
                 }
 
                 $('#codigoFilial').val(codigoFilial);
                 $('#modalidade').val(modalidade);
                 $('#dataInicial').val(formatarData(dataInicial));
                 $('#dataFinal').val(formatarData(dataFinal));
-                $('#considerafeirao').val(considerafeirao);
-                $('#ordenacao').val(ordenacao);
+                $('#considerarFeirao').val(considerarFeirao);
+                $('#vindex').val(vindex);
 
                 $('#parametros-modal').modal('show');
 

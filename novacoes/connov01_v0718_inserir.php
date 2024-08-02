@@ -92,7 +92,7 @@ $progcod = "connov01_v0718";
                         </div>
                         <div class="form-group col">
                             <label>Considerar apenas feirao</label>
-                            <select class="form-control" name="considerafeirao" id="considerafeirao">
+                            <select class="form-control" name="considerarFeirao" id="considerarFeirao">
                                 <option value="Nao">Nao</option>
                                 <option value="Sim">Sim</option>
                             </select>
@@ -101,7 +101,7 @@ $progcod = "connov01_v0718";
                     <div class="row">
                         <div class="form-group col-6">
                             <label>Ordenação</label>
-                            <select class="form-control" name="ordenacao" id="ordenacao">
+                            <select class="form-control" name="vindex" id="vindex">
                                 <option value="1">ANALITICO</option>
                                 <option value="2">SINTETICO</option>
                                 <option value="3">POR DATA</option>
@@ -134,8 +134,8 @@ $progcod = "connov01_v0718";
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("dataInicial", $("#dataInicial").val());
                 formData.append("dataFinal", $("#dataFinal").val());
-                formData.append("considerafeirao", $("#considerafeirao").val());
-                formData.append("ordenacao", $("#ordenacao").val());
+                formData.append("considerarFeirao", $("#considerarFeirao").val());
+                formData.append("vindex", $("#vindex").val());
                 /* for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
                 } */
