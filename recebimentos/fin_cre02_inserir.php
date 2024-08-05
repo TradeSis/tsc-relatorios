@@ -45,7 +45,7 @@ $progcod = "fin_cre02";
                         <div class="col">
                             <label>Usuário</label>
                             <div class="form-group">
-                                <input type="text" name="usercod" class="form-control" value="Lebes" autocomplete="off" readonly>
+                                <input type="text" name="usercod"  id="usercod" class="form-control" value="Lebes" autocomplete="off" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -68,7 +68,7 @@ $progcod = "fin_cre02";
                             <?php } else { ?>
                                 <input type="number" class="form-control" value="<?php echo $filial ?>" name="etbcod" id="etbcod" readonly>
                             <?php } ?>
-                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
+                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" id="REMOTE_ADDR" hidden>
                         </div>
                         <div class="form-group col">
                             <label>Nome Filial</label>
@@ -200,6 +200,8 @@ $progcod = "fin_cre02";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
+                formData.append("usercod", $("#usercod").val());
+                formData.append("REMOTE_ADDR", $("#REMOTE_ADDR").val());
                 formData.append("etbcod", $("#etbcod").val());
                 formData.append("cre", $("#cre").val());
                 formData.append("dtini", dtini);
@@ -208,9 +210,9 @@ $progcod = "fin_cre02";
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("consulta-parcelas-LP", $("#consulta-parcelas-LP").val());
                 formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
-                /* for (var pair2 of formData.entries()) {
+                for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
-                } */
+                }
 
                 $.ajax({
                     url: "../database/agendamento.php?relatorio=fin_cre02",

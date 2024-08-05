@@ -198,6 +198,8 @@ if (isset($_GET['relatorio'])) {
         }
         
         $apiEntrada = array(
+                'usercod' => $_POST['usercod'],
+                'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
                 'dtprocessar' => $_POST['dtprocessar'],
                 'hrprocessar' => $hrprocessar,
                 'progcod' => $_POST['progcod'],
@@ -215,4 +217,22 @@ if (isset($_GET['relatorio'])) {
        
         $relatorios = chamaAPI(null, '/relatorios/agendamento', json_encode($apiEntrada), 'PUT');
         
+}
+
+if (isset($_GET['operacao'])) {
+
+	$operacao = $_GET['operacao'];
+
+	if ($operacao == "excluir") {
+                $hora = explode(':', $_POST['hrprocessar']);
+                $hrprocessar = $hora[0] * 3600 + $hora[1] * 60;
+
+		$apiEntrada = array(
+			'dtprocessar' => $_POST['dtprocessar'],
+			'hrprocessar' => $hrprocessar
+		);
+	
+		$relatorios = chamaAPI(null, '/relatorios/agendamento', json_encode($apiEntrada), 'DELETE');
+	}
+
 }

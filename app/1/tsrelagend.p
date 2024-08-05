@@ -12,6 +12,8 @@ def temp-table ttentrada no-undo serialize-name "entrada"
     field progcod   as char.
 
 def temp-table tttsrelagend  no-undo serialize-name "relatorios"
+        field usercod         as CHAR
+        field REMOTE_ADDR     as CHAR
         field dtprocessar as date format "99/99/9999"
         field hrprocessar as char
         field progcod     as char
@@ -37,6 +39,8 @@ for each tsrelagend where tsrelagend.progcod = ttentrada.progcod
     
          
     create tttsrelagend.
+        tttsrelagend.usercod = tsrelagend.usercod.
+        tttsrelagend.REMOTE_ADDR = tsrelagend.REMOTE_ADDR.
         tttsrelagend.dtprocessar = tsrelagend.dtprocessar.
         tttsrelagend.hrprocessar = string(tsrelagend.hrprocessar,"HH:MM").
         tttsrelagend.progcod = tsrelagend.progcod.

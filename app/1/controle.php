@@ -55,6 +55,10 @@ if ($metodo=="GET"){
   
   if ($metodo=="DELETE"){
     switch ($funcao) {
+      case "agendamento":
+        include 'agendamento_excluir.php';
+      break;
+
       default:
         $jsonSaida = json_decode(json_encode(
         array("status" => "400",

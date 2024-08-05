@@ -10,6 +10,8 @@ def var hentrada as handle.
 def var hsaida   as handle.
 
 def temp-table ttentrada no-undo serialize-name "tsrelagend"
+    field usercod     as CHAR
+    field REMOTE_ADDR     as CHAR
     field dtprocessar as DATE
     field hrprocessar as INT
     field progcod as char
@@ -24,6 +26,8 @@ def temp-table ttentrada no-undo serialize-name "tsrelagend"
     field diasemana3 as INT.  
 
 def temp-table tttsrelagend  no-undo serialize-name "relatorios"
+    field usercod     as CHAR
+    field REMOTE_ADDR     as CHAR
     field dtprocessar as DATE
     field hrprocessar as INT
     field progcod as char
@@ -63,6 +67,8 @@ lcjsonentrada =  ttentrada.parametrosJSON.
 
 do transaction:    
     create tsrelagend.
+    tsrelagend.usercod = ttentrada.usercod.
+    tsrelagend.REMOTE_ADDR = ttentrada.REMOTE_ADDR.
     tsrelagend.dtprocessar  = ttentrada.dtprocessar.
     tsrelagend.hrprocessar  = ttentrada.hrprocessar.
     tsrelagend.progcod  = ttentrada.progcod.
@@ -80,6 +86,8 @@ do transaction:
 end.
 
     create tttsrelagend.
+    tttsrelagend.usercod = ttentrada.usercod.
+    tttsrelagend.REMOTE_ADDR = ttentrada.REMOTE_ADDR.
     tttsrelagend.dtprocessar  = tsrelagend.dtprocessar. 
     tttsrelagend.hrprocessar  = tsrelagend.hrprocessar.
     tttsrelagend.progcod  = tsrelagend.progcod.

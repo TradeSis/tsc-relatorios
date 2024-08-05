@@ -17,7 +17,9 @@ if (!isset($dadosEntrada["tsrelagend"])) {
         array(
             'tsrelagend' => 
             array(
-                  array('dtprocessar' =>  $jsonEntrada["dtprocessar"], 
+                  array('usercod' =>  $jsonEntrada["usercod"], 
+                        'REMOTE_ADDR' =>  $jsonEntrada["REMOTE_ADDR"],
+                        'dtprocessar' =>  $jsonEntrada["dtprocessar"], 
                         'hrprocessar' =>  $jsonEntrada["hrprocessar"],             
                         'progcod' =>  $jsonEntrada["progcod"],   
                         'nomeRel' =>  $jsonEntrada["nomeRel"],           

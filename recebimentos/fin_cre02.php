@@ -165,8 +165,121 @@ $agendamentos = buscaAgendamento($progcod);
                 </div>
             </div>
 
-            <!-- AGENDAMENTOS -->
-            <?php include_once '../agendamento/agendamento_table.php' ?>
+            <!-- Excluir Agendamentos -->
+            <div class="modal fade" id="excluirAgendamento-modal" tabindex="-1" aria-labelledby="excluirAgendamento-modalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Excluir Agendamento</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form id="excluirFormAgendamento" method="post">
+                            <div class="row">
+                                <div class="form-group col">
+                                    <label>Data</label>
+                                    <input type="text" class="form-control" id="excluirView_dtprocessar" readonly>
+                                    <input type="hidden" class="form-control" name="dtprocessar" id="excluir_dtprocessar" readonly>
+                                </div>
+                                <div class="form-group col">
+                                    <label>Hora</label>
+                                    <input type="text" class="form-control" name="hrprocessar" id="excluir_hrprocessar" readonly>
+                                </div>
+                                <div class="form-group col">
+                                    <label>periodicidade</label>
+                                    <input type="text" class="form-control" id="excluir_periodicidade" readonly>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABELA DE AGENDAMENTOS -->
+            <div class="tab-pane fade" id="agendamentos" role="tabpanel" aria-labelledby="agendamentos-tab">
+                <div class="container-fluid p-0 m-0">
+                   
+                    <div class="table table-responsive mt-2">
+                        <table class="table table-sm table-hover table-bordered text-center">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Usuário</th>
+                                    <th>Hora</th>
+                                    <th>progcod</th>
+                                    <th>nomeRel</th>
+                                    <th>periodicidade</th>
+                                    <th>descrição</th>
+                                    <th>REMOTE_ADDR</th>
+                                    <th>parâmetros</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            if (!empty($agendamentos)) {
+                                foreach ($agendamentos as $agendamento) {
+                                    if ($agendamento['periodicidade'] == "U") {
+                                        $periodicidade = "Único";
+                                        $descPeriodicidade = "irá rodar somente uma vez";
+                                    }
+                                    if ($agendamento['periodicidade'] == "D") {
+                                        $periodicidade = "Diário";
+                                        $descPeriodicidade = "irá rodar todo dia: " . $agendamento['periododias'];
+                                    }
+                                    if ($agendamento['periodicidade'] == "S") {
+                                        $periodicidade = "Semanal";
+                                        $descPeriodicidade = "irá rodar nos dias: " . $agendamento['diasemana1'] . " ," . $agendamento['diasemana2'] . " e " . $agendamento['diasemana3'];
+                                    }
+                                    if ($agendamento['periodicidade'] == "Q") {
+                                        $periodicidade = "Quinzenal";
+                                        $descPeriodicidade = "irá rodar nos dias: " . $agendamento['diadomes1'] . " e " . $agendamento['diadomes2'];
+                                    }
+                                    if ($agendamento['periodicidade'] == "M") {
+                                        $periodicidade = "Mensal";
+                                        $descPeriodicidade = "irá rodar todo dia: " . $agendamento['diadomes1'];
+                                    }
+
+                            ?>
+                                    <tr>
+                                        <td><?php echo date('d/m/Y', strtotime($agendamento['dtprocessar'])) ?></td>
+                                        <td><?php echo $agendamento['usercod'] ?></td>
+                                        <td><?php echo $agendamento['hrprocessar'] ?></td>
+                                        <td><?php echo $agendamento['progcod'] ?></td>
+                                        <td><?php echo $agendamento['nomeRel'] ?></td>
+                                        <td><?php echo $periodicidade ?></td>
+                                        <td><?php echo $descPeriodicidade ?></td>
+                                        <td><?php echo $agendamento['REMOTE_ADDR'] ?></td>
+                                        <td>
+                                            <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#agendamento-modal" 
+                                            data-etbcod="<?php echo $agendamento['parametros']['etbcod'] ?>" 
+                                            data-cre="<?php echo $agendamento['parametros']['cre'] ?>" 
+                                            data-dtini="<?php echo $agendamento['parametros']['dtini'] ?>" 
+                                            data-dtfin="<?php echo $agendamento['parametros']['dtfin'] ?>" 
+                                            data-relatoriogeral="<?php echo $agendamento['parametros']['relatorio-geral'] ?>"
+                                            data-modalidade="<?php echo $agendamento['parametros']['sel-mod'] ?>"
+                                            data-consultaparcelasLP="<?php echo $agendamento['parametros']['consulta-parcelas-LP'] ?>"
+                                            data-feiraonomelimpo="<?php echo $agendamento['parametros']['feirao-nome-limpo'] ?>"
+                                            >Parâmetros</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-sm btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#excluirAgendamento-modal" 
+                                            data-dtprocessar="<?php echo $agendamento['dtprocessar'] ?>" 
+                                            data-hrprocessar="<?php echo $agendamento['hrprocessar'] ?>" 
+                                            data-periodicidade="<?php echo $periodicidade ?>"
+                                            ><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    
+                            <?php }
+                            } ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 
         </div><!-- tab-content -->
@@ -203,6 +316,48 @@ $agendamentos = buscaAgendamento($progcod);
 
             });
 
+            $(document).on('click', 'a[data-bs-target="#agendamento-modal"]', function() {
+                
+                var etbcod = $(this).attr("data-etbcod") == true ? "Geral" : "Filial";
+                var cre = $(this).attr("data-cre");
+                var dtini = $(this).attr("data-dtini");
+                dtini = dtini[0] == "#" ? dtini : formatarData(dtini);
+
+                var dtfin = $(this).attr("data-dtfin");
+                dtfin = dtfin[0] == "#" ? dtfin : formatarData(dtfin);
+
+                var relatoriogeral = $(this).attr("data-relatoriogeral") == true ? "Sim" : "Não";
+                var modalidade = $(this).attr("data-modalidade");
+                var consultaparcelasLP = $(this).attr("data-consultaparcelasLP") == true ? "Sim" : "Não";
+                var feiraonomelimpo = $(this).attr("data-feiraonomelimpo") == true ? "Sim" : "Não";
+
+                $('#etbcod').val(etbcod);
+                $('#cre').val(cre);
+                $('#dtini').val(dtini);
+                $('#dtfin').val(dtfin);
+                $('#relatorio-geral').val(relatoriogeral);
+                $('#modalidade').val(modalidade);
+                $('#consulta-parcelas-LP').val(consultaparcelasLP);
+                $('#feirao-nome-limpo').val(feiraonomelimpo);
+
+                $('#parametros-modal').modal('show');
+
+            });
+
+            $(document).on('click', 'a[data-bs-target="#excluirAgendamento-modal"]', function() {
+                
+                var dtprocessar = $(this).attr("data-dtprocessar");
+                var hrprocessar = $(this).attr("data-hrprocessar");
+                var periodicidade = $(this).attr("data-periodicidade");
+               
+                $('#excluirView_dtprocessar').val(formatarData(dtprocessar));
+                $('#excluir_dtprocessar').val(dtprocessar);
+                $('#excluir_hrprocessar').val(hrprocessar);
+                $('#excluir_periodicidade').val(periodicidade);
+
+                $('#excluirAgendamento-modal').modal('show');
+            });
+
             // formata data no formato AAAA-MM-DD para DD/MM/AAAA
             function formatarData(data) {
                 if(data == "" || data == null){
@@ -217,6 +372,27 @@ $agendamentos = buscaAgendamento($progcod);
                 return vdia + '/' + vmes + '/' + vano;
             }
         </script>
+          <script>
+        $(document).ready(function() {
+
+            $("#excluirFormAgendamento").submit(function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: "../database/agendamento.php?operacao=excluir",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: refreshPage,
+                });
+            });
+
+            function refreshPage() {
+                window.location.reload();
+            }
+        });
+    </script>
         <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
 </body>
