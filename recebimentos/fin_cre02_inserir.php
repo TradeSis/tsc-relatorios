@@ -83,11 +83,29 @@ $progcod = "fin_cre02";
                     <div class="row">
                         <div class="form-group col">
                             <label>Data Inicial</label>
-                            <input type="date" class="form-control" name="dtini" id="dtini">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dtini" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dtini" name="dtini" id="dtini">
+                                <select class="form-control d-none select-dtini" name="dtini" id="dtini" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col">
                             <label>Data Final</label>
-                            <input type="date" class="form-control" name="dtfin" id="dtfin">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dtfin" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dtfin" name="dtfin" id="dtfin">
+                                <select class="form-control d-none select-dtfin" name="dtfin" id="dtfin" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -143,14 +161,16 @@ $progcod = "fin_cre02";
         $(document).ready(function() {
 
             $("#formAgendamento").submit(function(event) {
+                dtini = $(".input-dtini").val() != "" ? $(".input-dtini").val() : $(".select-dtini").val();
+                dtfin = $(".input-dtfin").val() != "" ? $(".input-dtfin").val() : $(".select-dtfin").val();
 
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
                 formData.append("etbcod", $("#etbcod").val());
                 formData.append("cre", $("#cre").val());
-                formData.append("dtini", $("#dtini").val());
-                formData.append("dtfin", $("#dtfin").val());
+                formData.append("dtini", dtini);
+                formData.append("dtfin", dtfin);
                 formData.append("relatorio-geral", $("#relatorio-geral").val());
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("consulta-parcelas-LP", $("#consulta-parcelas-LP").val());
@@ -199,6 +219,44 @@ $progcod = "fin_cre02";
             if ($("#relatorio-geral").val() == 'Sim') {
                 $(".sel-mod").prop("selected", true);
                 $(".cre").prop("selected", true);
+            }
+        });
+
+        // DATA\SELECT - DTINI
+        $("#button-dtini").click(function() {
+            $(".input-dtini").toggleClass("d-none");
+            $(".select-dtini").toggleClass("d-none");
+
+            var elemento = document.getElementById("dtini");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[25] == "d") {
+                $("#button-dtini").prop("title", "Data Digitável");
+                $(".input-dtini").prop("disabled", true);
+                $(".select-dtini").prop("disabled", false);
+            } else {
+                $("#button-dtini").prop("title", "Data Fixa");
+                $(".input-dtini").prop("disabled", false);
+                $(".select-dtini").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DTFIN
+        $("#button-dtfin").click(function() {
+            $(".input-dtfin").toggleClass("d-none");
+            $(".select-dtfin").toggleClass("d-none");
+
+            var elemento = document.getElementById("dtfin");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[25] == "d") {
+                $("#button-dtfin").prop("title", "Data Digitável");
+                $(".input-dtfin").prop("disabled", true);
+                $(".select-dtfin").prop("disabled", false);
+            } else {
+                $("#button-dtfin").prop("title", "Data Fixa");
+                $(".input-dtfin").prop("disabled", false);
+                $(".select-dtfin").prop("disabled", true);
             }
         });
     </script>

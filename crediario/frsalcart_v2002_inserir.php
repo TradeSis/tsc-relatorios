@@ -96,13 +96,31 @@ $progcod = "frsalcart_v2002";
                                     <label class="mt-4">Periodo de: </label>
                                 </div>
                                 <div class="form-group col-4 mt-3">
-                                    <input type="date" class="form-control" name="dataInicial" id="dataInicial" disabled>
+                                    <div class="input-group mb-2">
+                                        <button class="btn btn-outline-secondary" type="button" id="button-dataInicial" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                        <input type="date" class="form-control input-dataInicial" name="dataInicial" id="dataInicial">
+                                        <select class="form-control d-none select-dataInicial" name="dataInicial" id="dataInicial" disabled>
+                                            <option value="#HOJE">#HOJE</option>
+                                            <option value="#HOJE-">#HOJE-</option>
+                                            <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                            <option value="#DIAULTMES">#DIAULTMES</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="form-group col-1">
                                     <label class="mt-4">Até: </label>
                                 </div>
                                 <div class="form-group col-4 mt-3">
-                                    <input type="date" class="form-control" name="dataFinal" id="dataFinal" disabled>
+                                    <div class="input-group mb-2">
+                                        <button class="btn btn-outline-secondary" type="button" id="button-dataFinal" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                        <input type="date" class="form-control input-dataFinal" name="dataFinal" id="dataFinal">
+                                        <select class="form-control d-none select-dataFinal" name="dataFinal" id="dataFinal" disabled>
+                                            <option value="#HOJE">#HOJE</option>
+                                            <option value="#HOJE-">#HOJE-</option>
+                                            <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                            <option value="#DIAULTMES">#DIAULTMES</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +128,16 @@ $progcod = "frsalcart_v2002";
                     <div class="row">
                         <div class="form-group col">
                             <label>Data Referencia</label>
-                            <input type="date" class="form-control" name="dataReferencia" id="dataReferencia">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dataReferencia" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dataReferencia" name="dataReferencia" id="dataReferencia">
+                                <select class="form-control d-none select-dataReferencia" name="dataReferencia" id="dataReferencia" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col">
                             <label>Considera apenas LP</label>
@@ -163,6 +190,9 @@ $progcod = "frsalcart_v2002";
         $(document).ready(function() {
 
             $("#formAgendamento").submit(function(event) {
+                dataInicial = $(".input-dataInicial").val() != "" ? $(".input-dataInicial").val() : $(".select-dataInicial").val();
+                dataFinal = $(".input-dataFinal").val() != "" ? $(".input-dataFinal").val() : $(".select-dataFinal").val();
+                dataReferencia = $(".input-dataReferencia").val() != "" ? $(".input-dataReferencia").val() : $(".select-dataReferencia").val();
 
                 event.preventDefault();
                 var formData = new FormData(this);
@@ -171,16 +201,17 @@ $progcod = "frsalcart_v2002";
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("codigoFilial", $("#codigoFilial").val());
                 formData.append("porestab", $("#porestab").val());
-                formData.append("dataInicial", $("#dataInicial").val());
-                formData.append("dataFinal", $("#dataFinal").val());
-                formData.append("dataReferencia", $("#dataReferencia").val());
+                formData.append("dataInicial", dataInicial);
+                formData.append("dataFinal", dataFinal);
+                formData.append("dataReferencia", dataReferencia);
                 formData.append("consulta-parcelas-LP", $("#consulta-parcelas-LP").val());
                 formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
                 formData.append("abreporanoemi", $("#abreporanoemi").val());
                 formData.append("clinovos", $("#clinovos").val());
-                /* for (var pair2 of formData.entries()) {
+
+                for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
-                } */
+                }
 
                 $.ajax({
                     url: "../database/agendamento.php?relatorio=frsalcart_v2002",
@@ -196,7 +227,7 @@ $progcod = "frsalcart_v2002";
                 window.location.reload();
                 var url = window.location.href;
                 url = url.replace('_inserir', '')
-                window.location.href = url; 
+                window.location.href = url;
             }
         });
 
@@ -224,6 +255,63 @@ $progcod = "frsalcart_v2002";
                 $(".porestab").addClass("d-none");
                 $("#dataInicial").prop("disabled", true);
                 $("#dataFinal").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DATA INICIAL
+        $("#button-dataInicial").click(function() {
+            $(".input-dataInicial").toggleClass("d-none");
+            $(".select-dataInicial").toggleClass("d-none");
+
+            var elemento = document.getElementById("dataInicial");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[31] == "d") {
+                $("#button-dataInicial").prop("title", "Data Digitável");
+                $(".input-dataInicial").prop("disabled", true);
+                $(".select-dataInicial").prop("disabled", false);
+            } else {
+                $("#button-dataInicial").prop("title", "Data Fixa");
+                $(".input-dataInicial").prop("disabled", false);
+                $(".select-dataInicial").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DATA FINAL
+        $("#button-dataFinal").click(function() {
+            $(".input-dataFinal").toggleClass("d-none");
+            $(".select-dataFinal").toggleClass("d-none");
+
+            var elemento = document.getElementById("dataFinal");
+            var classe = elemento.getAttribute("class");
+
+            if (classe[29] == "d") {
+                $("#button-dataFinal").prop("title", "Data Digitável");
+                $(".input-dataFinal").prop("disabled", true);
+                $(".select-dataFinal").prop("disabled", false);
+            } else {
+                $("#button-dataFinal").prop("title", "Data Fixa");
+                $(".input-dataFinal").prop("disabled", false);
+                $(".select-dataFinal").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DATA REFERENCIA
+        $("#button-dataReferencia").click(function() {
+            $(".input-dataReferencia").toggleClass("d-none");
+            $(".select-dataReferencia").toggleClass("d-none");
+
+            var elemento = document.getElementById("dataReferencia");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[34] == "d") {
+                $("#button-dataReferencia").prop("title", "Data Digitável");
+                $(".input-dataReferencia").prop("disabled", true);
+                $(".select-dataReferencia").prop("disabled", false);
+            } else {
+                $("#button-dataReferencia").prop("title", "Data Fixa");
+                $(".input-dataReferencia").prop("disabled", false);
+                $(".select-dataReferencia").prop("disabled", true);
             }
         });
     </script>

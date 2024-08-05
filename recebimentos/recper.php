@@ -181,19 +181,27 @@ $agendamentos = buscaAgendamento($progcod);
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
                 var etbcod = $(this).attr("data-etbcod");
                 var dti = $(this).attr("data-dti");
+                dti = dti[0] == "#" ? dti : formatarData(dti);
+
                 var dtf = $(this).attr("data-dtf");
+                dtf = dtf[0] == "#" ? dtf : formatarData(dtf);
+
                 var dtveni = $(this).attr("data-dtveni");
+                dtveni = dtveni[0] == "#" ? dtveni : formatarData(dtveni);
+
                 var dtvenf = $(this).attr("data-dtvenf");
+                dtvenf = dtvenf[0] == "#" ? dtvenf : formatarData(dtvenf);
+                
                 var consultaparcelasLP = $(this).attr("data-consultaparcelasLP") == true ? "Sim" : "Não";
                 var modalidade = $(this).attr("data-modalidade");
                 var feiraonomelimpo = $(this).attr("data-feiraonomelimpo") == true ? "Sim" : "Não";
 
 
                 $('#etbcod').val(etbcod);
-                $('#dti').val(formatarData(dti));
-                $('#dtf').val(formatarData(dtf));
-                $('#dtveni').val(formatarData(dtveni));
-                $('#dtvenf').val(formatarData(dtvenf));
+                $('#dti').val(dti);
+                $('#dtf').val(dtf);
+                $('#dtveni').val(dtveni);
+                $('#dtvenf').val(dtvenf);
                 $('#consulta-parcelas-LP').val(consultaparcelasLP);
                 $('#modalidade').val(modalidade);
                 $('#feirao-nome-limpo').val(feiraonomelimpo);

@@ -200,8 +200,14 @@ $agendamentos = buscaAgendamento($progcod);
                 var codigoFilial = $(this).attr("data-codigoFilial");
                 var modalidade = $(this).attr("data-modalidade");
                 var dataInicial = $(this).attr("data-dataInicial");
+                dataInicial = dataInicial[0] == "#" ? dataInicial : formatarData(dataInicial);
+                
                 var dataFinal = $(this).attr("data-dataFinal");
+                dataFinal = dataFinal[0] == "#" ? dataFinal : formatarData(dataFinal);
+
                 var dataReferencia = $(this).attr("data-dataReferencia");
+                dataReferencia = dataReferencia[0] == "#" ? dataReferencia : formatarData(dataReferencia)
+
                 var feiraonomelimpo = $(this).attr("data-feiraonomelimpo") == true ? "Sim" : "Não";
                 var consideralp = $(this).attr("data-consideralp")  == true ? "Sim" : "Não";
                 var abreporanoemi = $(this).attr("data-abreporanoemi")  == true ? "Sim" : "Não";
@@ -211,9 +217,9 @@ $agendamentos = buscaAgendamento($progcod);
                 $('#cliente').val(cre);
                 $('#codigoFilial').val(codigoFilial);
                 $('#modalidade').val(modalidade);
-                $('#dataInicial').val(formatarData(dataInicial));
-                $('#dataFinal').val(formatarData(dataFinal));
-                $('#dataReferencia').val(formatarData(dataReferencia));
+                $('#dataInicial').val(dataInicial);
+                $('#dataFinal').val(dataFinal);
+                $('#dataReferencia').val(dataReferencia);
                 $('#feirao-nome-limpo').val(feiraonomelimpo);
                 $('#consulta-parcelas-LP').val(consideralp);
                 $('#abreporanoemi').val(abreporanoemi);

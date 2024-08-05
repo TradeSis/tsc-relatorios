@@ -180,7 +180,11 @@ $agendamentos = buscaAgendamento($progcod);
                 var etbcod = $(this).attr("data-etbcod") == true ? "Geral" : "Filial";
                 var cre = $(this).attr("data-cre");
                 var dtini = $(this).attr("data-dtini");
+                dtini = dtini[0] == "#" ? dtini : formatarData(dtini);
+
                 var dtfin = $(this).attr("data-dtfin");
+                dtfin = dtfin[0] == "#" ? dtfin : formatarData(dtfin);
+
                 var relatoriogeral = $(this).attr("data-relatoriogeral") == true ? "Sim" : "Não";
                 var modalidade = $(this).attr("data-modalidade");
                 var consultaparcelasLP = $(this).attr("data-consultaparcelasLP") == true ? "Sim" : "Não";
@@ -188,8 +192,8 @@ $agendamentos = buscaAgendamento($progcod);
 
                 $('#etbcod').val(etbcod);
                 $('#cre').val(cre);
-                $('#dtini').val(formatarData(dtini));
-                $('#dtfin').val(formatarData(dtfin));
+                $('#dtini').val(dtini);
+                $('#dtfin').val(dtfin);
                 $('#relatorio-geral').val(relatoriogeral);
                 $('#modalidade').val(modalidade);
                 $('#consulta-parcelas-LP').val(consultaparcelasLP);

@@ -69,11 +69,29 @@ $progcod = "frrescart_v1801";
                     <div class="row mt-2">
                         <div class="form-group col">
                             <label>Data Inicial</label>
-                            <input type="date" class="form-control" name="dti" id="dti">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dti" title="Fixo"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dti" name="dti" id="dti">
+                                <select class="form-control d-none select-dti" name="dti" id="dti" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col">
                             <label>Data Final</label>
-                            <input type="date" class="form-control" name="dtf" id="dtf">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dtf" title="Fixo"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dtf" name="dtf" id="dtf">
+                                <select class="form-control d-none select-dtf" name="dtf" id="dtf" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -129,13 +147,15 @@ $progcod = "frrescart_v1801";
         $(document).ready(function() {
 
             $("#formAgendamento").submit(function(event) {
+                dti = $(".input-dti").val() != "" ? $(".input-dti").val() : $(".select-dti").val();
+                dtf = $(".input-dtf").val() != "" ? $(".input-dtf").val() : $(".select-dtf").val();
 
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
                 formData.append("cre", $("#cre").val());
-                formData.append("dti", $("#dti").val());
-                formData.append("dtf", $("#dtf").val());
+                formData.append("dti", dti);
+                formData.append("dtf", dtf);
                 formData.append("clinovos", $("#clinovos").val());
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
@@ -175,6 +195,44 @@ $progcod = "frrescart_v1801";
                 el.parentNode.parentNode.replaceChild(select, el.parentNode);
             }
         }
+
+        // DATA\SELECT - DTI
+        $("#button-dti").click(function() {
+            $(".input-dti").toggleClass("d-none");
+            $(".select-dti").toggleClass("d-none");
+
+            var elemento = document.getElementById("dti");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[23] == "d") {
+                $("#button-dti").prop("title", "Data Digitável");
+                $(".input-dti").prop("disabled", true);
+                $(".select-dti").prop("disabled", false);
+            } else {
+                $("#button-dti").prop("title", "Data Fixa");
+                $(".input-dti").prop("disabled", false);
+                $(".select-dti").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DTF
+        $("#button-dtf").click(function() {
+            $(".input-dtf").toggleClass("d-none");
+            $(".select-dtf").toggleClass("d-none");
+
+            var elemento = document.getElementById("dtf");
+            var classe = elemento.getAttribute("class");
+
+            if (classe[23] == "d") {
+                $("#button-dtf").prop("title", "Data Digitável");
+                $(".input-dtf").prop("disabled", true);
+                $(".select-dtf").prop("disabled", false);
+            } else {
+                $("#button-dtf").prop("title", "Data Fixa");
+                $(".input-dtf").prop("disabled", false);
+                $(".select-dtf").prop("disabled", true);
+            }
+        });
     </script>
     <!-- js com script usando no modal -->
     <script src="../agendamento/agendamento.js"></script>

@@ -75,13 +75,31 @@ $progcod = "rec-moe-nov";
                             <label class="mt-4">Periodo de: </label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dataInicial" id="dataInicial">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dataInicial" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dataInicial" name="dataInicial" id="dataInicial">
+                                <select class="form-control d-none select-dataInicial" name="dataInicial" id="dataInicial" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col-1">
                             <label class="mt-4">Até: </label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dataFinal" id="dataFinal">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dataFinal" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dataFinal" name="dataFinal" id="dataFinal">
+                                <select class="form-control d-none select-dataFinal" name="dataFinal" id="dataFinal" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -120,13 +138,15 @@ $progcod = "rec-moe-nov";
         $(document).ready(function() {
 
             $("#formAgendamento").submit(function(event) {
+                dataInicial = $(".input-dataInicial").val() != "" ? $(".input-dataInicial").val() : $(".select-dataInicial").val();
+                dataFinal = $(".input-dataFinal").val() != "" ? $(".input-dataFinal").val() : $(".select-dataFinal").val();
 
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
                 formData.append("etbcod", $("#etbcod").val());
-                formData.append("dataInicial", $("#dataInicial").val());
-                formData.append("dataFinal", $("#dataFinal").val());
+                formData.append("dataInicial", dataInicial);
+                formData.append("dataFinal", dataFinal);
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("considerafeirao", $("#considerafeirao").val());
                 /* for (var pair2 of formData.entries()) {
@@ -164,6 +184,44 @@ $progcod = "rec-moe-nov";
                 el.parentNode.parentNode.replaceChild(select, el.parentNode);
             }
         }
+
+         // DATA\SELECT - DATA INICIAL
+         $("#button-dataInicial").click(function() {
+            $(".input-dataInicial").toggleClass("d-none");
+            $(".select-dataInicial").toggleClass("d-none");
+
+            var elemento = document.getElementById("dataInicial");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[31] == "d") {
+                $("#button-dataInicial").prop("title", "Data Digitável");
+                $(".input-dataInicial").prop("disabled", true);
+                $(".select-dataInicial").prop("disabled", false);
+            } else {
+                $("#button-dataInicial").prop("title", "Data Fixa");
+                $(".input-dataInicial").prop("disabled", false);
+                $(".select-dataInicial").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DATA FINAL
+        $("#button-dataFinal").click(function() {
+            $(".input-dataFinal").toggleClass("d-none");
+            $(".select-dataFinal").toggleClass("d-none");
+
+            var elemento = document.getElementById("dataFinal");
+            var classe = elemento.getAttribute("class");
+
+            if (classe[29] == "d") {
+                $("#button-dataFinal").prop("title", "Data Digitável");
+                $(".input-dataFinal").prop("disabled", true);
+                $(".select-dataFinal").prop("disabled", false);
+            } else {
+                $("#button-dataFinal").prop("title", "Data Fixa");
+                $(".input-dataFinal").prop("disabled", false);
+                $(".select-dataFinal").prop("disabled", true);
+            }
+        });
     </script>
     <!-- js com script usando no modal -->
     <script src="../agendamento/agendamento.js"></script>

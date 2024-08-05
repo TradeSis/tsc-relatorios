@@ -162,13 +162,17 @@ $agendamentos = buscaAgendamento($progcod);
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
                 var etbcod = $(this).attr("data-etbcod");
                 var dtinicial = $(this).attr("data-dtinicial");
+                dtinicial = dtinicial[0] == "#" ? dtinicial : formatarData(dtinicial);
+
                 var dtfinal = $(this).attr("data-dtfinal");
+                dtfinal = dtfinal[0] == "#" ? dtfinal : formatarData(dtfinal);
+
                 var modalidade = $(this).attr("data-modalidade");
                 var considerarfeirao = $(this).attr("data-considerarfeirao") == true ? "Sim" : "Não";
 
                 $('#etbcod').val(etbcod);
-                $('#dtinicial').val(formatarData(dtinicial));
-                $('#dtfinal').val(formatarData(dtfinal));
+                $('#dtinicial').val(dtinicial);
+                $('#dtfinal').val(dtfinal);
                 $('#modalidade').val(modalidade);
                 $('#considerarfeirao').val(considerarfeirao);
 

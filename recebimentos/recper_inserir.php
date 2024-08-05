@@ -75,10 +75,28 @@ $progcod = "recper";
                             <label class="mt-4">Periodo de Pagamento:</label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dti" id="dti">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dti" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dti" name="dti" id="dti">
+                                <select class="form-control d-none select-dti" name="dti" id="dti" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dtf" id="dtf">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dtf" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dtf" name="dtf" id="dtf">
+                                <select class="form-control d-none select-dtf" name="dtf" id="dtf" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -86,10 +104,28 @@ $progcod = "recper";
                             <label class="mt-4">Periodo de Vencimento:</label>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dtveni" id="dtveni">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dtveni" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dtveni" name="dtveni" id="dtveni">
+                                <select class="form-control d-none select-dtveni" name="dtveni" id="dtveni" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="form-group col mt-3">
-                            <input type="date" class="form-control" name="dtvenf" id="dtvenf">
+                            <div class="input-group mb-2">
+                                <button class="btn btn-outline-secondary" type="button" id="button-dtvenf" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
+                                <input type="date" class="form-control input-dtvenf" name="dtvenf" id="dtvenf">
+                                <select class="form-control d-none select-dtvenf" name="dtvenf" id="dtvenf" disabled>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-">#HOJE-</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -135,15 +171,19 @@ $progcod = "recper";
         $(document).ready(function() {
 
             $("#formAgendamento").submit(function(event) {
+                dti = $(".input-dti").val() != "" ? $(".input-dti").val() : $(".select-dti").val();
+                dtf = $(".input-dtf").val() != "" ? $(".input-dtf").val() : $(".select-dtf").val();
+                dtveni = $(".input-dtveni").val() != "" ? $(".input-dtveni").val() : $(".select-dtveni").val();
+                dtvenf = $(".input-dtvenf").val() != "" ? $(".input-dtvenf").val() : $(".select-dtvenf").val();
 
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
                 formData.append("etbcod", $("#etbcod").val());
-                formData.append("dti", $("#dti").val());
-                formData.append("dtf", $("#dtf").val());
-                formData.append("dtveni", $("#dtveni").val());
-                formData.append("dtvenf", $("#dtvenf").val());
+                formData.append("dti", dti);
+                formData.append("dtf", dtf);
+                formData.append("dtveni", dtveni);
+                formData.append("dtvenf", dtvenf);
                 formData.append("consulta-parcelas-LP", $("#consulta-parcelas-LP").val());
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
@@ -182,6 +222,82 @@ $progcod = "recper";
                 el.parentNode.parentNode.replaceChild(select, el.parentNode);
             }
         }
+
+        // DATA\SELECT - DTI
+        $("#button-dti").click(function() {
+            $(".input-dti").toggleClass("d-none");
+            $(".select-dti").toggleClass("d-none");
+
+            var elemento = document.getElementById("dti");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[23] == "d") {
+                $("#button-dti").prop("title", "Data Digitável");
+                $(".input-dti").prop("disabled", true);
+                $(".select-dti").prop("disabled", false);
+            } else {
+                $("#button-dti").prop("title", "Data Fixa");
+                $(".input-dti").prop("disabled", false);
+                $(".select-dti").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DTF
+        $("#button-dtf").click(function() {
+            $(".input-dtf").toggleClass("d-none");
+            $(".select-dtf").toggleClass("d-none");
+
+            var elemento = document.getElementById("dtf");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[23] == "d") {
+                $("#button-dtf").prop("title", "Data Digitável");
+                $(".input-dtf").prop("disabled", true);
+                $(".select-dtf").prop("disabled", false);
+            } else {
+                $("#button-dtf").prop("title", "Data Fixa");
+                $(".input-dtf").prop("disabled", false);
+                $(".select-dtf").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DTVENI
+        $("#button-dtveni").click(function() {
+            $(".input-dtveni").toggleClass("d-none");
+            $(".select-dtveni").toggleClass("d-none");
+
+            var elemento = document.getElementById("dtveni");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[26] == "d") {
+                $("#button-dtveni").prop("title", "Data Digitável");
+                $(".input-dtveni").prop("disabled", true);
+                $(".select-dtveni").prop("disabled", false);
+            } else {
+                $("#button-dtveni").prop("title", "Data Fixa");
+                $(".input-dtveni").prop("disabled", false);
+                $(".select-dtveni").prop("disabled", true);
+            }
+        });
+
+        // DATA\SELECT - DTVENF
+        $("#button-dtvenf").click(function() {
+            $(".input-dtvenf").toggleClass("d-none");
+            $(".select-dtvenf").toggleClass("d-none");
+
+            var elemento = document.getElementById("dtvenf");
+            var classe = elemento.getAttribute("class");
+            //alert(classe.lastIndexOf("d-none"))
+            if (classe[26] == "d") {
+                $("#button-dtvenf").prop("title", "Data Digitável");
+                $(".input-dtvenf").prop("disabled", true);
+                $(".select-dtvenf").prop("disabled", false);
+            } else {
+                $("#button-dtvenf").prop("title", "Data Fixa");
+                $(".input-dtvenf").prop("disabled", false);
+                $(".select-dtvenf").prop("disabled", true);
+            }
+        });
     </script>
     <!-- js com script usando no modal -->
     <script src="../agendamento/agendamento.js"></script>

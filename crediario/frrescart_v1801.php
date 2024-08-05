@@ -174,15 +174,19 @@ $agendamentos = buscaAgendamento($progcod);
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
                 var cre = $(this).attr("data-cre") == true ? "Geral": "Filial";
                 var dti = $(this).attr("data-dti");
+                dti = dti[0] == "#" ? dti : formatarData(dti);
+
                 var dtf = $(this).attr("data-dtf");
+                dtf = dtf[0] == "#" ? dtf : formatarData(dtf);
+
                 var clinovos = $(this).attr("data-clinovos") == true ? "Sim": "Não";
                 var modalidade = $(this).attr("data-modalidade");
                 var feiraonomelimpo = $(this).attr("data-feirao-nome-limpo") == true ? "Sim": "Não";
                 var vindex = $(this).attr("data-vindex") == true ? "Sim": "Não";
 
                 $('#cre').val(cre);
-                $('#dti').val(formatarData(dti));
-                $('#dtf').val(formatarData(dtf));
+                $('#dti').val(dti);
+                $('#dtf').val(dtf);
                 $('#clinovos').val(clinovos);
                 $('#modalidade').val(modalidade);
                 $('#feirao-nome-limpo').val(feiraonomelimpo);

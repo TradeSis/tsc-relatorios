@@ -140,10 +140,13 @@ $agendamentos = buscaAgendamento($progcod);
         <script>
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
                 var dataInicial = $(this).attr("data-dataInicial");
+                dataInicial = dataInicial[0] == "#" ? dataInicial : formatarData(dataInicial);
+
                 var dataFinal = $(this).attr("data-dataFinal");
-               
-                $('#dataInicial').val(formatarData(dataInicial));
-                $('#dataFinal').val(formatarData(dataFinal));
+               dataFinal = dataFinal[0] == "#" ? dataFinal : formatarData(dataFinal);
+
+                $('#dataInicial').val(dataInicial);
+                $('#dataFinal').val(dataFinal);
     
                 $('#parametros-modal').modal('show');
 

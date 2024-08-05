@@ -168,7 +168,11 @@ $agendamentos = buscaAgendamento($progcod);
                 var codigoFilial = $(this).attr("data-codigoFilial");
                 var modalidade = $(this).attr("data-modalidade");
                 var dataInicial = $(this).attr("data-dataInicial");
+                dataInicial = dataInicial[0] == "#" ? dataInicial : formatarData(dataInicial);
+
                 var dataFinal = $(this).attr("data-dataFinal");
+                dataFinal = dataFinal[0] == "#" ? dataFinal : formatarData(dataFinal);
+
                 var considerarFeirao = $(this).attr("data-considerarFeirao") == true ? "Sim" : "Não";
                 var vindex = $(this).attr("data-vindex");
                 if (vindex == "1") {
@@ -183,8 +187,8 @@ $agendamentos = buscaAgendamento($progcod);
 
                 $('#codigoFilial').val(codigoFilial);
                 $('#modalidade').val(modalidade);
-                $('#dataInicial').val(formatarData(dataInicial));
-                $('#dataFinal').val(formatarData(dataFinal));
+                $('#dataInicial').val(dataInicial);
+                $('#dataFinal').val(dataFinal);
                 $('#considerarFeirao').val(considerarFeirao);
                 $('#vindex').val(vindex);
 

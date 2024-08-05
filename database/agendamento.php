@@ -99,7 +99,7 @@ if (isset($_GET['relatorio'])) {
                 $parametros = array(
                         "parametros" => array(array(
                                 'cre' => ($_POST['cre'] == 'Geral' ? true : false),
-                                'codigoFilial' => intval($_POST['codigoFilial']), /* estabelecimento */
+                                'codigoFilial' => intval($_POST['codigoFilial']), 
                                 'mod-sel' => $_POST['modalidade'],
                                 'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],

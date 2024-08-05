@@ -157,12 +157,16 @@ $agendamentos = buscaAgendamento($progcod);
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
                 var modalidade = $(this).attr("data-modalidade");
                 var dataInicial = $(this).attr("data-dataInicial");
+                dataInicial = dataInicial[0] == "#" ? dataInicial : formatarData(dataInicial);
+
                 var dataFinal = $(this).attr("data-dataFinal");
+                dataFinal = dataFinal[0] == "#" ? dataFinal : formatarData(dataFinal);
+
                 var feiraonomelimpo = $(this).attr("data-feiraonomelimpo") == true ? "Sim" : "Não";
 
                 $('#modalidade').val(modalidade);
-                $('#dataInicial').val(formatarData(dataInicial));
-                $('#dataFinal').val(formatarData(dataFinal));
+                $('#dataInicial').val(dataInicial);
+                $('#dataFinal').val(dataFinal);
                 $('#feirao-nome-limpo').val(feiraonomelimpo);
 
                 $('#parametros-modal').modal('show');

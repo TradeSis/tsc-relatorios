@@ -162,13 +162,17 @@ $agendamentos = buscaAgendamento($progcod);
                 var posicao = $(this).attr("data-posicao");
                 var codigoFilial = $(this).attr("data-codigoFilial");
                 var dataInicial = $(this).attr("data-dataInicial");
+                dataInicial = dataInicial[0] == "#" ? dataInicial : formatarData(dataInicial);
+
                 var dataFinal = $(this).attr("data-dataFinal");
+                dataFinal = dataFinal[0] == "#" ? dataFinal : formatarData(dataFinal);
+
                 var alfa = $(this).attr("data-alfa") == "0" ? "Vencimento" : "Alfabetica";
 
                 $('#posicao').val(posicao);
                 $('#codigoFilial').val(codigoFilial);
-                $('#dataInicial').val(formatarData(dataInicial));
-                $('#dataFinal').val(formatarData(dataFinal));
+                $('#dataInicial').val(dataInicial);
+                $('#dataFinal').val(dataFinal);
                 $('#alfa').val(alfa);
 
                 $('#parametros-modal').modal('show');

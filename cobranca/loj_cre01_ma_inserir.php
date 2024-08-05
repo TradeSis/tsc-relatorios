@@ -52,13 +52,14 @@ $progcod = "loj_cre01_ma";
                     <label>Nome do relatório</label>
                     <div class="form-group">
                         <input type="text" name="relatnom" class="form-control" value="Posicao de cliente por periodo - A" autocomplete="off" readonly>
+                        <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
                     </div>
                     <div class="row">
                         <div class="form-group col">
                             <label>Modalidade</label>
                             <select class="form-control" name="modalidade" id="modalidade">
-                                <option value="crediario">Crediario</option>
-                                <option value="emprestimos">Emprestimos</option>
+                                <option value="Crediario">Crediario</option>
+                                <option value="Emprestimos">Emprestimos</option>
                             </select>
                         </div>
                         <div class="form-group col">
@@ -70,25 +71,26 @@ $progcod = "loj_cre01_ma";
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col">
-                            <label>Filial</label>
-                            <?php if ($filial <= 0) { ?>
-                                <input type="number" class="form-control" name="codigoFilial" id="codigoFilial">
-                            <?php } else { ?>
-                                <input type="number" class="form-control" value="<?php echo $filial ?>" name="codigoFilial" id="codigoFilial" readonly>
-                            <?php } ?>
-                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
-                        </div>
-                        <div class="form-group col">
-                            <label>Data Inicial</label>
-                            <input type="date" class="form-control" name="dataInicial" id="dataInicial">
-                        </div>
-                        <div class="form-group col">
-                            <label>Data Final</label>
-                            <input type="date" class="form-control" name="dataFinal" id="dataFinal">
+                        <div class="form-group col-6">
+                            <label>Estabelecimento</label>
+                            <input type="number" placeholder="Vazio = Geral" class="form-control" name="codigoFilial" id="codigoFilial">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
+                        <div class="form-group col">
+                            <label class="mt-2">Vencimento Inicial:</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="date" class="form-control" name="dtveni" id="dtveni">
+                        </div>
+                        <div class="form-group col-1">
+                            <label class="mt-2">Final:</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="date" class="form-control" name="dtvenf" id="dtvenf">
+                        </div>
+                    </div>
+                    <div class="row mt-2">
                         <div class="form-group col">
                             <label>Considera apenas LP</label>
                             <select class="form-control" name="consideralp" id="consideralp">
