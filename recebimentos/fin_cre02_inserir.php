@@ -58,7 +58,7 @@ $progcod = "fin_cre02";
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="Resumo Mensal do Caixa" autocomplete="off" readonly>
+                        <input type="text" name="relatnom" class="form-control" value="fin_cre02" autocomplete="off" >
                     </div>
                     <div class="row">
                         <div class="form-group col">
@@ -98,11 +98,13 @@ $progcod = "fin_cre02";
                                     <option value="#HOJE-3-">#HOJE-3</option>
                                     <option value="#HOJE-4-">#HOJE-4</option>
                                     <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
                                     <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                     <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                     <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
                                     <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
                                     <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
                                     <option value="#DIAULTMES-1">#DIAULTMES-1</option>
                                     <option value="#DIAULTMES-2">#DIAULTMES-2</option>
                                     <option value="#DIAULTMES-3">#DIAULTMES-3</option>
@@ -123,11 +125,13 @@ $progcod = "fin_cre02";
                                     <option value="#HOJE-3-">#HOJE-3</option>
                                     <option value="#HOJE-4-">#HOJE-4</option>
                                     <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
                                     <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                     <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                     <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
                                     <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
                                     <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
                                     <option value="#DIAULTMES-1">#DIAULTMES-1</option>
                                     <option value="#DIAULTMES-2">#DIAULTMES-2</option>
                                     <option value="#DIAULTMES-3">#DIAULTMES-3</option>
