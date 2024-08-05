@@ -65,13 +65,9 @@ lcjsonentrada =  ttentrada.parametrosJSON.
   message "MESSAGE" string(lcjsonentrada). 
 */
 
-def var vidRelat as int64.
-
-    find last tsrelat no-lock no-error.
-    vidRelat = if not avail tsrelat then 1 else tsrelat.idRelat + 1. 
 do transaction:    
     create tsrelat.
-    tsrelat.idRelat = vidRelat.
+    tsrelat.idrelat = next-value(tsrelat).
     tsrelat.progcod  = ttentrada.progcod.
     tsrelat.usercod  = ttentrada.usercod.
     tsrelat.relatnom = ttentrada.relatnom.
