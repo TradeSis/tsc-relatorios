@@ -19,6 +19,7 @@ def temp-table tttsrelat  no-undo serialize-name "relatorios"
     field hrinclu   as char
     field progcod   as char
     field relatnom  as char
+    field nomerel  as char
     field nomeArquivo  as char
     field REMOTE_ADDR as char
     field parametrosJSON as char serialize-name "parametros".
@@ -42,6 +43,7 @@ for each tsrelat where tsrelat.progcod = ttentrada.progcod and
     tttsrelat.progcod  = tsrelat.progcod.
     tttsrelat.usercod  = tsrelat.usercod.
     tttsrelat.relatnom = tsrelat.relatnom.
+    tttsrelat.nomerel = tsrelat.nomerel.
     tttsrelat.dtinclu  = tsrelat.dtinclu.
     tttsrelat.hrinclu  = string(tsrelat.hrinclu,"HH:MM:SS").
     tttsrelat.REMOTE_ADDR = tsrelat.REMOTE_ADDR.
