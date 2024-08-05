@@ -63,7 +63,7 @@ $progcod = "fin_cre02";
                     <div class="row">
                         <div class="form-group col">
                             <label>Filial</label>
-                            <?php if ($filial = 0) { ?>
+                            <?php if ($filial == 0) { ?>
                                 <input type="number" class="form-control" name="etbcod" id="etbcod" value="0">
                             <?php } else { ?>
                                 <input type="number" class="form-control" value="<?php echo $filial ?>" name="etbcod" id="etbcod" readonly>
