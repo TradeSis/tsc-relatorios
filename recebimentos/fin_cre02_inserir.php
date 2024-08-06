@@ -45,7 +45,7 @@ $progcod = "fin_cre02";
                         <div class="col">
                             <label>Usuário</label>
                             <div class="form-group">
-                                <input type="text" name="usercod"  id="usercod" class="form-control" value="Lebes" autocomplete="off" readonly>
+                                <input type="text" name="usercod"  id="usercod" class="form-control" value="<?php echo $_SESSION['usuario'] ?>" autocomplete="off" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -58,7 +58,7 @@ $progcod = "fin_cre02";
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="nomeRel" id="nomeRel" class="form-control" value="fin_cre02" autocomplete="off" >
+                        <input type="text" name="nomeRel" id="nomeRel" class="form-control" value="<?php echo $progcod ?>" autocomplete="off" >
                     </div>
                     <div class="row">
                         <div class="form-group col">
@@ -90,7 +90,7 @@ $progcod = "fin_cre02";
                             <label>Data Inicial</label>
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dtini" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dtini" name="dtini" id="dtini">
+                                <input type="date" class="form-control input-dtini" name="dtini" id="dtini" required>
                                 <select class="form-control d-none select-dtini" name="dtini" id="dtini" disabled>
                                     <option value="#HOJE">#HOJE</option>
                                     <option value="#HOJE-1-">#HOJE-1</option>
@@ -117,7 +117,7 @@ $progcod = "fin_cre02";
                             <label>Data Final</label>
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dtfin" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dtfin" name="dtfin" id="dtfin">
+                                <input type="date" class="form-control input-dtfin" name="dtfin" id="dtfin" required>
                                 <select class="form-control d-none select-dtfin" name="dtfin" id="dtfin" disabled>
                                     <option value="#HOJE">#HOJE</option>
                                     <option value="#HOJE-1-">#HOJE-1</option>
@@ -232,6 +232,12 @@ $progcod = "fin_cre02";
             }
         });
 
+         //Usa click do botão para enviar ao modal o nomeRel digitado no form
+        $("#btnAgendamento").click(function() {
+            nomeRel = $("#nomeRel").val();
+            $('#nomeRel_modal').val(nomeRel);
+        });
+
         // modifica efeito de seleção do select modalidade
         window.onmousedown = function(e) {
             var el = e.target;
@@ -246,12 +252,6 @@ $progcod = "fin_cre02";
             }
         }
 
-        //Usa click do botão para enviar ao modal o nomeRel digitado no form
-        $("#btnAgendamento").click(function() {
-            nomeRel = $("#nomeRel").val();
-            $('#nomeRel_modal').val(nomeRel);
-        });
-        
         // selecionar todos os itens do select modalidade
         $("#relatorio-geral").change(function() {
             if ($("#relatorio-geral").val() == 'Nao') {
@@ -276,10 +276,14 @@ $progcod = "fin_cre02";
                 $("#button-dtini").prop("title", "Data Digitável");
                 $(".input-dtini").prop("disabled", true);
                 $(".select-dtini").prop("disabled", false);
+                $(".input-dtini").prop("required", false);
+                $(".select-dtini").prop("required", true);
             } else {
                 $("#button-dtini").prop("title", "Data Fixa");
                 $(".input-dtini").prop("disabled", false);
                 $(".select-dtini").prop("disabled", true);
+                $(".input-dtini").prop("required", true);
+                $(".select-dtini").prop("required", false);
             }
         });
 
@@ -295,10 +299,14 @@ $progcod = "fin_cre02";
                 $("#button-dtfin").prop("title", "Data Digitável");
                 $(".input-dtfin").prop("disabled", true);
                 $(".select-dtfin").prop("disabled", false);
+                $(".input-dtfin").prop("required", false);
+                $(".select-dtfin").prop("required", true);
             } else {
                 $("#button-dtfin").prop("title", "Data Fixa");
                 $(".input-dtfin").prop("disabled", false);
                 $(".select-dtfin").prop("disabled", true);
+                $(".input-dtfin").prop("required", true);
+                $(".select-dtfin").prop("required", false);
             }
         });
     </script>

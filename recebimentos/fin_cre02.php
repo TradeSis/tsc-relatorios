@@ -165,40 +165,8 @@ $agendamentos = buscaAgendamento($progcod);
                 </div>
             </div>
 
-            <!-- Excluir Agendamentos -->
-            <div class="modal fade" id="excluirAgendamento-modal" tabindex="-1" aria-labelledby="excluirAgendamento-modalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Excluir Agendamento</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        <form id="excluirFormAgendamento" method="post">
-                            <div class="row">
-                                <div class="form-group col">
-                                    <label>Data</label>
-                                    <input type="text" class="form-control" id="excluirView_dtprocessar" readonly>
-                                    <input type="hidden" class="form-control" name="dtprocessar" id="excluir_dtprocessar" readonly>
-                                </div>
-                                <div class="form-group col">
-                                    <label>Hora</label>
-                                    <input type="text" class="form-control" name="hrprocessar" id="excluir_hrprocessar" readonly>
-                                </div>
-                                <div class="form-group col">
-                                    <label>periodicidade</label>
-                                    <input type="text" class="form-control" id="excluir_periodicidade" readonly>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                        </div>
-                    </form>
-                    </div>
-                </div>
-            </div>
+            <!-- MODAL EXCLUIR AGENDAMENTOS -->
+            <?php include_once '../agendamento/agendamento_excluir.php' ?>
 
             <!-- TABELA DE AGENDAMENTOS -->
             <div class="tab-pane fade" id="agendamentos" role="tabpanel" aria-labelledby="agendamentos-tab">
@@ -273,7 +241,7 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td><?php echo $descPeriodicidade ?></td>
                                         <td><?php echo $agendamento['REMOTE_ADDR'] ?></td>
                                         <td>
-                                            <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#agendamento-modal" 
+                                            <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" 
                                             data-etbcod="<?php echo $agendamento['parametros']['etbcod'] ?>" 
                                             data-cre="<?php echo $agendamento['parametros']['cre'] ?>" 
                                             data-dtini="<?php echo $agendamento['parametros']['dtini'] ?>" 
@@ -308,6 +276,7 @@ $agendamentos = buscaAgendamento($progcod);
         <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
         <script>
+            //PARAMETROS RELATORIO
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
                 var etbcod = $(this).attr("data-etbcod");
                 var cre = $(this).attr("data-cre") == true ? "Geral" : "Filial";
@@ -335,34 +304,7 @@ $agendamentos = buscaAgendamento($progcod);
 
             });
 
-            $(document).on('click', 'a[data-bs-target="#agendamento-modal"]', function() {
-                
-                var etbcod = $(this).attr("data-etbcod");
-                var cre = $(this).attr("data-cre") == true ? "Geral" : "Filial";
-                var dtini = $(this).attr("data-dtini");
-                dtini = dtini[0] == "#" ? dtini : formatarData(dtini);
-
-                var dtfin = $(this).attr("data-dtfin");
-                dtfin = dtfin[0] == "#" ? dtfin : formatarData(dtfin);
-
-                var relatoriogeral = $(this).attr("data-relatoriogeral") == true ? "Sim" : "Não";
-                var modalidade = $(this).attr("data-modalidade");
-                var consultaparcelasLP = $(this).attr("data-consultaparcelasLP") == true ? "Sim" : "Não";
-                var feiraonomelimpo = $(this).attr("data-feiraonomelimpo") == true ? "Sim" : "Não";
-
-                $('#etbcod').val(etbcod);
-                $('#cre').val(cre);
-                $('#dtini').val(dtini);
-                $('#dtfin').val(dtfin);
-                $('#relatorio-geral').val(relatoriogeral);
-                $('#modalidade').val(modalidade);
-                $('#consulta-parcelas-LP').val(consultaparcelasLP);
-                $('#feirao-nome-limpo').val(feiraonomelimpo);
-
-                $('#parametros-modal').modal('show');
-
-            });
-
+            //EXCLUIR AGENDAMENTO
             $(document).on('click', 'a[data-bs-target="#excluirAgendamento-modal"]', function() {
                 
                 var dtprocessar = $(this).attr("data-dtprocessar");
@@ -391,7 +333,7 @@ $agendamentos = buscaAgendamento($progcod);
                 return vdia + '/' + vmes + '/' + vano;
             }
         </script>
-          <script>
+        <script>
         $(document).ready(function() {
 
             $("#excluirFormAgendamento").submit(function(event) {
@@ -411,7 +353,7 @@ $agendamentos = buscaAgendamento($progcod);
                 window.location.reload();
             }
         });
-    </script>
+        </script>
         <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
 </body>

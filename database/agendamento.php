@@ -117,7 +117,7 @@ if (isset($_GET['relatorio'])) {
                 $parametros = array(
                         "parametros" => array(array(
                                 'mod-sel' => $_POST['modalidade'],
-                                'dataInical' => $_POST['dataInicial'],
+                                'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
@@ -188,7 +188,7 @@ if (isset($_GET['relatorio'])) {
                                 'posicao' => $_POST['posicao'],
                                 'modalidade' => $modalidade,
                                 'codigoFilial' => intval($_POST['codigoFilial']),
-                                'dataInical' => $_POST['dataInicial'],
+                                'dataInicial' => $_POST['dataInicial'],
                                 'dataFinal' => $_POST['dataFinal'],
                                 'consultalp' => ($_POST['consideralp'] == 'Sim' ? true : false),
                                 'feirao-nome-limpo' => ($_POST['considerafeirao'] == 'Sim' ? true : false),

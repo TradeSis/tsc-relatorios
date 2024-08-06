@@ -84,7 +84,7 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td class="text-center"><?php echo $relatorio['usercod'] ?></td>
                                         <td class="text-center"><?php echo date('d/m/Y', strtotime($relatorio['dtinclu'])) ?></td>
                                         <td class="text-center"><?php echo $relatorio['hrinclu'] ?></td>
-                                        <td class="text-center"><?php echo $relatorio['progcod'] ?></td>
+                                        <td class="text-center"><?php echo $relatorio['nomerel'] ?></td>
                                         <td class="text-center"><?php echo $relatorio['nomeArquivo'] ?></td>
                                         <td class="text-center"><?php echo $relatorio['REMOTE_ADDR'] ?></td>
                                         <td class="text-center">
@@ -167,8 +167,108 @@ $agendamentos = buscaAgendamento($progcod);
                 </div>
             </div>
 
-            <!-- AGENDAMENTOS -->
-            <?php include_once '../agendamento/agendamento_table.php' ?>
+            <!-- MODAL EXCLUIR AGENDAMENTOS -->
+            <?php include_once '../agendamento/agendamento_excluir.php' ?>
+
+            <!-- TABELA DE AGENDAMENTOS -->
+            <div class="tab-pane fade" id="agendamentos" role="tabpanel" aria-labelledby="agendamentos-tab">
+                <div class="container-fluid p-0 m-0">
+                   
+                    <div class="table table-responsive mt-2">
+                        <table class="table table-sm table-hover table-bordered text-center">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Usuário</th>
+                                    <th>Data</th>
+                                    <th>Hora</th>
+                                    <th>nomeRel</th>
+                                    <th>periodicidade</th>
+                                    <th>descrição</th>
+                                    <th>REMOTE_ADDR</th>
+                                    <th>parâmetros</th>
+                                </tr>
+                            </thead>
+                            <?php
+                            if (!empty($agendamentos)) {
+                                foreach ($agendamentos as $agendamento) {
+                                    if ($agendamento['periodicidade'] == "U") {
+                                        $periodicidade = "Único";
+                                        $descPeriodicidade = "Somente uma vez";
+                                    }
+                                    if ($agendamento['periodicidade'] == "D") {
+                                        $periodicidade = "Diário";
+                                        $descPeriodicidade = "Todo dia: " . $agendamento['periododias'];
+                                    }
+                                    if ($agendamento['periodicidade'] == "S") {
+                                        $periodicidade = "Semanal";
+                                        if($agendamento['diasemana1'] == 1){
+                                            $descPeriodicidade = "Somente: Domingo ";
+                                        }
+                                        if($agendamento['diasemana1'] == 2){
+                                            $descPeriodicidade = "Somente: Segunda ";
+                                        }
+                                        if($agendamento['diasemana1'] == 3){
+                                            $descPeriodicidade = "Somente: Terça ";
+                                        }
+                                        if($agendamento['diasemana1'] == 4){
+                                            $descPeriodicidade = "Somente: Quarta ";
+                                        }
+                                        if($agendamento['diasemana1'] == 5){
+                                            $descPeriodicidade = "Somente: Quinta ";
+                                        }
+                                        if($agendamento['diasemana1'] == 6){
+                                            $descPeriodicidade = "Somente: Sexta ";
+                                        }
+                                        if($agendamento['diasemana1'] == 7){
+                                            $descPeriodicidade = "Somente: Sábado ";
+                                        }
+                                        
+                                    }
+                                    if ($agendamento['periodicidade'] == "Q") {
+                                        $periodicidade = "Quinzenal";
+                                        $descPeriodicidade = "Somente nos dias: " . $agendamento['diadomes1'] . " e " . $agendamento['diadomes2'];
+                                    }
+                                    if ($agendamento['periodicidade'] == "M") {
+                                        $periodicidade = "Mensal";
+                                        $descPeriodicidade = "Todo dia: " . $agendamento['diadomes1'];
+                                    }
+
+                            ?>
+                                    <tr>
+                                        <td><?php echo $agendamento['usercod'] ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($agendamento['dtprocessar'])) ?></td>
+                                        <td><?php echo $agendamento['hrprocessar'] ?></td>
+                                        <td><?php echo $agendamento['nomeRel'] ?></td>
+                                        <td><?php echo $periodicidade ?></td>
+                                        <td><?php echo $descPeriodicidade ?></td>
+                                        <td><?php echo $agendamento['REMOTE_ADDR'] ?></td>
+                                        <td class="text-center">
+                                            <a class="btn btn-sm" href="#" data-bs-toggle="modal" data-bs-target="#parametros-modal" 
+                                            data-etbcod="<?php echo $agendamento['parametros']['etbcod'] ?>" 
+                                            data-dti="<?php echo $agendamento['parametros']['dti'] ?>" 
+                                            data-dtf="<?php echo $agendamento['parametros']['dtf'] ?>" 
+                                            data-dtveni="<?php echo $agendamento['parametros']['dtveni'] ?>" 
+                                            data-dtvenf="<?php echo $agendamento['parametros']['dtvenf'] ?>"
+                                            data-consultaparcelasLP="<?php echo $agendamento['parametros']['consulta-parcelas-LP'] ?>"
+                                            data-modalidade="<?php echo $agendamento['parametros']['sel-mod'] ?>"
+                                            data-feiraonomelimpo="<?php echo $agendamento['parametros']['feirao-nome-limpo'] ?>"
+                                            >Parâmetros</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-sm btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#excluirAgendamento-modal" 
+                                            data-dtprocessar="<?php echo $agendamento['dtprocessar'] ?>" 
+                                            data-hrprocessar="<?php echo $agendamento['hrprocessar'] ?>" 
+                                            data-periodicidade="<?php echo $periodicidade ?>"
+                                            ><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    
+                            <?php }
+                            } ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 
         </div><!-- tab-content -->
@@ -178,6 +278,7 @@ $agendamentos = buscaAgendamento($progcod);
         <?php include_once ROOT . "/vendor/footer_js.php"; ?>
 
         <script>
+            //PARAMETROS RELATORIO
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
                 var etbcod = $(this).attr("data-etbcod");
                 var dti = $(this).attr("data-dti");
@@ -210,6 +311,21 @@ $agendamentos = buscaAgendamento($progcod);
 
             });
 
+            //EXCLUIR AGENDAMENTO
+            $(document).on('click', 'a[data-bs-target="#excluirAgendamento-modal"]', function() {
+                
+                var dtprocessar = $(this).attr("data-dtprocessar");
+                var hrprocessar = $(this).attr("data-hrprocessar");
+                var periodicidade = $(this).attr("data-periodicidade");
+               
+                $('#excluirView_dtprocessar').val(formatarData(dtprocessar));
+                $('#excluir_dtprocessar').val(dtprocessar);
+                $('#excluir_hrprocessar').val(hrprocessar);
+                $('#excluir_periodicidade').val(periodicidade);
+
+                $('#excluirAgendamento-modal').modal('show');
+            });
+
             // formata data no formato AAAA-MM-DD para DD/MM/AAAA
             function formatarData(data) {
                 if(data == "" || data == null){
@@ -223,6 +339,27 @@ $agendamentos = buscaAgendamento($progcod);
 
                 return vdia + '/' + vmes + '/' + vano;
             }
+        </script>
+        <script>
+        $(document).ready(function() {
+
+            $("#excluirFormAgendamento").submit(function(event) {
+                event.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    url: "../database/agendamento.php?operacao=excluir",
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: refreshPage,
+                });
+            });
+
+            function refreshPage() {
+                window.location.reload();
+            }
+        });
         </script>
         <!-- LOCAL PARA COLOCAR OS JS -FIM -->
 
