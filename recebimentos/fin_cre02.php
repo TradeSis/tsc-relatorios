@@ -208,10 +208,9 @@ $agendamentos = buscaAgendamento($progcod);
                         <table class="table table-sm table-hover table-bordered text-center">
                             <thead class="thead-light">
                                 <tr>
-                                    <th>Data</th>
                                     <th>Usuário</th>
+                                    <th>Data</th>
                                     <th>Hora</th>
-                                    <th>progcod</th>
                                     <th>nomeRel</th>
                                     <th>periodicidade</th>
                                     <th>descrição</th>
@@ -224,31 +223,51 @@ $agendamentos = buscaAgendamento($progcod);
                                 foreach ($agendamentos as $agendamento) {
                                     if ($agendamento['periodicidade'] == "U") {
                                         $periodicidade = "Único";
-                                        $descPeriodicidade = "irá rodar somente uma vez";
+                                        $descPeriodicidade = "Somente uma vez";
                                     }
                                     if ($agendamento['periodicidade'] == "D") {
                                         $periodicidade = "Diário";
-                                        $descPeriodicidade = "irá rodar todo dia: " . $agendamento['periododias'];
+                                        $descPeriodicidade = "Todo dia: " . $agendamento['periododias'];
                                     }
                                     if ($agendamento['periodicidade'] == "S") {
                                         $periodicidade = "Semanal";
-                                        $descPeriodicidade = "irá rodar nos dias: " . $agendamento['diasemana1'] . " ," . $agendamento['diasemana2'] . " e " . $agendamento['diasemana3'];
+                                        if($agendamento['diasemana1'] == 1){
+                                            $descPeriodicidade = "Somente: Domingo ";
+                                        }
+                                        if($agendamento['diasemana1'] == 2){
+                                            $descPeriodicidade = "Somente: Segunda ";
+                                        }
+                                        if($agendamento['diasemana1'] == 3){
+                                            $descPeriodicidade = "Somente: Terça ";
+                                        }
+                                        if($agendamento['diasemana1'] == 4){
+                                            $descPeriodicidade = "Somente: Quarta ";
+                                        }
+                                        if($agendamento['diasemana1'] == 5){
+                                            $descPeriodicidade = "Somente: Quinta ";
+                                        }
+                                        if($agendamento['diasemana1'] == 6){
+                                            $descPeriodicidade = "Somente: Sexta ";
+                                        }
+                                        if($agendamento['diasemana1'] == 7){
+                                            $descPeriodicidade = "Somente: Sábado ";
+                                        }
+                                        
                                     }
                                     if ($agendamento['periodicidade'] == "Q") {
                                         $periodicidade = "Quinzenal";
-                                        $descPeriodicidade = "irá rodar nos dias: " . $agendamento['diadomes1'] . " e " . $agendamento['diadomes2'];
+                                        $descPeriodicidade = "Somente nos dias: " . $agendamento['diadomes1'] . " e " . $agendamento['diadomes2'];
                                     }
                                     if ($agendamento['periodicidade'] == "M") {
                                         $periodicidade = "Mensal";
-                                        $descPeriodicidade = "irá rodar todo dia: " . $agendamento['diadomes1'];
+                                        $descPeriodicidade = "Todo dia: " . $agendamento['diadomes1'];
                                     }
 
                             ?>
                                     <tr>
-                                        <td><?php echo date('d/m/Y', strtotime($agendamento['dtprocessar'])) ?></td>
                                         <td><?php echo $agendamento['usercod'] ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($agendamento['dtprocessar'])) ?></td>
                                         <td><?php echo $agendamento['hrprocessar'] ?></td>
-                                        <td><?php echo $agendamento['progcod'] ?></td>
                                         <td><?php echo $agendamento['nomeRel'] ?></td>
                                         <td><?php echo $periodicidade ?></td>
                                         <td><?php echo $descPeriodicidade ?></td>
@@ -290,8 +309,8 @@ $agendamentos = buscaAgendamento($progcod);
 
         <script>
             $(document).on('click', 'a[data-bs-target="#parametros-modal"]', function() {
-                var etbcod = $(this).attr("data-etbcod") == true ? "Geral" : "Filial";
-                var cre = $(this).attr("data-cre");
+                var etbcod = $(this).attr("data-etbcod");
+                var cre = $(this).attr("data-cre") == true ? "Geral" : "Filial";
                 var dtini = $(this).attr("data-dtini");
                 dtini = dtini[0] == "#" ? dtini : formatarData(dtini);
 
@@ -318,8 +337,8 @@ $agendamentos = buscaAgendamento($progcod);
 
             $(document).on('click', 'a[data-bs-target="#agendamento-modal"]', function() {
                 
-                var etbcod = $(this).attr("data-etbcod") == true ? "Geral" : "Filial";
-                var cre = $(this).attr("data-cre");
+                var etbcod = $(this).attr("data-etbcod");
+                var cre = $(this).attr("data-cre") == true ? "Geral" : "Filial";
                 var dtini = $(this).attr("data-dtini");
                 dtini = dtini[0] == "#" ? dtini : formatarData(dtini);
 

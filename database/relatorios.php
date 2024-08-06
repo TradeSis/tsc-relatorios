@@ -271,7 +271,7 @@ if (isset($_GET['operacao'])) {
                 $apiEntrada = array(
                         'usercod' => $_POST['usercod'],
                         'progcod' => $_POST['progcod'],
-                        'relatnom' => $_POST['relatnom'],
+                        'nomeRel' => $_POST['nomeRel'],
                         'parametros' => $parametros,
                         'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
                 );

@@ -22,7 +22,8 @@ def var hsaida   as handle.
 def temp-table ttentrada no-undo serialize-name "tsrelat"
     field usercod as char
     field progcod as char
-    field relatnom as char
+    field relatnom as char 
+    field nomeRel as char
     field parametrosJSON as char 
     field REMOTE_ADDR as char.
 
@@ -33,6 +34,7 @@ def temp-table tttsrelat  no-undo serialize-name "relatorios"
     field hrinclu   as char
     field progcod   as char
     field relatnom  as char
+    field nomeRel as char
     field nomeArquivo  as char
     field REMOTE_ADDR as char
     field parametrosJSON as char.
@@ -75,6 +77,7 @@ do transaction:
     tsrelat.progcod  = ttentrada.progcod.
     tsrelat.usercod  = ttentrada.usercod.
     tsrelat.relatnom = ttentrada.relatnom.
+    tsrelat.nomeRel = ttentrada.nomeRel.
     tsrelat.dtinclu  = today.
     tsrelat.hrinclu  = time.
     tsrelat.REMOTE_ADDR = ttentrada.REMOTE_ADDR.    
@@ -87,6 +90,7 @@ end.
     tttsrelat.progcod  = tsrelat.progcod.
     tttsrelat.usercod  = tsrelat.usercod.
     tttsrelat.relatnom = tsrelat.relatnom.
+    tttsrelat.nomeRel  = tsrelat.nomeRel.
     tttsrelat.dtinclu  = tsrelat.dtinclu.
     tttsrelat.hrinclu  = string(tsrelat.hrinclu,"HH:MM:SS").
     tttsrelat.REMOTE_ADDR = tsrelat.REMOTE_ADDR.

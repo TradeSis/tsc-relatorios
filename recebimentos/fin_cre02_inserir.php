@@ -58,7 +58,7 @@ $progcod = "fin_cre02";
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="fin_cre02" autocomplete="off" >
+                        <input type="text" name="nomeRel" id="nomeRel" class="form-control" value="fin_cre02" autocomplete="off" >
                     </div>
                     <div class="row">
                         <div class="form-group col">
@@ -180,7 +180,7 @@ $progcod = "fin_cre02";
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
                 </form>
-                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento">Agendar Relatório</button>
+                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento" id="btnAgendamento">Agendar Relatório</button>
             </div>
 
         </div><!-- card shadow -->
@@ -245,6 +245,13 @@ $progcod = "fin_cre02";
                 el.parentNode.parentNode.replaceChild(select, el.parentNode);
             }
         }
+
+        //Usa click do botão para enviar ao modal o nomeRel digitado no form
+        $("#btnAgendamento").click(function() {
+            nomeRel = $("#nomeRel").val();
+            $('#nomeRel_modal').val(nomeRel);
+        });
+        
         // selecionar todos os itens do select modalidade
         $("#relatorio-geral").change(function() {
             if ($("#relatorio-geral").val() == 'Nao') {
