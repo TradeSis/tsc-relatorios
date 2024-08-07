@@ -2,8 +2,13 @@
 // lucas 23022024 - criado programa
 
 include_once('../head.php');
-$filial = explode(":", $_SERVER['REMOTE_ADDR']);
-$filial = isset($filial[2]);
+$ipfilial = explode(".", $_SERVER['REMOTE_ADDR']);
+$filial = 0;
+if ($ipfilial[0] == 172 || $ipfilial[0] == 192) {
+    if ($ipfilial[1] == 17 || $ipfilial[1] == 23 || $ipfilial[1] == 168) {
+        $filial = $ipfilial[2];
+    }
+}
 
 $progcod = "rec-moe-nov";
 ?>
@@ -40,7 +45,7 @@ $progcod = "rec-moe-nov";
                         <div class="col">
                             <label>Usuário</label>
                             <div class="form-group">
-                                <input type="text" name="usercod" class="form-control" value="Lebes" autocomplete="off" readonly>
+                                <input type="text" name="usercod" id="usercod" class="form-control" value="<?php echo $_SESSION['usuario'] ?>" autocomplete="off" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -53,17 +58,17 @@ $progcod = "rec-moe-nov";
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="Novações Caixa/Filial" autocomplete="off" readonly>
+                        <input type="text" name="nomeRel" id="nomeRel" class="form-control" value="<?php echo $progcod ?>" autocomplete="off">
                     </div>
                     <div class="row mt-2">
                         <div class="form-group col">
                             <label>Filial</label>
-                            <?php if ($filial <= 0) { ?>
+                            <?php if ($filial == 0) { ?>
                                 <input type="number" class="form-control" name="etbcod" id="etbcod" value="0">
                             <?php } else { ?>
                                 <input type="number" class="form-control" value="<?php echo $filial ?>" name="etbcod" id="etbcod" readonly>
                             <?php } ?>
-                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
+                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" id="REMOTE_ADDR" hidden>
                         </div>
                         <div class="form-group col">
                             <label>Nome Filial</label>
@@ -77,12 +82,26 @@ $progcod = "rec-moe-nov";
                         <div class="form-group col mt-3">
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dataInicial" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dataInicial" name="dataInicial" id="dataInicial">
+                                <input type="date" class="form-control input-dataInicial" name="dataInicial" id="dataInicial" required>
                                 <select class="form-control d-none select-dataInicial" name="dataInicial" id="dataInicial" disabled>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-">#HOJE-</option>
-                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                    <option value="#HOJE-1-">#HOJE-1</option>
+                                    <option value="#HOJE-2-">#HOJE-2</option>
+                                    <option value="#HOJE-3-">#HOJE-3</option>
+                                    <option value="#HOJE-4-">#HOJE-4</option>
+                                    <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                    <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                    <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                    <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                    <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                    <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                    <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                    <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                    <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                 </select>
                             </div>
                         </div>
@@ -92,12 +111,26 @@ $progcod = "rec-moe-nov";
                         <div class="form-group col mt-3">
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dataFinal" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dataFinal" name="dataFinal" id="dataFinal">
+                                <input type="date" class="form-control input-dataFinal" name="dataFinal" id="dataFinal" required>
                                 <select class="form-control d-none select-dataFinal" name="dataFinal" id="dataFinal" disabled>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-">#HOJE-</option>
-                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                    <option value="#HOJE-1-">#HOJE-1</option>
+                                    <option value="#HOJE-2-">#HOJE-2</option>
+                                    <option value="#HOJE-3-">#HOJE-3</option>
+                                    <option value="#HOJE-4-">#HOJE-4</option>
+                                    <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                    <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                    <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                    <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                    <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                    <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                    <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                    <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                    <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                 </select>
                             </div>
                         </div>
@@ -124,7 +157,7 @@ $progcod = "rec-moe-nov";
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
                 </form>
-                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento">Agendar Relatório</button>
+                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento" id="btnAgendamento">Agendar Relatório</button>
             </div>
 
         </div><!-- card shadow -->
@@ -144,6 +177,8 @@ $progcod = "rec-moe-nov";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
+                formData.append("usercod", $("#usercod").val());
+                formData.append("REMOTE_ADDR", $("#REMOTE_ADDR").val());
                 formData.append("etbcod", $("#etbcod").val());
                 formData.append("dataInicial", dataInicial);
                 formData.append("dataFinal", dataFinal);
@@ -169,6 +204,12 @@ $progcod = "rec-moe-nov";
                 url = url.replace('_inserir', '')
                 window.location.href = url;
             }
+        });
+
+         //Usa click do botão para enviar ao modal o nomeRel digitado no form
+         $("#btnAgendamento").click(function() {
+            nomeRel = $("#nomeRel").val();
+            $('#nomeRel_modal').val(nomeRel);
         });
 
         // modifica efeito de seleção do select modalidade
@@ -197,10 +238,14 @@ $progcod = "rec-moe-nov";
                 $("#button-dataInicial").prop("title", "Data Digitável");
                 $(".input-dataInicial").prop("disabled", true);
                 $(".select-dataInicial").prop("disabled", false);
+                $(".input-dataInicial").prop("required", false);
+                $(".select-dataInicial").prop("required", true);
             } else {
                 $("#button-dataInicial").prop("title", "Data Fixa");
                 $(".input-dataInicial").prop("disabled", false);
                 $(".select-dataInicial").prop("disabled", true);
+                $(".input-dataInicial").prop("required", true);
+                $(".select-dataInicial").prop("required", false);
             }
         });
 
@@ -216,10 +261,14 @@ $progcod = "rec-moe-nov";
                 $("#button-dataFinal").prop("title", "Data Digitável");
                 $(".input-dataFinal").prop("disabled", true);
                 $(".select-dataFinal").prop("disabled", false);
+                $(".input-dataFinal").prop("required", false);
+                $(".select-dataFinal").prop("required", true);
             } else {
                 $("#button-dataFinal").prop("title", "Data Fixa");
                 $(".input-dataFinal").prop("disabled", false);
                 $(".select-dataFinal").prop("disabled", true);
+                $(".input-dataFinal").prop("required", true);
+                $(".select-dataFinal").prop("required", false);
             }
         });
     </script>

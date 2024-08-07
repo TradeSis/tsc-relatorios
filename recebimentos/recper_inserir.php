@@ -2,8 +2,13 @@
 // lucas 23022024 - criado programa
 
 include_once('../head.php');
-$filial = explode(":", $_SERVER['REMOTE_ADDR']);
-$filial = $filial[2];
+$ipfilial = explode(".", $_SERVER['REMOTE_ADDR']);
+$filial = 0;
+if ($ipfilial[0] == 172 || $ipfilial[0] == 192) {
+    if ($ipfilial[1] == 17 || $ipfilial[1] == 23 || $ipfilial[1] == 168) {
+        $filial = $ipfilial[2];
+    }
+}
 
 $progcod = "recper";
 ?>
@@ -40,7 +45,7 @@ $progcod = "recper";
                         <div class="col">
                             <label>Usuário</label>
                             <div class="form-group">
-                                <input type="text" name="usercod" class="form-control" value="Lebes" autocomplete="off" readonly>
+                                <input type="text" name="usercod" id="usercod" class="form-control" value="<?php echo $_SESSION['usuario'] ?>" autocomplete="off" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -53,17 +58,17 @@ $progcod = "recper";
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="Recebimento por período" autocomplete="off" readonly>
+                        <input type="text" name="nomeRel" id="nomeRel" class="form-control" value="<?php echo $progcod ?>" autocomplete="off">
                     </div>
                     <div class="row">
                         <div class="form-group col">
                             <label>Filial</label>
-                            <?php if ($filial <= 0) { ?>
+                            <?php if ($filial == 0) { ?>
                                 <input type="number" class="form-control" name="etbcod" id="etbcod" value="0">
                             <?php } else { ?>
                                 <input type="number" class="form-control" value="<?php echo $filial ?>" name="etbcod" id="etbcod" readonly>
                             <?php } ?>
-                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
+                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" id="REMOTE_ADDR" hidden>
                         </div>
                         <div class="form-group col">
                             <label>Nome Filial</label>
@@ -77,24 +82,52 @@ $progcod = "recper";
                         <div class="form-group col mt-3">
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dti" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dti" name="dti" id="dti">
+                                <input type="date" class="form-control input-dti" name="dti" id="dti" required>
                                 <select class="form-control d-none select-dti" name="dti" id="dti" disabled>
-                                    <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-">#HOJE-</option>
-                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-1-">#HOJE-1</option>
+                                    <option value="#HOJE-2-">#HOJE-2</option>
+                                    <option value="#HOJE-3-">#HOJE-3</option>
+                                    <option value="#HOJE-4-">#HOJE-4</option>
+                                    <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                    <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                    <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                    <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                    <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                    <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                    <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                    <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                    <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group col mt-3">
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dtf" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dtf" name="dtf" id="dtf">
+                                <input type="date" class="form-control input-dtf" name="dtf" id="dtf" required>
                                 <select class="form-control d-none select-dtf" name="dtf" id="dtf" disabled>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-">#HOJE-</option>
-                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                    <option value="#HOJE-1-">#HOJE-1</option>
+                                    <option value="#HOJE-2-">#HOJE-2</option>
+                                    <option value="#HOJE-3-">#HOJE-3</option>
+                                    <option value="#HOJE-4-">#HOJE-4</option>
+                                    <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                    <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                    <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                    <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                    <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                    <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                    <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                    <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                    <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                 </select>
                             </div>
                         </div>
@@ -106,24 +139,52 @@ $progcod = "recper";
                         <div class="form-group col mt-3">
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dtveni" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dtveni" name="dtveni" id="dtveni">
+                                <input type="date" class="form-control input-dtveni" name="dtveni" id="dtveni" required>
                                 <select class="form-control d-none select-dtveni" name="dtveni" id="dtveni" disabled>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-">#HOJE-</option>
-                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                    <option value="#HOJE-1-">#HOJE-1</option>
+                                    <option value="#HOJE-2-">#HOJE-2</option>
+                                    <option value="#HOJE-3-">#HOJE-3</option>
+                                    <option value="#HOJE-4-">#HOJE-4</option>
+                                    <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                    <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                    <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                    <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                    <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                    <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                    <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                    <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                    <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group col mt-3">
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dtvenf" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dtvenf" name="dtvenf" id="dtvenf">
+                                <input type="date" class="form-control input-dtvenf" name="dtvenf" id="dtvenf" required>
                                 <select class="form-control d-none select-dtvenf" name="dtvenf" id="dtvenf" disabled>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-">#HOJE-</option>
-                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                    <option value="#HOJE-1-">#HOJE-1</option>
+                                    <option value="#HOJE-2-">#HOJE-2</option>
+                                    <option value="#HOJE-3-">#HOJE-3</option>
+                                    <option value="#HOJE-4-">#HOJE-4</option>
+                                    <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                    <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                    <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                    <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                    <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                    <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                    <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                    <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                    <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                 </select>
                             </div>
                         </div>
@@ -157,7 +218,7 @@ $progcod = "recper";
             <div class="card-footer bg-transparent text-end">
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
                 </form>
-                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento">Agendar Relatório</button>
+                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento" id="btnAgendamento">Agendar Relatório</button>
             </div>
 
         </div><!-- card shadow -->
@@ -179,6 +240,8 @@ $progcod = "recper";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
+                formData.append("usercod", $("#usercod").val());
+                formData.append("REMOTE_ADDR", $("#REMOTE_ADDR").val());
                 formData.append("etbcod", $("#etbcod").val());
                 formData.append("dti", dti);
                 formData.append("dtf", dtf);
@@ -209,6 +272,12 @@ $progcod = "recper";
             }
         });
 
+        //Usa click do botão para enviar ao modal o nomeRel digitado no form
+        $("#btnAgendamento").click(function() {
+            nomeRel = $("#nomeRel").val();
+            $('#nomeRel_modal').val(nomeRel);
+        });
+
         // modifica efeito de seleção do select modalidade
         window.onmousedown = function(e) {
             var el = e.target;
@@ -235,10 +304,14 @@ $progcod = "recper";
                 $("#button-dti").prop("title", "Data Digitável");
                 $(".input-dti").prop("disabled", true);
                 $(".select-dti").prop("disabled", false);
+                $(".input-dti").prop("required", false);
+                $(".select-dti").prop("required", true);
             } else {
                 $("#button-dti").prop("title", "Data Fixa");
                 $(".input-dti").prop("disabled", false);
                 $(".select-dti").prop("disabled", true);
+                $(".input-dti").prop("required", true);
+                $(".select-dti").prop("required", false);
             }
         });
 
@@ -254,10 +327,14 @@ $progcod = "recper";
                 $("#button-dtf").prop("title", "Data Digitável");
                 $(".input-dtf").prop("disabled", true);
                 $(".select-dtf").prop("disabled", false);
+                $(".input-dtf").prop("required", false);
+                $(".select-dtf").prop("required", true);
             } else {
                 $("#button-dtf").prop("title", "Data Fixa");
                 $(".input-dtf").prop("disabled", false);
                 $(".select-dtf").prop("disabled", true);
+                $(".input-dtf").prop("required", true);
+                $(".select-dtf").prop("required", false);
             }
         });
 
@@ -273,10 +350,14 @@ $progcod = "recper";
                 $("#button-dtveni").prop("title", "Data Digitável");
                 $(".input-dtveni").prop("disabled", true);
                 $(".select-dtveni").prop("disabled", false);
+                $(".input-dtveni").prop("required", false);
+                $(".select-dtveni").prop("required", true);
             } else {
                 $("#button-dtveni").prop("title", "Data Fixa");
                 $(".input-dtveni").prop("disabled", false);
                 $(".select-dtveni").prop("disabled", true);
+                $(".input-dtveni").prop("required", true);
+                $(".select-dtveni").prop("required", false);
             }
         });
 
@@ -292,10 +373,14 @@ $progcod = "recper";
                 $("#button-dtvenf").prop("title", "Data Digitável");
                 $(".input-dtvenf").prop("disabled", true);
                 $(".select-dtvenf").prop("disabled", false);
+                $(".input-dtvenf").prop("required", false);
+                $(".select-dtvenf").prop("required", true);
             } else {
                 $("#button-dtvenf").prop("title", "Data Fixa");
                 $(".input-dtvenf").prop("disabled", false);
                 $(".select-dtvenf").prop("disabled", true);
+                $(".input-dtvenf").prop("required", true);
+                $(".select-dtvenf").prop("required", false);
             }
         });
     </script>

@@ -2,8 +2,13 @@
 // lucas 23022024 - criado programa
 
 include_once('../head.php');
-$filial = explode(":", $_SERVER['REMOTE_ADDR']);
-$filial = isset($filial[2]);
+$ipfilial = explode(".", $_SERVER['REMOTE_ADDR']);
+$filial = 0;
+if ($ipfilial[0] == 172 || $ipfilial[0] == 192) {
+    if ($ipfilial[1] == 17 || $ipfilial[1] == 23 || $ipfilial[1] == 168) {
+        $filial = $ipfilial[2];
+    }
+}
 
 $progcod = "cdleld";
 ?>
@@ -40,7 +45,7 @@ $progcod = "cdleld";
                         <div class="col">
                             <label>Usuário</label>
                             <div class="form-group">
-                                <input type="text" name="usercod" class="form-control" value="Lebes" autocomplete="off" readonly>
+                                <input type="text" name="usercod" id="usercod" class="form-control" value="Lebes" autocomplete="off" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -53,8 +58,8 @@ $progcod = "cdleld";
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="EP Pagamentos" autocomplete="off" readonly>
-                        <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
+                        <input type="text" name="nomeRel" id="nomeRel" class="form-control" value="<?php echo $progcod ?>" autocomplete="off">
+                        <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" id="REMOTE_ADDR" hidden>
                     </div>
                     <div class="row mt-2">
                         <div class="form-group col">
@@ -74,7 +79,7 @@ $progcod = "cdleld";
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
                 </form>
-                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento">Agendar Relatório</button>
+                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento" id="btnAgendamento">Agendar Relatório</button>
             </div>
 
         </div><!-- card shadow -->
@@ -92,6 +97,8 @@ $progcod = "cdleld";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
+                formData.append("usercod", $("#usercod").val());
+                formData.append("REMOTE_ADDR", $("#REMOTE_ADDR").val());
                 formData.append("etb_ini", $("#etb_ini").val());
                 formData.append("etb_fim", $("#etb_fim").val());
                 /* for (var pair2 of formData.entries()) {
@@ -114,6 +121,12 @@ $progcod = "cdleld";
                 url = url.replace('_inserir', '')
                 window.location.href = url;
             }
+        });
+
+        //Usa click do botão para enviar ao modal o nomeRel digitado no form
+        $("#btnAgendamento").click(function() {
+            nomeRel = $("#nomeRel").val();
+            $('#nomeRel_modal').val(nomeRel);
         });
 
         $(document).ready(function() {

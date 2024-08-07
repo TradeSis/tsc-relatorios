@@ -2,8 +2,13 @@
 // lucas 23022024 - criado programa
 
 include_once('../head.php');
-$filial = explode(":", $_SERVER['REMOTE_ADDR']);
-$filial = isset($filial[2]);
+$ipfilial = explode(".", $_SERVER['REMOTE_ADDR']);
+$filial = 0;
+if ($ipfilial[0] == 172 || $ipfilial[0] == 192) {
+    if ($ipfilial[1] == 17 || $ipfilial[1] == 23 || $ipfilial[1] == 168) {
+        $filial = $ipfilial[2];
+    }
+}
 
 $progcod = "frsalcart_v2002";
 ?>
@@ -40,7 +45,7 @@ $progcod = "frsalcart_v2002";
                         <div class="col">
                             <label>Usuário</label>
                             <div class="form-group">
-                                <input type="text" name="usercod" class="form-control" value="Lebes" autocomplete="off" readonly>
+                                <input type="text" name="usercod"  id="usercod" class="form-control" value="<?php echo $_SESSION['usuario'] ?>" autocomplete="off" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -53,8 +58,8 @@ $progcod = "frsalcart_v2002";
                     </div>
                     <label>Nome do relatório</label>
                     <div class="form-group">
-                        <input type="text" name="relatnom" class="form-control" value="Vencidos e a Vencer (NOVO)" autocomplete="off" readonly>
-                        <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
+                        <input type="text" name="nomeRel" id="nomeRel" class="form-control" value="<?php echo $progcod ?>" autocomplete="off">
+                        <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" id="REMOTE_ADDR" hidden>
                     </div>
                     <div class="row">
                         <div class="form-group col-6">
@@ -101,9 +106,23 @@ $progcod = "frsalcart_v2002";
                                         <input type="date" class="form-control input-dataInicial" name="dataInicial" id="dataInicial">
                                         <select class="form-control d-none select-dataInicial" name="dataInicial" id="dataInicial" disabled>
                                             <option value="#HOJE">#HOJE</option>
-                                            <option value="#HOJE-">#HOJE-</option>
-                                            <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                            <option value="#DIAULTMES">#DIAULTMES</option>
+                                            <option value="#HOJE-1-">#HOJE-1</option>
+                                            <option value="#HOJE-2-">#HOJE-2</option>
+                                            <option value="#HOJE-3-">#HOJE-3</option>
+                                            <option value="#HOJE-4-">#HOJE-4</option>
+                                            <option value="#HOJE-5-">#HOJE-5</option>
+                                            <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                            <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                            <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                            <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                            <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                            <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                            <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                            <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                            <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                            <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                            <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                            <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                         </select>
                                     </div>
                                 </div>
@@ -116,9 +135,23 @@ $progcod = "frsalcart_v2002";
                                         <input type="date" class="form-control input-dataFinal" name="dataFinal" id="dataFinal">
                                         <select class="form-control d-none select-dataFinal" name="dataFinal" id="dataFinal" disabled>
                                             <option value="#HOJE">#HOJE</option>
-                                            <option value="#HOJE-">#HOJE-</option>
-                                            <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                            <option value="#DIAULTMES">#DIAULTMES</option>
+                                            <option value="#HOJE-1-">#HOJE-1</option>
+                                            <option value="#HOJE-2-">#HOJE-2</option>
+                                            <option value="#HOJE-3-">#HOJE-3</option>
+                                            <option value="#HOJE-4-">#HOJE-4</option>
+                                            <option value="#HOJE-5-">#HOJE-5</option>
+                                            <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                            <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                            <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                            <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                            <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                            <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                            <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                            <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                            <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                            <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                            <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                            <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                         </select>
                                     </div>
                                 </div>
@@ -130,12 +163,26 @@ $progcod = "frsalcart_v2002";
                             <label>Data Referencia</label>
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dataReferencia" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
-                                <input type="date" class="form-control input-dataReferencia" name="dataReferencia" id="dataReferencia">
+                                <input type="date" class="form-control input-dataReferencia" name="dataReferencia" id="dataReferencia" required>
                                 <select class="form-control d-none select-dataReferencia" name="dataReferencia" id="dataReferencia" disabled>
-                                    <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-">#HOJE-</option>
-                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
-                                    <option value="#DIAULTMES">#DIAULTMES</option>
+                                <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-1-">#HOJE-1</option>
+                                    <option value="#HOJE-2-">#HOJE-2</option>
+                                    <option value="#HOJE-3-">#HOJE-3</option>
+                                    <option value="#HOJE-4-">#HOJE-4</option>
+                                    <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
+                                    <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
+                                    <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
+                                    <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
+                                    <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAULTMES-1">#DIAULTMES-1</option>
+                                    <option value="#DIAULTMES-2">#DIAULTMES-2</option>
+                                    <option value="#DIAULTMES-3">#DIAULTMES-3</option>
+                                    <option value="#DIAULTMES-4">#DIAULTMES-4</option>
+                                    <option value="#DIAULTMES-5">#DIAULTMES-5</option>
                                 </select>
                             </div>
                         </div>
@@ -176,7 +223,7 @@ $progcod = "frsalcart_v2002";
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
                 </form>
-                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento">Agendar Relatório</button>
+                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento" id="btnAgendamento">Agendar Relatório</button>
             </div>
 
         </div><!-- card shadow -->
@@ -197,6 +244,8 @@ $progcod = "frsalcart_v2002";
                 event.preventDefault();
                 var formData = new FormData(this);
                 //formulario de parametros
+                formData.append("usercod", $("#usercod").val());
+                formData.append("REMOTE_ADDR", $("#REMOTE_ADDR").val());
                 formData.append("cre", $("#cre").val());
                 formData.append("modalidade", $("#modalidade").val());
                 formData.append("codigoFilial", $("#codigoFilial").val());
@@ -231,6 +280,12 @@ $progcod = "frsalcart_v2002";
             }
         });
 
+        //Usa click do botão para enviar ao modal o nomeRel digitado no form
+        $("#btnAgendamento").click(function() {
+            nomeRel = $("#nomeRel").val();
+            $('#nomeRel_modal').val(nomeRel);
+        });
+
         // modifica efeito de seleção do select modalidade
         window.onmousedown = function(e) {
             var el = e.target;
@@ -250,11 +305,15 @@ $progcod = "frsalcart_v2002";
                 $(".porestab").removeClass("d-none");
                 $("#dataInicial").prop("disabled", false);
                 $("#dataFinal").prop("disabled", false);
+                $("#dataInicial").prop("required", true);
+                $("#dataFinal").prop("required", true);
             }
             if ($("#porestab").val() == 'Nao') {
                 $(".porestab").addClass("d-none");
                 $("#dataInicial").prop("disabled", true);
                 $("#dataFinal").prop("disabled", true);
+                $("#dataInicial").prop("required", false);
+                $("#dataFinal").prop("required", false);
             }
         });
 
@@ -270,10 +329,14 @@ $progcod = "frsalcart_v2002";
                 $("#button-dataInicial").prop("title", "Data Digitável");
                 $(".input-dataInicial").prop("disabled", true);
                 $(".select-dataInicial").prop("disabled", false);
+                $(".input-dataInicial").prop("required", false);
+                $(".select-dataInicial").prop("required", true);
             } else {
                 $("#button-dataInicial").prop("title", "Data Fixa");
                 $(".input-dataInicial").prop("disabled", false);
                 $(".select-dataInicial").prop("disabled", true);
+                $(".input-dataInicial").prop("required", true);
+                $(".select-dataInicial").prop("required", false);
             }
         });
 
@@ -289,10 +352,14 @@ $progcod = "frsalcart_v2002";
                 $("#button-dataFinal").prop("title", "Data Digitável");
                 $(".input-dataFinal").prop("disabled", true);
                 $(".select-dataFinal").prop("disabled", false);
+                $(".input-dataFinal").prop("required", false);
+                $(".select-dataFinal").prop("required", true);
             } else {
                 $("#button-dataFinal").prop("title", "Data Fixa");
                 $(".input-dataFinal").prop("disabled", false);
                 $(".select-dataFinal").prop("disabled", true);
+                $(".input-dataFinal").prop("required", true);
+                $(".select-dataFinal").prop("required", false);
             }
         });
 
@@ -308,10 +375,14 @@ $progcod = "frsalcart_v2002";
                 $("#button-dataReferencia").prop("title", "Data Digitável");
                 $(".input-dataReferencia").prop("disabled", true);
                 $(".select-dataReferencia").prop("disabled", false);
+                $(".input-dataReferencia").prop("required", false);
+                $(".select-dataReferencia").prop("required", true);
             } else {
                 $("#button-dataReferencia").prop("title", "Data Fixa");
                 $(".input-dataReferencia").prop("disabled", false);
                 $(".select-dataReferencia").prop("disabled", true);
+                $(".input-dataReferencia").prop("required", true);
+                $(".select-dataReferencia").prop("required", false);
             }
         });
     </script>
