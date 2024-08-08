@@ -165,6 +165,7 @@ $progcod = "frsalcart_v2002";
                                 <button class="btn btn-outline-secondary" type="button" id="button-dataReferencia" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
                                 <input type="date" class="form-control input-dataReferencia" name="dataReferencia" id="dataReferencia" required>
                                 <select class="form-control d-none select-dataReferencia" name="dataReferencia" id="dataReferencia" disabled>
+                                <option value=null>Selecione</option>
                                 <option value="#HOJE">#HOJE</option>
                                     <option value="#HOJE-1-">#HOJE-1</option>
                                     <option value="#HOJE-2-">#HOJE-2</option>
