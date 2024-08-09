@@ -296,7 +296,7 @@ if (isset($_GET['operacao'])) {
                                 'dtveni' => $_POST['dtveni'],
                                 'dtvenf' => $_POST['dtvenf'],
                                 'consulta-parcelas-LP' => ($_POST['consideralp'] == 'Sim' ? true : false),
-                                'sel-mod' => $modalidade,
+                                'mod-sel' => $modalidade,
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
                 );
