@@ -54,7 +54,7 @@ if (isset($_GET['relatorio'])) {
                                 'dtveni' => $_POST['dtveni'],
                                 'dtvenf' => $_POST['dtvenf'],
                                 'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
-                                'sel-mod' => $_POST['modalidade'],
+                                'mod-sel' => $_POST['modalidade'],
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
                 );
