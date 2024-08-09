@@ -105,6 +105,7 @@ $progcod = "frsalcart_v2002";
                                         <button class="btn btn-outline-secondary" type="button" id="button-dataInicial" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
                                         <input type="date" class="form-control input-dataInicial" name="dataInicial" id="dataInicial">
                                         <select class="form-control d-none select-dataInicial" name="dataInicial" id="dataInicial" disabled>
+                                            <option value=null>Selecione</option>
                                             <option value="#HOJE">#HOJE</option>
                                             <option value="#HOJE-1-">#HOJE-1</option>
                                             <option value="#HOJE-2-">#HOJE-2</option>
@@ -134,6 +135,7 @@ $progcod = "frsalcart_v2002";
                                         <button class="btn btn-outline-secondary" type="button" id="button-dataFinal" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
                                         <input type="date" class="form-control input-dataFinal" name="dataFinal" id="dataFinal">
                                         <select class="form-control d-none select-dataFinal" name="dataFinal" id="dataFinal" disabled>
+                                            <option value=null>Selecione</option>
                                             <option value="#HOJE">#HOJE</option>
                                             <option value="#HOJE-1-">#HOJE-1</option>
                                             <option value="#HOJE-2-">#HOJE-2</option>
