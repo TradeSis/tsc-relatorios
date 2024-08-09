@@ -26,7 +26,7 @@ def temp-table tttsrelagend  no-undo serialize-name "relatorios"
         field diasemana2    as int
         field diasemana3    as int
         field parametrosJSON as char serialize-name "parametros"
-    index data dtprocessar asc hrprocessar asc.
+    index data dtprocessar asc hrprocessar asc nomeRel asc .
 
     
  

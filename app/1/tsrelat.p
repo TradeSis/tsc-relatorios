@@ -24,8 +24,8 @@ def temp-table tttsrelat  no-undo serialize-name "relatorios"
     field REMOTE_ADDR as char
     field parametrosJSON as char serialize-name "parametros"
     field dtproc  as date serialize-hidden
-    field hrproc  as date serialize-hidden
-    index data dtproc desc hrproc desc.
+    field hrproc  as INT serialize-hidden
+    index data dtproc desc hrproc desc dtinclu desc  hrinclu desc.
 
     
  
