@@ -93,18 +93,18 @@ $progcod = "fin_cre02";
                                 <input type="date" class="form-control input-dtini" name="dtini" id="dtini" required>
                                 <select class="form-control d-none select-dtini" name="dtini" id="dtini" disabled>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-1-">#HOJE-1</option>
-                                    <option value="#HOJE-2-">#HOJE-2</option>
-                                    <option value="#HOJE-3-">#HOJE-3</option>
-                                    <option value="#HOJE-4-">#HOJE-4</option>
-                                    <option value="#HOJE-5-">#HOJE-5</option>
-                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#HOJE-1">#HOJE-1</option>
+                                    <option value="#HOJE-2">#HOJE-2</option>
+                                    <option value="#HOJE-3">#HOJE-3</option>
+                                    <option value="#HOJE-4">#HOJE-4</option>
+                                    <option value="#HOJE-5">#HOJE-5</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
                                     <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                     <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                     <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
                                     <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
                                     <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
-                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
                                     <option value="#DIAULTMES-1">#DIAULTMES-1</option>
                                     <option value="#DIAULTMES-2">#DIAULTMES-2</option>
                                     <option value="#DIAULTMES-3">#DIAULTMES-3</option>
@@ -120,12 +120,12 @@ $progcod = "fin_cre02";
                                 <input type="date" class="form-control input-dtfin" name="dtfin" id="dtfin" required>
                                 <select class="form-control d-none select-dtfin" name="dtfin" id="dtfin" disabled>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-1-">#HOJE-1</option>
-                                    <option value="#HOJE-2-">#HOJE-2</option>
-                                    <option value="#HOJE-3-">#HOJE-3</option>
-                                    <option value="#HOJE-4-">#HOJE-4</option>
-                                    <option value="#HOJE-5-">#HOJE-5</option>
-                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#HOJE-1">#HOJE-1</option>
+                                    <option value="#HOJE-2">#HOJE-2</option>
+                                    <option value="#HOJE-3">#HOJE-3</option>
+                                    <option value="#HOJE-4">#HOJE-4</option>
+                                    <option value="#HOJE-5">#HOJE-5</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
                                     <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                     <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                     <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
