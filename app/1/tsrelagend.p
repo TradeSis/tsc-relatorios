@@ -25,7 +25,8 @@ def temp-table tttsrelagend  no-undo serialize-name "relatorios"
         field diasemana1    as int    
         field diasemana2    as int
         field diasemana3    as int
-        field parametrosJSON as char serialize-name "parametros".
+        field parametrosJSON as char serialize-name "parametros"
+    index data dtprocessar asc hrprocessar asc.
 
     
  
@@ -62,4 +63,16 @@ hsaida  = temp-table tttsrelagend:handle.
 
 lokJson = hsaida:WRITE-JSON("LONGCHAR", vlcSaida, TRUE).
 
-put unformatted string(vlcSaida).
+DEF VAR vMEMPTR AS MEMPTR  NO-UNDO.
+
+		DEF VAR vloop   AS INT     NO-UNDO.
+		if length(vlcsaida) > 30000
+		then do:
+			COPY-LOB FROM vlcsaida TO vMEMPTR.
+			DO vLOOP = 1 TO LENGTH(vlcsaida): 
+				put unformatted GET-STRING(vMEMPTR, vLOOP, 1). 
+			END.
+		end.
+		else do:
+			put unformatted string(vlcSaida).
+		end.  
