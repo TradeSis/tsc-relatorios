@@ -68,8 +68,8 @@ $agendamentos = buscaAgendamento($progcod);
                                     <th class="text-center">Usuário</th>
                                     <th class="text-center">Data</th>
                                     <th class="text-center">Hora</th>
-                                    <th class="text-center">Nome do relatório</th>
-                                    <th class="text-center">Nome do arquivo</th>
+                                    <th class="text-start">Nome do relatório</th>
+                                    <th class="text-center col-3">Nome do arquivo</th>
                                     <th class="text-center">REMOTE_ADDR</th>
                                     <th class="text-center">Parâmetros</th>
                                     <th class="text-center">PDF</th>
@@ -84,7 +84,7 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td class="text-center"><?php echo $relatorio['usercod'] ?></td>
                                         <td class="text-center"><?php echo date('d/m/Y', strtotime($relatorio['dtinclu'])) ?></td>
                                         <td class="text-center"><?php echo $relatorio['hrinclu'] ?></td>
-                                        <td class="text-center"><?php echo $relatorio['nomerel'] ?></td>
+                                        <td class="text-start"><?php echo $relatorio['nomerel'] ?></td>
                                         <td class="text-center"><?php echo $relatorio['nomeArquivo'] ?></td>
                                         <td class="text-center"><?php echo $relatorio['REMOTE_ADDR'] ?></td>
                                         <td class="text-center">
@@ -94,7 +94,7 @@ $agendamentos = buscaAgendamento($progcod);
                                             data-dtini="<?php echo $relatorio['parametros']['dtini'] ?>" 
                                             data-dtfin="<?php echo $relatorio['parametros']['dtfin'] ?>" 
                                             data-relatoriogeral="<?php echo $relatorio['parametros']['relatorio-geral'] ?>"
-                                            data-modalidade="<?php echo $relatorio['parametros']['sel-mod'] ?>"
+                                            data-modalidade="<?php echo $relatorio['parametros']['mod-sel'] ?>"
                                             data-consultaparcelasLP="<?php echo $relatorio['parametros']['consulta-parcelas-LP'] ?>"
                                             data-feiraonomelimpo="<?php echo $relatorio['parametros']['feirao-nome-limpo'] ?>"
                                             >Parâmetros</a>
@@ -236,7 +236,7 @@ $agendamentos = buscaAgendamento($progcod);
                                         <td><?php echo $agendamento['usercod'] ?></td>
                                         <td><?php echo date('d/m/Y', strtotime($agendamento['dtprocessar'])) ?></td>
                                         <td><?php echo $agendamento['hrprocessar'] ?></td>
-                                        <td><?php echo $agendamento['nomeRel'] ?></td>
+                                        <td class="text-start"><?php echo $agendamento['nomeRel'] ?></td>
                                         <td><?php echo $periodicidade ?></td>
                                         <td><?php echo $descPeriodicidade ?></td>
                                         <td><?php echo $agendamento['REMOTE_ADDR'] ?></td>
@@ -247,7 +247,7 @@ $agendamentos = buscaAgendamento($progcod);
                                             data-dtini="<?php echo $agendamento['parametros']['dtini'] ?>" 
                                             data-dtfin="<?php echo $agendamento['parametros']['dtfin'] ?>" 
                                             data-relatoriogeral="<?php echo $agendamento['parametros']['relatorio-geral'] ?>"
-                                            data-modalidade="<?php echo $agendamento['parametros']['sel-mod'] ?>"
+                                            data-modalidade="<?php echo $agendamento['parametros']['mod-sel'] ?>"
                                             data-consultaparcelasLP="<?php echo $agendamento['parametros']['consulta-parcelas-LP'] ?>"
                                             data-feiraonomelimpo="<?php echo $agendamento['parametros']['feirao-nome-limpo'] ?>"
                                             >Parâmetros</a>

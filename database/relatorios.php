@@ -263,7 +263,7 @@ if (isset($_GET['operacao'])) {
                                 'dtini' => $_POST['dtini'],
                                 'dtfin' => $_POST['dtfin'],
                                 'relatorio-geral' => ($_POST['relatorio-geral'] == 'Sim' ? true : false),
-                                'sel-mod' => $modalidade,
+                                'mod-sel' => $modalidade,
                                 'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
@@ -327,7 +327,7 @@ if (isset($_GET['operacao'])) {
                                 'dti' => $_POST['dti'],
                                 'dtf' => $_POST['dtf'],
                                 'clinovos' => ($_POST['clinovos'] == 'Sim' ? true : false),
-                                'sel-mod' => $modalidade,
+                                'mod-sel' => $modalidade,
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
                                 'vindex' => intval($_POST['vindex'])
                         ))
@@ -358,7 +358,7 @@ if (isset($_GET['operacao'])) {
                                 'etbcod' => intval($_POST['etbcod']),
                                 'dtinicial' => $_POST['dataInicial'],
                                 'dtfinal' => $_POST['dataFinal'],
-                                'sel-mod' => $modalidade,
+                                'mod-sel' => $modalidade,
                                 'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
                         ))
                 );

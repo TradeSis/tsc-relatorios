@@ -38,7 +38,7 @@ if (isset($_GET['relatorio'])) {
                                 'dtini' => $_POST['dtini'],
                                 'dtfin' => $_POST['dtfin'],
                                 'relatorio-geral' => ($_POST['relatorio-geral'] == 'Sim' ? true : false),
-                                'sel-mod' => $_POST['modalidade'],
+                                'mod-sel' => $_POST['modalidade'],
                                 'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
@@ -67,7 +67,7 @@ if (isset($_GET['relatorio'])) {
                                 'dti' => $_POST['dti'],
                                 'dtf' => $_POST['dtf'],
                                 'clinovos' => ($_POST['clinovos'] == 'Sim' ? true : false),
-                                'sel-mod' => $_POST['modalidade'],
+                                'mod-sel' => $_POST['modalidade'],
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
                                 'vindex' => $_POST['vindex']
                         ))
@@ -80,7 +80,7 @@ if (isset($_GET['relatorio'])) {
                                 'etbcod' => intval($_POST['etbcod']),
                                 'dtinicial' => $_POST['dataInicial'],
                                 'dtfinal' => $_POST['dataFinal'],
-                                'sel-mod' => $_POST['modalidade'],
+                                'mod-sel' => $_POST['modalidade'],
                                 'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
                         ))
                 );

@@ -1,3 +1,11 @@
+// Ao inicial o documento seta os inputs como disabled
+$(document).ready(function() {
+    $(".periododias").prop("disabled", true);
+    $(".diasemana1").prop("disabled", true);
+    $(".quinzenal").prop("disabled", true);
+    $(".diadomes2").prop("disabled", true);
+    $(".mensal").prop("disabled", true);
+});
 // select de periodicidade
 $("#periodicidade").change(function() {
     if ($("#periodicidade").val() == 'U') {
