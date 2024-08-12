@@ -96,14 +96,19 @@ if (isset($_GET['relatorio'])) {
         }
 
         if ($relatorio == "frsalcart_v2002") {
+               
+                $dataInicial = isset($_POST["dataInicial"]) && $_POST["dataInicial"] !== "" && $_POST["dataInicial"] !== "null"  ? $_POST["dataInicial"]  : null;
+                $dataFinal = isset($_POST["dataFinal"]) && $_POST["dataFinal"] !== "" && $_POST["dataFinal"] !== "null"  ? $_POST["dataFinal"]  : null;
+                $dataReferencia = isset($_POST["dataReferencia"]) && $_POST["dataReferencia"] !== "" && $_POST["dataReferencia"] !== "null"  ? $_POST["dataReferencia"]  : null;
+
                 $parametros = array(
                         "parametros" => array(array(
                                 'cre' => ($_POST['cre'] == 'Geral' ? true : false),
                                 'codigoFilial' => intval($_POST['codigoFilial']), 
                                 'mod-sel' => $_POST['modalidade'],
-                                'dataInicial' => $_POST['dataInicial'],
-                                'dataFinal' => $_POST['dataFinal'],
-                                'dataReferencia' => $_POST['dataReferencia'],
+                                'dataInicial' => $dataInicial,
+                                'dataFinal' => $dataFinal,
+                                'dataReferencia' => $dataReferencia,
                                 'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
                                 'abreporanoemi' => ($_POST['abreporanoemi'] == 'Sim' ? true : false),

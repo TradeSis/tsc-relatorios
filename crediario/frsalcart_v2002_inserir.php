@@ -98,7 +98,7 @@ $progcod = "frsalcart_v2002";
                             <div class="row">
                                 <!-- Por Filal = Sim -->
                                 <div class="form-group col-3">
-                                    <label class="mt-4">Periodo de: </label>
+                                    <label class="mt-4">Período de: </label>
                                 </div>
                                 <div class="form-group col-4 mt-3">
                                     <div class="input-group mb-2">
@@ -162,7 +162,7 @@ $progcod = "frsalcart_v2002";
                     </div>
                     <div class="row">
                         <div class="form-group col">
-                            <label>Data Referencia</label>
+                            <label>Data Referência</label>
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dataReferencia" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
                                 <input type="date" class="form-control input-dataReferencia" name="dataReferencia" id="dataReferencia" required>
@@ -224,9 +224,9 @@ $progcod = "frsalcart_v2002";
 
             </div><!-- container -->
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
-                <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
+                <button type="submit" class="btn btn-sm btn-success" id="btnInserir">Gerar Relatório</button>
                 </form>
-                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento" id="btnAgendamento">Agendar Relatório</button>
+                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal"  id="btnAgendamento">Agendar Relatório</button>
             </div>
 
         </div><!-- card shadow -->
@@ -283,10 +283,100 @@ $progcod = "frsalcart_v2002";
             }
         });
 
-        //Usa click do botão para enviar ao modal o nomeRel digitado no form
+        //Testa campos de data ao Gerar Relatorio
+        $("#btnInserir").click(function() {
+        
+        if ($("#porestab").val() == 'Sim') {
+           if($(".input-dataInicial").val() != ''){
+            var dataInicial = $(".input-dataInicial").val();
+            }else{
+                var dataInicial = $(".select-dataInicial").val(); 
+            }
+
+            if($(".input-dataFinal").val() != ''){
+            var dataFinal = $(".input-dataFinal").val();
+            }else{
+                var dataFinal = $(".select-dataFinal").val(); 
+            }
+        
+            if((dataInicial == 'null') || (dataFinal == 'null')){
+                alert("Informar Período!")
+                return false;
+            }
+        }
+        if ($("#porestab").val() == 'Nao') {
+   
+            if($(".input-dataReferencia").val() != ''){
+            var dataReferencia = $(".input-dataReferencia").val();
+            }else{
+                var dataReferencia = $(".select-dataReferencia").val(); 
+            }
+            
+            if(dataReferencia == 'null'){
+                alert("Informar Data Referência!")
+                return false;
+            }
+ 
+        }
+    
+    });
+
+        //Testa campos de data ao Agendar relatorio, passando tambem o nomeRel
         $("#btnAgendamento").click(function() {
+        
             nomeRel = $("#nomeRel").val();
             $('#nomeRel_modal').val(nomeRel);
+
+            if ($("#porestab").val() == 'Sim') {
+                $(".porestab").removeClass("d-none");
+                $("#dataInicial").prop("disabled", false);
+                $("#dataFinal").prop("disabled", false);
+                $("#dataInicial").prop("required", true);
+                $("#dataFinal").prop("required", true);
+                $("#dataReferencia").prop("required", false);
+
+                if($(".input-dataInicial").val() != ''){
+                var dataInicial = $(".input-dataInicial").val();
+                }else{
+                    var dataInicial = $(".select-dataInicial").val(); 
+                }
+
+                if($(".input-dataFinal").val() != ''){
+                var dataFinal = $(".input-dataFinal").val();
+                }else{
+                    var dataFinal = $(".select-dataFinal").val(); 
+                }
+            
+                if((dataInicial == 'null') || (dataFinal == 'null')){
+                    alert("Informar Período!")
+                }else{
+                    $("#dataReferencia").attr("data-bs-target='#modalAgendamento'")
+                    $('#modalAgendamento').modal('show');
+                }
+            }
+            if ($("#porestab").val() == 'Nao') {
+                $(".porestab").addClass("d-none");
+                $("#dataInicial").prop("disabled", true);
+                $("#dataFinal").prop("disabled", true);
+                $("#dataInicial").prop("required", false);
+                $("#dataFinal").prop("required", false);
+                $("#dataReferencia").prop("required", true);
+               
+                if($(".input-dataReferencia").val() != ''){
+                var dataReferencia = $(".input-dataReferencia").val();
+                }else{
+                    var dataReferencia = $(".select-dataReferencia").val(); 
+                }
+
+                if(dataReferencia == 'null'){
+                    alert("Informar Data Referência!")
+                }else{
+                    $("#dataReferencia").attr("data-bs-target='#modalAgendamento'")
+                    $('#modalAgendamento').modal('show');
+                }
+
+            }
+        
         });
 
         // modifica efeito de seleção do select modalidade
@@ -310,6 +400,7 @@ $progcod = "frsalcart_v2002";
                 $("#dataFinal").prop("disabled", false);
                 $("#dataInicial").prop("required", true);
                 $("#dataFinal").prop("required", true);
+                $("#dataReferencia").prop("required", false);
             }
             if ($("#porestab").val() == 'Nao') {
                 $(".porestab").addClass("d-none");
@@ -317,6 +408,7 @@ $progcod = "frsalcart_v2002";
                 $("#dataFinal").prop("disabled", true);
                 $("#dataInicial").prop("required", false);
                 $("#dataFinal").prop("required", false);
+                $("#dataReferencia").prop("required", true);
             }
         });
 
