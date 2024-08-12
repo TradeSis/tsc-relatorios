@@ -55,7 +55,10 @@ if (
                                 <?php if ($tab == "crediario") {echo " active ";} ?>" 
                                 href="?tab=crediario" role="tab">Crediário</a>
                             </li>
-                        <?php }  if ($_SESSION['nivelMenu'] >= 1) {?>
+                        <?php }  if ($_SESSION['nivelMenu'] >= 1) {
+                             if ($tab == '') {
+                                $tab = 'recebimentos';
+                            } ?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
                                 <?php if ($tab == "recebimentos") {echo " active ";} ?>" 
