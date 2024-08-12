@@ -44,7 +44,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <label>Número de Dias</label>
-                                    <input type="text" class="form-control" name="periododias" id="inputdoisdig" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off">
+                                    <input type="text" class="form-control periododias" name="periododias" id="inputdoisdig" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off" required>
                                 </div>
                                 <div class="col-2">
                                     <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="Intervalo de dias para processamento"></i>
@@ -56,7 +56,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <label>Dia da Semana</label>
-                                    <select class="form-control" name="diasemana1">
+                                    <select class="form-control diasemana1" name="diasemana1" required>
                                         <option value="1">Domingo</option>
                                         <option value="2">Segunda</option>
                                         <option value="3">Terça</option>
@@ -76,11 +76,11 @@
                             <div class="row">
                                 <div class="col-3">
                                     <label>Dia do mês 1</label>
-                                    <input type="text" class="form-control quinzenal" name="diadomes1" id="inputdoisdig" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off">
+                                    <input type="text" class="form-control quinzenal" name="diadomes1" id="inputdoisdig" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off" required>
                                 </div>
                                 <div class="col-3">
                                     <label>Dia do mês 2</label>
-                                    <input type="text" class="form-control" name="diadomes2" id="inputdoisdig" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off">
+                                    <input type="text" class="form-control diadomes2" name="diadomes2" id="inputdoisdig" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off" required>
                                 </div>
                                 <div class="col-2">
                                     <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="rodará 2 vezes por mês"></i>
@@ -92,7 +92,7 @@
                             <div class="row">
                                 <div class="col-3">
                                     <label>Dia do mês</label>
-                                    <input type="text" class="form-control mensal" name="diadomes1" id="inputdoisdig" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off">
+                                    <input type="text" class="form-control mensal" name="diadomes1" id="inputdoisdig" maxlength="2" pattern="([0-9]{1}{2})" autocomplete="off" required>
                                 </div>
                                 <div class="col-2">
                                     <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-placement="right" title="rodará uma vez por mês"></i>

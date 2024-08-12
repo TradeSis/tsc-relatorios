@@ -229,12 +229,9 @@ if (isset($_GET['operacao'])) {
 	$operacao = $_GET['operacao'];
 
 	if ($operacao == "excluir") {
-                $hora = explode(':', $_POST['hrprocessar']);
-                $hrprocessar = $hora[0] * 3600 + $hora[1] * 60;
-
+                
 		$apiEntrada = array(
-			'dtprocessar' => $_POST['dtprocessar'],
-			'hrprocessar' => $hrprocessar
+			'id-recid' => $_POST['recID']
 		);
 	
 		$relatorios = chamaAPI(null, '/relatorios/agendamento', json_encode($apiEntrada), 'DELETE');

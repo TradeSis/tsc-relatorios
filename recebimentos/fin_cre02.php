@@ -254,6 +254,7 @@ $agendamentos = buscaAgendamento($progcod);
                                         </td>
                                         <td>
                                             <a class="btn btn-sm btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#excluirAgendamento-modal" 
+                                            data-recID="<?php echo $agendamento['id-recid'] ?>"
                                             data-dtprocessar="<?php echo $agendamento['dtprocessar'] ?>" 
                                             data-hrprocessar="<?php echo $agendamento['hrprocessar'] ?>" 
                                             data-periodicidade="<?php echo $periodicidade ?>"
@@ -307,12 +308,13 @@ $agendamentos = buscaAgendamento($progcod);
             //EXCLUIR AGENDAMENTO
             $(document).on('click', 'a[data-bs-target="#excluirAgendamento-modal"]', function() {
                 
+                var recID = $(this).attr("data-recID");
                 var dtprocessar = $(this).attr("data-dtprocessar");
                 var hrprocessar = $(this).attr("data-hrprocessar");
                 var periodicidade = $(this).attr("data-periodicidade");
                
-                $('#excluirView_dtprocessar').val(formatarData(dtprocessar));
-                $('#excluir_dtprocessar').val(dtprocessar);
+                $('#excluir_recID').val(recID);
+                $('#excluir_dtprocessar').val(formatarData(dtprocessar));
                 $('#excluir_hrprocessar').val(hrprocessar);
                 $('#excluir_periodicidade').val(periodicidade);
 

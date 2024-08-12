@@ -30,7 +30,7 @@ if ($metodo=="GET"){
       break;
 
       case "agendamento":
-        include 'agendamento_inserir.php';
+        include 'tsrelagend_inserir.php';
       break;
 
       default:
@@ -56,7 +56,7 @@ if ($metodo=="GET"){
   if ($metodo=="DELETE"){
     switch ($funcao) {
       case "agendamento":
-        include 'agendamento_excluir.php';
+        include 'tsrelagend_excluir.php';
       break;
 
       default:
