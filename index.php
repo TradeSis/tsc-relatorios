@@ -48,41 +48,38 @@ if (
                         ?>
                         <?php if ($_SESSION['nivelMenu'] >= 2) {
                             if ($tab == '') {
-                                $tab = 'relatorios';
+                                $tab = 'crediario';
                             } ?>
-                            <li class="nav-item mr-1">
-                                <a class="nav-link 
-                                <?php if ($tab == "relatorios") {echo " active ";} ?>" 
-                                href="?tab=relatorios" role="tab">Relatórios</a>
-                            </li>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
                                 <?php if ($tab == "crediario") {echo " active ";} ?>" 
                                 href="?tab=crediario" role="tab">Crediário</a>
                             </li>
+                        <?php }  if ($_SESSION['nivelMenu'] >= 1) {?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
                                 <?php if ($tab == "recebimentos") {echo " active ";} ?>" 
                                 href="?tab=recebimentos" role="tab">Recebimentos</a>
                             </li>
+                        <?php }  if ($_SESSION['nivelMenu'] >= 2) {?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
                                 <?php if ($tab == "contabilidade") {echo " active ";} ?>" 
                                 href="?tab=contabilidade" role="tab">Contabilidade</a>
                             </li>
+                        <?php }  if ($_SESSION['nivelMenu'] >= 1) {?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
                                 <?php if ($tab == "cobranca") {echo " active ";} ?>" 
                                 href="?tab=cobranca" role="tab">Cobrança</a>
                             </li>
+                        <?php }  if ($_SESSION['nivelMenu'] >= 1) {?>
                             <li class="nav-item mr-1">
                                 <a class="nav-link 
                                 <?php if ($tab == "novacoes") {echo " active ";} ?>" 
                                 href="?tab=novacoes" role="tab">Novações</a>
-                            </li>
-                            
-                        <?php }
-                           ?>
+                            </li> 
+                        <?php } ?>
                     </ul>
 
                 </div>
@@ -97,16 +94,11 @@ if (
                     <select class="form-select mt-2 ts-selectSubMenuAplicativos" id="subtabRelatorios">
 
                         <?php if ($_SESSION['nivelMenu'] >= 2) { ?>
-                        <option value="<?php echo URLROOT ?>/relatorios/?tab=relatorios" 
-                        <?php if ($getTab == "relatorios") {echo " selected ";} ?>>Relatórios</option>
-                        <?php } ?>
-                        
-                        <?php if ($_SESSION['nivelMenu'] >= 2) { ?>
                         <option value="<?php echo URLROOT ?>/relatorios/?tab=crediario" 
                         <?php if ($getTab == "crediario") {echo " selected ";} ?>>Crediário</option>
                         <?php } ?>                        
 
-                        <?php if ($_SESSION['nivelMenu'] >= 2) { ?>
+                        <?php if ($_SESSION['nivelMenu'] >= 1) { ?>
                         <option value="<?php echo URLROOT ?>/relatorios/?tab=recebimentos" 
                         <?php if ($getTab == "recebimentos") {echo " selected ";} ?>>Recebimentos</option>
                         <?php } ?>
@@ -116,12 +108,12 @@ if (
                         <?php if ($getTab == "contabilidade") {echo " selected ";} ?>>Contabilidade</option>
                         <?php } ?>
 
-                        <?php if ($_SESSION['nivelMenu'] >= 2) { ?>
+                        <?php if ($_SESSION['nivelMenu'] >= 1) { ?>
                         <option value="<?php echo URLROOT ?>/relatorios/?tab=cobranca" 
                         <?php if ($getTab == "cobranca") {echo " selected ";} ?>>Cobrança</option>
                         <?php } ?>
 
-                        <?php if ($_SESSION['nivelMenu'] >= 2) { ?>
+                        <?php if ($_SESSION['nivelMenu'] >= 1) { ?>
                         <option value="<?php echo URLROOT ?>/relatorios/?tab=novacoes" 
                         <?php if ($getTab == "novacoes") {echo " selected ";} ?>>Novações</option>
                         <?php } ?>                        
@@ -137,9 +129,6 @@ if (
             <?php
             $src = "";
 
-            if ($tab == "relatorios") {
-                $src = "relatorios/";
-            }
             if ($tab == "crediario") {
                 $src = "crediario/";
             }
