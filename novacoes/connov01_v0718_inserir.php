@@ -82,24 +82,45 @@ $progcod = "connov01_v0718";
                                 <button class="btn btn-outline-secondary" type="button" id="button-dataInicial" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
                                 <input type="date" class="form-control input-dataInicial" name="dataInicial" id="dataInicial" required>
                                 <select class="form-control d-none select-dataInicial" name="dataInicial" id="dataInicial" disabled>
+                                    <option value=null>Selecione</option>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-1-">#HOJE-1</option>
-                                    <option value="#HOJE-2-">#HOJE-2</option>
-                                    <option value="#HOJE-3-">#HOJE-3</option>
-                                    <option value="#HOJE-4-">#HOJE-4</option>
-                                    <option value="#HOJE-5-">#HOJE-5</option>
-                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#HOJE-1">#HOJE-1</option>
+                                    <option value="#HOJE-2">#HOJE-2</option>
+                                    <option value="#HOJE-3">#HOJE-3</option>
+                                    <option value="#HOJE-4">#HOJE-4</option>
+                                    <option value="#HOJE-5">#HOJE-5</option>
+                                    <option value="#HOJE-6">#HOJE-6</option>
+                                    <option value="#HOJE-7">#HOJE-7</option>
+                                    <option value="#HOJE-10">#HOJE-10</option>
+                                    <option value="#HOJE-30">#HOJE-30</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
                                     <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                     <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                     <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
                                     <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
                                     <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
-                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAPRIMES-6">#DIAPRIMES-6</option>
+                                    <option value="#DIAPRIMES-7">#DIAPRIMES-7</option>
+                                    <option value="#DIAPRIMES-8">#DIAPRIMES-8</option>
+                                    <option value="#DIAPRIMES-9">#DIAPRIMES-9</option>
+                                    <option value="#DIAPRIMES-10">#DIAPRIMES-10</option>
+                                    <option value="#DIAPRIMES-11">#DIAPRIMES-11</option>
+                                    <option value="#DIAPRIMES-12">#DIAPRIMES-12</option>
+                                    <option value="#DIAPRIMES-24">#DIAPRIMES-24</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
                                     <option value="#DIAULTMES-1">#DIAULTMES-1</option>
                                     <option value="#DIAULTMES-2">#DIAULTMES-2</option>
                                     <option value="#DIAULTMES-3">#DIAULTMES-3</option>
                                     <option value="#DIAULTMES-4">#DIAULTMES-4</option>
                                     <option value="#DIAULTMES-5">#DIAULTMES-5</option>
+                                    <option value="#DIAULTMES-6">#DIAULTMES-6</option>
+                                    <option value="#DIAULTMES-7">#DIAULTMES-7</option>
+                                    <option value="#DIAULTMES-8">#DIAULTMES-8</option>
+                                    <option value="#DIAULTMES-9">#DIAULTMES-9</option>
+                                    <option value="#DIAULTMES-10">#DIAULTMES-10</option>
+                                    <option value="#DIAULTMES-11">#DIAULTMES-11</option>
+                                    <option value="#DIAULTMES-12">#DIAULTMES-12</option>
+                                    <option value="#DIAULTMES-24">#DIAULTMES-24</option>
                                 </select>
                             </div>
                         </div>
@@ -109,24 +130,45 @@ $progcod = "connov01_v0718";
                                 <button class="btn btn-outline-secondary" type="button" id="button-dataFinal" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
                                 <input type="date" class="form-control input-dataFinal" name="dataFinal" id="dataFinal" required>
                                 <select class="form-control d-none select-dataFinal" name="dataFinal" id="dataFinal" disabled>
+                                    <option value=null>Selecione</option>
                                     <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-1-">#HOJE-1</option>
-                                    <option value="#HOJE-2-">#HOJE-2</option>
-                                    <option value="#HOJE-3-">#HOJE-3</option>
-                                    <option value="#HOJE-4-">#HOJE-4</option>
-                                    <option value="#HOJE-5-">#HOJE-5</option>
-                                    <option value="#DIAPRIMES-1">#DIAPRIMES</option>
+                                    <option value="#HOJE-1">#HOJE-1</option>
+                                    <option value="#HOJE-2">#HOJE-2</option>
+                                    <option value="#HOJE-3">#HOJE-3</option>
+                                    <option value="#HOJE-4">#HOJE-4</option>
+                                    <option value="#HOJE-5">#HOJE-5</option>
+                                    <option value="#HOJE-6">#HOJE-6</option>
+                                    <option value="#HOJE-7">#HOJE-7</option>
+                                    <option value="#HOJE-10">#HOJE-10</option>
+                                    <option value="#HOJE-30">#HOJE-30</option>
+                                    <option value="#DIAPRIMES">#DIAPRIMES</option>
                                     <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                     <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                     <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
                                     <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
                                     <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
-                                    <option value="#DIAULTMES-1">#DIAULTMES</option>
+                                    <option value="#DIAPRIMES-6">#DIAPRIMES-6</option>
+                                    <option value="#DIAPRIMES-7">#DIAPRIMES-7</option>
+                                    <option value="#DIAPRIMES-8">#DIAPRIMES-8</option>
+                                    <option value="#DIAPRIMES-9">#DIAPRIMES-9</option>
+                                    <option value="#DIAPRIMES-10">#DIAPRIMES-10</option>
+                                    <option value="#DIAPRIMES-11">#DIAPRIMES-11</option>
+                                    <option value="#DIAPRIMES-12">#DIAPRIMES-12</option>
+                                    <option value="#DIAPRIMES-24">#DIAPRIMES-24</option>
+                                    <option value="#DIAULTMES">#DIAULTMES</option>
                                     <option value="#DIAULTMES-1">#DIAULTMES-1</option>
                                     <option value="#DIAULTMES-2">#DIAULTMES-2</option>
                                     <option value="#DIAULTMES-3">#DIAULTMES-3</option>
                                     <option value="#DIAULTMES-4">#DIAULTMES-4</option>
                                     <option value="#DIAULTMES-5">#DIAULTMES-5</option>
+                                    <option value="#DIAULTMES-6">#DIAULTMES-6</option>
+                                    <option value="#DIAULTMES-7">#DIAULTMES-7</option>
+                                    <option value="#DIAULTMES-8">#DIAULTMES-8</option>
+                                    <option value="#DIAULTMES-9">#DIAULTMES-9</option>
+                                    <option value="#DIAULTMES-10">#DIAULTMES-10</option>
+                                    <option value="#DIAULTMES-11">#DIAULTMES-11</option>
+                                    <option value="#DIAULTMES-12">#DIAULTMES-12</option>
+                                    <option value="#DIAULTMES-24">#DIAULTMES-24</option>
                                 </select>
                             </div>
                         </div>

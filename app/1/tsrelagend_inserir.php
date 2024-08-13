@@ -42,7 +42,7 @@ if (!isset($dadosEntrada["tsrelagend"])) {
 
     $progr = new chamaprogress();
 
-    $retorno = $progr->executarprogress("relatorios/app/1/agendamento_inserir",$conteudoEntrada);
+    $retorno = $progr->executarprogress("relatorios/app/1/tsrelagend_inserir",$conteudoEntrada);
 
     fwrite($arquivo,$identificacao."-PROGRESS->".json_encode($retorno)."\n");
     
