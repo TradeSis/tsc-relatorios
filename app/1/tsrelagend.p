@@ -25,6 +25,7 @@ def temp-table tttsrelagend  no-undo serialize-name "relatorios"
         field diasemana1    as int    
         field diasemana2    as int
         field diasemana3    as int
+        FIELD id-recid      AS INT64
         field parametrosJSON as char serialize-name "parametros"
     index data dtprocessar asc hrprocessar asc nomeRel asc .
 
@@ -53,6 +54,7 @@ for each tsrelagend where tsrelagend.progcod = ttentrada.progcod
         tttsrelagend.diasemana1 = tsrelagend.diasemana1.
         tttsrelagend.diasemana2 = tsrelagend.diasemana2.
         tttsrelagend.diasemana3 = tsrelagend.diasemana3.
+        tttsrelagend.id-recid = RECID(tsrelagend).
         copy-lob FROM tsrelagend.parametrosJSON to lcjsonentrada.
         tttsrelagend.parametrosJSON = lcjsonentrada.
     

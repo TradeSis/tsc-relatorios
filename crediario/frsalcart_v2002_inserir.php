@@ -45,7 +45,7 @@ $progcod = "frsalcart_v2002";
                         <div class="col">
                             <label>Usuário</label>
                             <div class="form-group">
-                                <input type="text" name="usercod"  id="usercod" class="form-control" value="<?php echo $_SESSION['usuario'] ?>" autocomplete="off" readonly>
+                                <input type="text" name="usercod" id="usercod" class="form-control" value="<?php echo $_SESSION['usuario'] ?>" autocomplete="off" readonly>
                             </div>
                         </div>
                         <div class="col">
@@ -98,7 +98,7 @@ $progcod = "frsalcart_v2002";
                             <div class="row">
                                 <!-- Por Filal = Sim -->
                                 <div class="form-group col-3">
-                                    <label class="mt-4">Periodo de: </label>
+                                    <label class="mt-4">Período de: </label>
                                 </div>
                                 <div class="form-group col-4 mt-3">
                                     <div class="input-group mb-2">
@@ -107,23 +107,43 @@ $progcod = "frsalcart_v2002";
                                         <select class="form-control d-none select-dataInicial" name="dataInicial" id="dataInicial" disabled>
                                             <option value=null>Selecione</option>
                                             <option value="#HOJE">#HOJE</option>
-                                            <option value="#HOJE-1-">#HOJE-1</option>
-                                            <option value="#HOJE-2-">#HOJE-2</option>
-                                            <option value="#HOJE-3-">#HOJE-3</option>
-                                            <option value="#HOJE-4-">#HOJE-4</option>
-                                            <option value="#HOJE-5-">#HOJE-5</option>
+                                            <option value="#HOJE-1">#HOJE-1</option>
+                                            <option value="#HOJE-2">#HOJE-2</option>
+                                            <option value="#HOJE-3">#HOJE-3</option>
+                                            <option value="#HOJE-4">#HOJE-4</option>
+                                            <option value="#HOJE-5">#HOJE-5</option>
+                                            <option value="#HOJE-6">#HOJE-6</option>
+                                            <option value="#HOJE-7">#HOJE-7</option>
+                                            <option value="#HOJE-10">#HOJE-10</option>
+                                            <option value="#HOJE-30">#HOJE-30</option>
                                             <option value="#DIAPRIMES">#DIAPRIMES</option>
                                             <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                             <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                             <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
                                             <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
                                             <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                            <option value="#DIAPRIMES-6">#DIAPRIMES-6</option>
+                                            <option value="#DIAPRIMES-7">#DIAPRIMES-7</option>
+                                            <option value="#DIAPRIMES-8">#DIAPRIMES-8</option>
+                                            <option value="#DIAPRIMES-9">#DIAPRIMES-9</option>
+                                            <option value="#DIAPRIMES-10">#DIAPRIMES-10</option>
+                                            <option value="#DIAPRIMES-11">#DIAPRIMES-11</option>
+                                            <option value="#DIAPRIMES-12">#DIAPRIMES-12</option>
+                                            <option value="#DIAPRIMES-24">#DIAPRIMES-24</option>
                                             <option value="#DIAULTMES">#DIAULTMES</option>
                                             <option value="#DIAULTMES-1">#DIAULTMES-1</option>
                                             <option value="#DIAULTMES-2">#DIAULTMES-2</option>
                                             <option value="#DIAULTMES-3">#DIAULTMES-3</option>
                                             <option value="#DIAULTMES-4">#DIAULTMES-4</option>
                                             <option value="#DIAULTMES-5">#DIAULTMES-5</option>
+                                            <option value="#DIAULTMES-6">#DIAULTMES-6</option>
+                                            <option value="#DIAULTMES-7">#DIAULTMES-7</option>
+                                            <option value="#DIAULTMES-8">#DIAULTMES-8</option>
+                                            <option value="#DIAULTMES-9">#DIAULTMES-9</option>
+                                            <option value="#DIAULTMES-10">#DIAULTMES-10</option>
+                                            <option value="#DIAULTMES-11">#DIAULTMES-11</option>
+                                            <option value="#DIAULTMES-12">#DIAULTMES-12</option>
+                                            <option value="#DIAULTMES-24">#DIAULTMES-24</option>
                                         </select>
                                     </div>
                                 </div>
@@ -137,23 +157,43 @@ $progcod = "frsalcart_v2002";
                                         <select class="form-control d-none select-dataFinal" name="dataFinal" id="dataFinal" disabled>
                                             <option value=null>Selecione</option>
                                             <option value="#HOJE">#HOJE</option>
-                                            <option value="#HOJE-1-">#HOJE-1</option>
-                                            <option value="#HOJE-2-">#HOJE-2</option>
-                                            <option value="#HOJE-3-">#HOJE-3</option>
-                                            <option value="#HOJE-4-">#HOJE-4</option>
-                                            <option value="#HOJE-5-">#HOJE-5</option>
+                                            <option value="#HOJE-1">#HOJE-1</option>
+                                            <option value="#HOJE-2">#HOJE-2</option>
+                                            <option value="#HOJE-3">#HOJE-3</option>
+                                            <option value="#HOJE-4">#HOJE-4</option>
+                                            <option value="#HOJE-5">#HOJE-5</option>
+                                            <option value="#HOJE-6">#HOJE-6</option>
+                                            <option value="#HOJE-7">#HOJE-7</option>
+                                            <option value="#HOJE-10">#HOJE-10</option>
+                                            <option value="#HOJE-30">#HOJE-30</option>
                                             <option value="#DIAPRIMES">#DIAPRIMES</option>
                                             <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                             <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                             <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
                                             <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
                                             <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                            <option value="#DIAPRIMES-6">#DIAPRIMES-6</option>
+                                            <option value="#DIAPRIMES-7">#DIAPRIMES-7</option>
+                                            <option value="#DIAPRIMES-8">#DIAPRIMES-8</option>
+                                            <option value="#DIAPRIMES-9">#DIAPRIMES-9</option>
+                                            <option value="#DIAPRIMES-10">#DIAPRIMES-10</option>
+                                            <option value="#DIAPRIMES-11">#DIAPRIMES-11</option>
+                                            <option value="#DIAPRIMES-12">#DIAPRIMES-12</option>
+                                            <option value="#DIAPRIMES-24">#DIAPRIMES-24</option>
                                             <option value="#DIAULTMES">#DIAULTMES</option>
                                             <option value="#DIAULTMES-1">#DIAULTMES-1</option>
                                             <option value="#DIAULTMES-2">#DIAULTMES-2</option>
                                             <option value="#DIAULTMES-3">#DIAULTMES-3</option>
                                             <option value="#DIAULTMES-4">#DIAULTMES-4</option>
                                             <option value="#DIAULTMES-5">#DIAULTMES-5</option>
+                                            <option value="#DIAULTMES-6">#DIAULTMES-6</option>
+                                            <option value="#DIAULTMES-7">#DIAULTMES-7</option>
+                                            <option value="#DIAULTMES-8">#DIAULTMES-8</option>
+                                            <option value="#DIAULTMES-9">#DIAULTMES-9</option>
+                                            <option value="#DIAULTMES-10">#DIAULTMES-10</option>
+                                            <option value="#DIAULTMES-11">#DIAULTMES-11</option>
+                                            <option value="#DIAULTMES-12">#DIAULTMES-12</option>
+                                            <option value="#DIAULTMES-24">#DIAULTMES-24</option>
                                         </select>
                                     </div>
                                 </div>
@@ -162,30 +202,50 @@ $progcod = "frsalcart_v2002";
                     </div>
                     <div class="row">
                         <div class="form-group col">
-                            <label>Data Referencia</label>
+                            <label>Data Referência</label>
                             <div class="input-group mb-2">
                                 <button class="btn btn-outline-secondary" type="button" id="button-dataReferencia" title="Data Fixa"><i class="bi bi-arrow-repeat"></i></button>
                                 <input type="date" class="form-control input-dataReferencia" name="dataReferencia" id="dataReferencia" required>
                                 <select class="form-control d-none select-dataReferencia" name="dataReferencia" id="dataReferencia" disabled>
-                                <option value=null>Selecione</option>
-                                <option value="#HOJE">#HOJE</option>
-                                    <option value="#HOJE-1-">#HOJE-1</option>
-                                    <option value="#HOJE-2-">#HOJE-2</option>
-                                    <option value="#HOJE-3-">#HOJE-3</option>
-                                    <option value="#HOJE-4-">#HOJE-4</option>
-                                    <option value="#HOJE-5-">#HOJE-5</option>
+                                    <option value=null>Selecione</option>
+                                    <option value="#HOJE">#HOJE</option>
+                                    <option value="#HOJE-1">#HOJE-1</option>
+                                    <option value="#HOJE-2">#HOJE-2</option>
+                                    <option value="#HOJE-3">#HOJE-3</option>
+                                    <option value="#HOJE-4">#HOJE-4</option>
+                                    <option value="#HOJE-5">#HOJE-5</option>
+                                    <option value="#HOJE-6">#HOJE-6</option>
+                                    <option value="#HOJE-7">#HOJE-7</option>
+                                    <option value="#HOJE-10">#HOJE-10</option>
+                                    <option value="#HOJE-30">#HOJE-30</option>
                                     <option value="#DIAPRIMES">#DIAPRIMES</option>
                                     <option value="#DIAPRIMES-1">#DIAPRIMES-1</option>
                                     <option value="#DIAPRIMES-2">#DIAPRIMES-2</option>
                                     <option value="#DIAPRIMES-3">#DIAPRIMES-3</option>
                                     <option value="#DIAPRIMES-4">#DIAPRIMES-4</option>
                                     <option value="#DIAPRIMES-5">#DIAPRIMES-5</option>
+                                    <option value="#DIAPRIMES-6">#DIAPRIMES-6</option>
+                                    <option value="#DIAPRIMES-7">#DIAPRIMES-7</option>
+                                    <option value="#DIAPRIMES-8">#DIAPRIMES-8</option>
+                                    <option value="#DIAPRIMES-9">#DIAPRIMES-9</option>
+                                    <option value="#DIAPRIMES-10">#DIAPRIMES-10</option>
+                                    <option value="#DIAPRIMES-11">#DIAPRIMES-11</option>
+                                    <option value="#DIAPRIMES-12">#DIAPRIMES-12</option>
+                                    <option value="#DIAPRIMES-24">#DIAPRIMES-24</option>
                                     <option value="#DIAULTMES">#DIAULTMES</option>
                                     <option value="#DIAULTMES-1">#DIAULTMES-1</option>
                                     <option value="#DIAULTMES-2">#DIAULTMES-2</option>
                                     <option value="#DIAULTMES-3">#DIAULTMES-3</option>
                                     <option value="#DIAULTMES-4">#DIAULTMES-4</option>
                                     <option value="#DIAULTMES-5">#DIAULTMES-5</option>
+                                    <option value="#DIAULTMES-6">#DIAULTMES-6</option>
+                                    <option value="#DIAULTMES-7">#DIAULTMES-7</option>
+                                    <option value="#DIAULTMES-8">#DIAULTMES-8</option>
+                                    <option value="#DIAULTMES-9">#DIAULTMES-9</option>
+                                    <option value="#DIAULTMES-10">#DIAULTMES-10</option>
+                                    <option value="#DIAULTMES-11">#DIAULTMES-11</option>
+                                    <option value="#DIAULTMES-12">#DIAULTMES-12</option>
+                                    <option value="#DIAULTMES-24">#DIAULTMES-24</option>
                                 </select>
                             </div>
                         </div>
@@ -224,9 +284,9 @@ $progcod = "frsalcart_v2002";
 
             </div><!-- container -->
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
-                <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
+                <button type="submit" class="btn btn-sm btn-success" id="btnInserir">Gerar Relatório</button>
                 </form>
-                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalAgendamento" id="btnAgendamento">Agendar Relatório</button>
+                <button type="buttom" class="btn btn-sm btn-warning" data-bs-toggle="modal" id="btnAgendamento">Agendar Relatório</button>
             </div>
 
         </div><!-- card shadow -->
@@ -283,10 +343,100 @@ $progcod = "frsalcart_v2002";
             }
         });
 
-        //Usa click do botão para enviar ao modal o nomeRel digitado no form
+        //Testa campos de data ao Gerar Relatorio
+        $("#btnInserir").click(function() {
+
+            if ($("#porestab").val() == 'Sim') {
+                if ($(".input-dataInicial").val() != '') {
+                    var dataInicial = $(".input-dataInicial").val();
+                } else {
+                    var dataInicial = $(".select-dataInicial").val();
+                }
+
+                if ($(".input-dataFinal").val() != '') {
+                    var dataFinal = $(".input-dataFinal").val();
+                } else {
+                    var dataFinal = $(".select-dataFinal").val();
+                }
+
+                if ((dataInicial == 'null') || (dataFinal == 'null')) {
+                    alert("Informar Período!")
+                    return false;
+                }
+            }
+            if ($("#porestab").val() == 'Nao') {
+
+                if ($(".input-dataReferencia").val() != '') {
+                    var dataReferencia = $(".input-dataReferencia").val();
+                } else {
+                    var dataReferencia = $(".select-dataReferencia").val();
+                }
+
+                if (dataReferencia == 'null') {
+                    alert("Informar Data Referência!")
+                    return false;
+                }
+
+            }
+
+        });
+
+        //Testa campos de data ao Agendar relatorio, passando tambem o nomeRel
         $("#btnAgendamento").click(function() {
+
             nomeRel = $("#nomeRel").val();
             $('#nomeRel_modal').val(nomeRel);
+
+            if ($("#porestab").val() == 'Sim') {
+                $(".porestab").removeClass("d-none");
+                $("#dataInicial").prop("disabled", false);
+                $("#dataFinal").prop("disabled", false);
+                $("#dataInicial").prop("required", true);
+                $("#dataFinal").prop("required", true);
+                $("#dataReferencia").prop("required", false);
+
+                if ($(".input-dataInicial").val() != '') {
+                    var dataInicial = $(".input-dataInicial").val();
+                } else {
+                    var dataInicial = $(".select-dataInicial").val();
+                }
+
+                if ($(".input-dataFinal").val() != '') {
+                    var dataFinal = $(".input-dataFinal").val();
+                } else {
+                    var dataFinal = $(".select-dataFinal").val();
+                }
+
+                if ((dataInicial == 'null') || (dataFinal == 'null')) {
+                    alert("Informar Período!")
+                } else {
+                    $("#dataReferencia").attr("data-bs-target='#modalAgendamento'")
+                    $('#modalAgendamento').modal('show');
+                }
+            }
+            if ($("#porestab").val() == 'Nao') {
+                $(".porestab").addClass("d-none");
+                $("#dataInicial").prop("disabled", true);
+                $("#dataFinal").prop("disabled", true);
+                $("#dataInicial").prop("required", false);
+                $("#dataFinal").prop("required", false);
+                $("#dataReferencia").prop("required", true);
+
+                if ($(".input-dataReferencia").val() != '') {
+                    var dataReferencia = $(".input-dataReferencia").val();
+                } else {
+                    var dataReferencia = $(".select-dataReferencia").val();
+                }
+
+                if (dataReferencia == 'null') {
+                    alert("Informar Data Referência!")
+                } else {
+                    $("#dataReferencia").attr("data-bs-target='#modalAgendamento'")
+                    $('#modalAgendamento').modal('show');
+                }
+
+            }
+
         });
 
         // modifica efeito de seleção do select modalidade
@@ -310,6 +460,7 @@ $progcod = "frsalcart_v2002";
                 $("#dataFinal").prop("disabled", false);
                 $("#dataInicial").prop("required", true);
                 $("#dataFinal").prop("required", true);
+                $("#dataReferencia").prop("required", false);
             }
             if ($("#porestab").val() == 'Nao') {
                 $(".porestab").addClass("d-none");
@@ -317,6 +468,7 @@ $progcod = "frsalcart_v2002";
                 $("#dataFinal").prop("disabled", true);
                 $("#dataInicial").prop("required", false);
                 $("#dataFinal").prop("required", false);
+                $("#dataReferencia").prop("required", true);
             }
         });
 
