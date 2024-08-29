@@ -573,4 +573,27 @@ if (isset($_GET['operacao'])) {
 
                 header('Location: ../novacoes/loj_cre02_a.php');
         }
+
+        //-RESUMO CONCILIAÇÃO CREFIARIO
+        if ($operacao == "telaanaliini") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dtini' => $_POST['dtini'],
+                                'dtfin' => $_POST['dtfin'],
+                                'etbcod' => intval($_POST['etbcod']),
+                                'tipooperacao' => $_POST['tipooperacao']
+                        ))
+                );
+                $apiEntrada = array(
+                        'usercod' => $_POST['usercod'],
+                        'progcod' => $_POST['progcod'],
+                        'nomeRel' => $_POST['nomeRel'],
+                        'parametros' => $parametros,
+                        'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
+                );
+
+                $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
+
+                header('Location: ../contabilidade/telaanaliini.php');
+        }
 }

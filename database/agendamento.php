@@ -201,6 +201,17 @@ if (isset($_GET['relatorio'])) {
                         ))
                 );
         }
+
+        if ($relatorio == "telaanaliini") { 
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dtini' => $_POST['dtini'],
+                                'dtfin' => $_POST['dtfin'],
+                                'etbcod' => intval($_POST['etbcod']),
+                                'tipooperacao' => $_POST['tipooperacao']
+                        ))
+                );
+        }
         
         $apiEntrada = array(
                 'usercod' => $_POST['usercod'],

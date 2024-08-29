@@ -23,8 +23,7 @@ include_once(__DIR__ . '/../header.php');
                         <i class="bi bi-file-earmark-text" style="font-size: 35px;"></i>
                     </div>
                     <div class="col ms-2 me-auto">
-                        <div class="fw-bold">Resumo Consiliação Crediário</div>
-                        descricao
+                        <div class="fw-bold">Resumo Conciliação Crediário</div>
                     </div>
                 </div>
             </a>
