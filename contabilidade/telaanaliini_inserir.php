@@ -165,7 +165,7 @@ $progcod = "telaanaliini";
                             <input type="number" placeholder="Vazio = Geral" class="form-control" name="etbcod" id="etbcod">
                         </div>
                         <div class="form-group col">
-                            <label>Relatórios</label>
+                            <label>Tipo de Operação</label>
                             <select class="form-control" name="tipooperacao" id="tipooperacao">
                                 <option value="RECEBIMENTOS">RECEBIMENTOS</option>
                                 <option value="NOVACAO">NOVACAO</option>

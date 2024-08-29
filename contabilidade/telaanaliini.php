@@ -132,7 +132,7 @@ $agendamentos = buscaAgendamento($progcod);
                                     <input type="text" class="form-control" id="etbcod" readonly>
                                 </div>
                                 <div class="form-group col">
-                                    <label>Relatórios</label>
+                                    <label>Tipo de Operação</label>
                                     <input type="text" class="form-control" id="tipooperacao" readonly>
                                 </div>
                             </div>
