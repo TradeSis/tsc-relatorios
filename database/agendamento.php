@@ -212,6 +212,16 @@ if (isset($_GET['relatorio'])) {
                         ))
                 );
         }
+
+        if ($relatorio == "relcpn-v012018") { 
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dti' => $_POST['dti'],
+                                'dtf' => $_POST['dtf'],
+                                'etbcod' => intval($_POST['etbcod'])
+                        ))
+                );
+        }
         
         $apiEntrada = array(
                 'usercod' => $_POST['usercod'],

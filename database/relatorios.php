@@ -327,7 +327,7 @@ if (isset($_GET['operacao'])) {
                                 'dti' => $_POST['dti'],
                                 'dtf' => $_POST['dtf'],
                                 'clinovos' => ($_POST['clinovos'] == 'Sim' ? true : false),
-                                'mod-sel' => $modalidade,
+                                'sel-mod' => $modalidade,
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
                                 'vindex' => intval($_POST['vindex'])
                         ))
@@ -358,7 +358,7 @@ if (isset($_GET['operacao'])) {
                                 'etbcod' => intval($_POST['etbcod']),
                                 'dtinicial' => $_POST['dataInicial'],
                                 'dtfinal' => $_POST['dataFinal'],
-                                'mod-sel' => $modalidade,
+                                'sel-mod' => $modalidade,
                                 'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
                         ))
                 );
@@ -595,5 +595,27 @@ if (isset($_GET['operacao'])) {
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
                 header('Location: ../contabilidade/telaanaliini.php');
+        }
+
+        //-RELATÓRIO CPN
+        if ($operacao == "relcpn-v012018") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dti' => $_POST['dti'],
+                                'dtf' => $_POST['dtf'],
+                                'etbcod' => intval($_POST['etbcod'])
+                        ))
+                );
+                $apiEntrada = array(
+                        'usercod' => $_POST['usercod'],
+                        'progcod' => $_POST['progcod'],
+                        'nomeRel' => $_POST['nomeRel'],
+                        'parametros' => $parametros,
+                        'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
+                );
+
+                $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
+
+                header('Location: ../contabilidade/relcpn-v012018.php');
         }
 }

@@ -28,6 +28,17 @@ include_once(__DIR__ . '/../header.php');
                 </div>
             </a>
 
+            <a href="relcpn-v012018.php" class="list-group-item">
+                <div class="row g-0">
+                    <div class="col-1 text-center " style="width: 50px;">
+                        <i class="bi bi-file-earmark-text" style="font-size: 35px;"></i>
+                    </div>
+                    <div class="col ms-2 me-auto">
+                        <div class="fw-bold">Relatório: CPN</div>
+                    </div>
+                </div>
+            </a>
+
         </div>
 
     </div>
