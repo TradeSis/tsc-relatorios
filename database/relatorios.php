@@ -596,4 +596,26 @@ if (isset($_GET['operacao'])) {
 
                 header('Location: ../contabilidade/telaanaliini.php');
         }
+
+        //-RELATÓRIO CPN
+        if ($operacao == "relcpn-v012018") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dti' => $_POST['dti'],
+                                'dtf' => $_POST['dtf'],
+                                'etbcod' => intval($_POST['etbcod'])
+                        ))
+                );
+                $apiEntrada = array(
+                        'usercod' => $_POST['usercod'],
+                        'progcod' => $_POST['progcod'],
+                        'nomeRel' => $_POST['nomeRel'],
+                        'parametros' => $parametros,
+                        'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
+                );
+
+                $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
+
+                header('Location: ../contabilidade/relcpn-v012018.php');
+        }
 }
