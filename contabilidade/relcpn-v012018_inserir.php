@@ -184,7 +184,6 @@ $progcod = "relcpn-v012018";
         $(document).ready(function() {
 
             $("#formAgendamento").submit(function(event) {
-                alert("aqui")
                 dti = $(".input-dti").val() != "" ? $(".input-dti").val() : $(".select-dti").val();
                 dtf = $(".input-dtf").val() != "" ? $(".input-dtf").val() : $(".select-dtf").val();
 
