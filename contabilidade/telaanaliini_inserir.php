@@ -168,7 +168,7 @@ $progcod = "telaanaliini";
                             <label>Tipo de Operação</label>
                             <select class="form-control" name="tipooperacao" id="tipooperacao">
                                 <option value="RECEBIMENTOS">RECEBIMENTOS</option>
-                                <option value="NOVACAO">NOVACAO</option>
+                                <option value="NOVACOES">NOVACOES</option>
                                 <option value="VENDAS">VENDAS</option>
                             </select>
                         </div>
