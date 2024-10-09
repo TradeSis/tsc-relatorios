@@ -10,7 +10,7 @@ if ($ipfilial[0] == 172 || $ipfilial[0] == 192) {
     }
 }
 
-$progcod = "frrescart_v1801";
+$progcod = "relcpn-v012018";
 ?>
 
 <!doctype html>
@@ -31,7 +31,7 @@ $progcod = "frrescart_v1801";
             <div class="card-header border-1">
                 <div class="row">
                     <div class="col-10">
-                        <h4 class="col">Controle de Carteira</h4>
+                        <h4 class="col">Relatório: CPN</h4>
                     </div>
                     <div class="col-sm" style="text-align:right">
                         <a href="#" onclick="history.back()" role="button" class="btn btn-primary btn-sm">Voltar</a>
@@ -40,7 +40,7 @@ $progcod = "frrescart_v1801";
             </div>
             <div class="container" style="margin-top: 10px">
 
-                <form action="../database/relatorios.php?operacao=frrescart_v1801" method="post">
+                <form action="../database/relatorios.php?operacao=relcpn-v012018" method="post">
                     <div class="row">
                         <div class="col">
                             <label>Usuário</label>
@@ -51,7 +51,7 @@ $progcod = "frrescart_v1801";
                         <div class="col">
                             <label>Programa</label>
                             <div class="form-group">
-                                <input type="text" name="progcod" class="form-control" value="frrescart_v1801" autocomplete="off" readonly>
+                                <input type="text" name="progcod" class="form-control" value="relcpn-v012018" autocomplete="off" readonly>
                             </div>
                         </div>
 
@@ -63,14 +63,10 @@ $progcod = "frrescart_v1801";
                     </div>
                     <div class="row mt-2">
                         <div class="form-group col-6">
-                            <label>Cliente</label>
-                            <select class="form-control" name="cre" id="cre">
-                                <option value="Geral">Geral</option>
-                                <option value="Facil">Facil</option>
-                            </select>
-                            <input type="text" class="form-control" value="<?php echo $_SERVER['REMOTE_ADDR'] ?>" name="REMOTE_ADDR" hidden>
+                            <label>Estabelecimento</label>
+                            <input type="number" placeholder="Vazio = Geral" class="form-control" name="etbcod" id="etbcod">
                         </div>
-                    </div>
+                     </div>
                     <div class="row mt-2">
                         <div class="form-group col">
                             <label>Data Inicial</label>
@@ -169,41 +165,7 @@ $progcod = "frrescart_v1801";
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="form-group col">
-                            <label>Somente clientes novos(até 30 pagas) que atrasaram parcela(s):</label>
-                            <select class="form-control" name="clinovos" id="clinovos">
-                                <option value="Nao">Nao</option>
-                                <option value="Sim">Sim</option>
-                            </select>
-                        </div>
-                        <div class="form-group col">
-                            <label>Selecione Modalidades</label>
-                            <select class="form-control" name="modalidade[]" id="modalidade" multiple style="height: 90px; overflow-y: hidden;">
-                                <option value="CRE" class="cre" selected>CRE</option>
-                                <option value="CP0" class="sel-mod">CP0</option>
-                                <option value="CP1" class="sel-mod">CP1</option>
-                                <option value="CPN" class="sel-mod">CPN</option>
-                            </select>
-                        </div>
-
-                    </div>
-                    <div class="row mt-2">
-                        <div class="form-group col-6">
-                            <label>Considerar apenas feirao</label>
-                            <select class="form-control" name="feirao-nome-limpo" id="feirao-nome-limpo">
-                                <option value="Nao">Nao</option>
-                                <option value="Sim">Sim</option>
-                            </select>
-                        </div>
-                        <div class="form-group col">
-                            <label>Filial 17</label>
-                            <select class="form-control" name="vindex" id="vindex">
-                                <option value="1">Nova</option>
-                                <option value="2">Antiga</option>
-                            </select>
-                        </div>
-                    </div>
+                    
             </div><!-- container -->
             <div class="card-footer bg-transparent mt-2" style="text-align:right">
                 <button type="submit" class="btn btn-sm btn-success">Gerar Relatório</button>
@@ -230,19 +192,17 @@ $progcod = "frrescart_v1801";
                 //formulario de parametros
                 formData.append("usercod", $("#usercod").val());
                 formData.append("REMOTE_ADDR", $("#REMOTE_ADDR").val());
-                formData.append("cre", $("#cre").val());
+                
+                formData.append("etbcod", $("#etbcod").val());
                 formData.append("dti", dti);
                 formData.append("dtf", dtf);
-                formData.append("clinovos", $("#clinovos").val());
-                formData.append("modalidade", $("#modalidade").val());
-                formData.append("feirao-nome-limpo", $("#feirao-nome-limpo").val());
-                formData.append("vindex", $("#vindex").val());
-                /* for (var pair2 of formData.entries()) {
+                
+                for (var pair2 of formData.entries()) {
                     console.log(pair2[0] + " - " + pair2[1]);
-                } */
+                }
 
                 $.ajax({
-                    url: "../database/agendamento.php?relatorio=frrescart_v1801",
+                    url: "../database/agendamento.php?relatorio=relcpn-v012018",
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -279,7 +239,7 @@ $progcod = "frrescart_v1801";
             }
         }
 
-        // DATA\SELECT - DTI
+        // DATA\SELECT - dti
         $("#button-dti").click(function() {
             $(".input-dti").toggleClass("d-none");
             $(".select-dti").toggleClass("d-none");
@@ -302,14 +262,14 @@ $progcod = "frrescart_v1801";
             }
         });
 
-        // DATA\SELECT - DTF
+        // DATA\SELECT - dtf
         $("#button-dtf").click(function() {
             $(".input-dtf").toggleClass("d-none");
             $(".select-dtf").toggleClass("d-none");
 
             var elemento = document.getElementById("dtf");
             var classe = elemento.getAttribute("class");
-
+            //alert(classe.lastIndexOf("d-none"))
             if (classe[23] == "d") {
                 $("#button-dtf").prop("title", "Data Digitável");
                 $(".input-dtf").prop("disabled", true);

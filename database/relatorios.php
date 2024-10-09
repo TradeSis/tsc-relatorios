@@ -263,7 +263,7 @@ if (isset($_GET['operacao'])) {
                                 'dtini' => $_POST['dtini'],
                                 'dtfin' => $_POST['dtfin'],
                                 'relatorio-geral' => ($_POST['relatorio-geral'] == 'Sim' ? true : false),
-                                'sel-mod' => $modalidade,
+                                'mod-sel' => $modalidade,
                                 'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
@@ -377,20 +377,26 @@ if (isset($_GET['operacao'])) {
 
         //-VENCIDOS E A VENCER (NOVO)
         if ($operacao == "frsalcart_v2002") {
+                
                 $modalidade = $_POST['modalidade'];
                 if (count($modalidade) == 1) {
                         $modalidade = implode($_POST['modalidade']);
                 } else {
                         $modalidade = implode(",", $_POST['modalidade']);
                 }
+
+                $dataInicial = isset($_POST["dataInicial"]) && $_POST["dataInicial"] !== "" && $_POST["dataInicial"] !== "null"  ? $_POST["dataInicial"]  : null;
+                $dataFinal = isset($_POST["dataFinal"]) && $_POST["dataFinal"] !== "" && $_POST["dataFinal"] !== "null"  ? $_POST["dataFinal"]  : null;
+                $dataReferencia = isset($_POST["dataReferencia"]) && $_POST["dataReferencia"] !== "" && $_POST["dataReferencia"] !== "null"  ? $_POST["dataReferencia"]  : null;
+
                 $parametros = array(
                         "parametros" => array(array(
                                 'cre' => ($_POST['cre'] == 'Geral' ? true : false),
                                 'codigoFilial' => intval($_POST['codigoFilial']), /* estabelecimento */
                                 'mod-sel' => $modalidade,
-                                'dataInicial' => $_POST['dataInicial'],
-                                'dataFinal' => $_POST['dataFinal'],
-                                'dataReferencia' => $_POST['dataReferencia'],
+                                'dataInicial' => $dataInicial,
+                                'dataFinal' => $dataFinal,
+                                'dataReferencia' => $dataReferencia,
                                 'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
                                 'abreporanoemi' => ($_POST['abreporanoemi'] == 'Sim' ? true : false),
@@ -398,6 +404,7 @@ if (isset($_GET['operacao'])) {
                                 'porestab' => ($_POST['porestab'] == 'Sim' ? true : false)
                         ))
                 );
+                
                 $apiEntrada = array(
                         'usercod' => $_POST['usercod'],
                         'progcod' => $_POST['progcod'],
@@ -565,5 +572,50 @@ if (isset($_GET['operacao'])) {
                 $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
 
                 header('Location: ../novacoes/loj_cre02_a.php');
+        }
+
+        //-RESUMO CONCILIAÇÃO CREFIARIO
+        if ($operacao == "telaanaliini") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dtini' => $_POST['dtini'],
+                                'dtfin' => $_POST['dtfin'],
+                                'etbcod' => intval($_POST['etbcod']),
+                                'tipooperacao' => $_POST['tipooperacao']
+                        ))
+                );
+                $apiEntrada = array(
+                        'usercod' => $_POST['usercod'],
+                        'progcod' => $_POST['progcod'],
+                        'nomeRel' => $_POST['nomeRel'],
+                        'parametros' => $parametros,
+                        'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
+                );
+
+                $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
+
+                header('Location: ../contabilidade/telaanaliini.php');
+        }
+
+        //-RELATÓRIO CPN
+        if ($operacao == "relcpn-v012018") {
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dti' => $_POST['dti'],
+                                'dtf' => $_POST['dtf'],
+                                'etbcod' => intval($_POST['etbcod'])
+                        ))
+                );
+                $apiEntrada = array(
+                        'usercod' => $_POST['usercod'],
+                        'progcod' => $_POST['progcod'],
+                        'nomeRel' => $_POST['nomeRel'],
+                        'parametros' => $parametros,
+                        'REMOTE_ADDR' =>  $_POST['REMOTE_ADDR'],
+                );
+
+                $relatorios = chamaAPI(null, '/relatorios/inserir', json_encode($apiEntrada), 'PUT');
+
+                header('Location: ../contabilidade/relcpn-v012018.php');
         }
 }

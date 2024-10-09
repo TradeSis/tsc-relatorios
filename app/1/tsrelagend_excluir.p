@@ -1,4 +1,3 @@
-
 def input  parameter vlcentrada as longchar.
 def input param vtmp       as char.
 
@@ -10,8 +9,7 @@ def var hentrada as handle.
 def var hsaida   as handle.
 
 def temp-table ttentrada no-undo serialize-name "tsrelagend"
-    field dtprocessar as DATE
-    field hrprocessar as INT.  
+    field id-recid as INT64.  
 
 def temp-table ttsaida  no-undo serialize-name "conteudoSaida"
     field tstatus        as int serialize-name "status"
@@ -34,8 +32,7 @@ then do:
     return.
 end.
 
-find tsrelagend where tsrelagend.dtprocessar = ttentrada.dtprocessar AND 
-                      tsrelagend.hrprocessar = ttentrada.hrprocessar 
+find tsrelagend WHERE RECID(tsrelagend) = ttentrada.id-recid
                       no-lock no-error.
 if not avail tsrelagend
 then do:
@@ -51,8 +48,7 @@ then do:
 end.
 
 do on error undo:
-    find tsrelagend where tsrelagend.dtprocessar = ttentrada.dtprocessar AND 
-                      tsrelagend.hrprocessar = ttentrada.hrprocessar 
+    find tsrelagend WHERE RECID(tsrelagend) = ttentrada.id-recid
                       exclusive no-error.
     DELETE tsrelagend.
 end. 

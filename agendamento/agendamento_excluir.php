@@ -10,12 +10,12 @@
                     <div class="row">
                         <div class="form-group col">
                             <label>Data</label>
-                            <input type="text" class="form-control" id="excluirView_dtprocessar" readonly>
-                            <input type="hidden" class="form-control" name="dtprocessar" id="excluir_dtprocessar" readonly>
+                            <input type="text" class="form-control" id="excluir_dtprocessar" readonly>
+                            <input type="hidden" class="form-control" name="recID" id="excluir_recID" readonly>
                         </div>
                         <div class="form-group col">
                             <label>Hora</label>
-                            <input type="text" class="form-control" name="hrprocessar" id="excluir_hrprocessar" readonly>
+                            <input type="text" class="form-control" id="excluir_hrprocessar" readonly>
                         </div>
                         <div class="form-group col">
                             <label>periodicidade</label>

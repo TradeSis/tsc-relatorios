@@ -38,7 +38,7 @@ if (isset($_GET['relatorio'])) {
                                 'dtini' => $_POST['dtini'],
                                 'dtfin' => $_POST['dtfin'],
                                 'relatorio-geral' => ($_POST['relatorio-geral'] == 'Sim' ? true : false),
-                                'sel-mod' => $_POST['modalidade'],
+                                'mod-sel' => $_POST['modalidade'],
                                 'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false)
                         ))
@@ -67,7 +67,7 @@ if (isset($_GET['relatorio'])) {
                                 'dti' => $_POST['dti'],
                                 'dtf' => $_POST['dtf'],
                                 'clinovos' => ($_POST['clinovos'] == 'Sim' ? true : false),
-                                'sel-mod' => $_POST['modalidade'],
+                                'mod-sel' => $_POST['modalidade'],
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
                                 'vindex' => $_POST['vindex']
                         ))
@@ -80,7 +80,7 @@ if (isset($_GET['relatorio'])) {
                                 'etbcod' => intval($_POST['etbcod']),
                                 'dtinicial' => $_POST['dataInicial'],
                                 'dtfinal' => $_POST['dataFinal'],
-                                'sel-mod' => $_POST['modalidade'],
+                                'mod-sel' => $_POST['modalidade'],
                                 'considerarfeirao' => ($_POST['considerafeirao'] == 'Sim' ? true : false)
                         ))
                 );
@@ -96,14 +96,19 @@ if (isset($_GET['relatorio'])) {
         }
 
         if ($relatorio == "frsalcart_v2002") {
+               
+                $dataInicial = isset($_POST["dataInicial"]) && $_POST["dataInicial"] !== "" && $_POST["dataInicial"] !== "null"  ? $_POST["dataInicial"]  : null;
+                $dataFinal = isset($_POST["dataFinal"]) && $_POST["dataFinal"] !== "" && $_POST["dataFinal"] !== "null"  ? $_POST["dataFinal"]  : null;
+                $dataReferencia = isset($_POST["dataReferencia"]) && $_POST["dataReferencia"] !== "" && $_POST["dataReferencia"] !== "null"  ? $_POST["dataReferencia"]  : null;
+
                 $parametros = array(
                         "parametros" => array(array(
                                 'cre' => ($_POST['cre'] == 'Geral' ? true : false),
                                 'codigoFilial' => intval($_POST['codigoFilial']), 
                                 'mod-sel' => $_POST['modalidade'],
-                                'dataInicial' => $_POST['dataInicial'],
-                                'dataFinal' => $_POST['dataFinal'],
-                                'dataReferencia' => $_POST['dataReferencia'],
+                                'dataInicial' => $dataInicial,
+                                'dataFinal' => $dataFinal,
+                                'dataReferencia' => $dataReferencia,
                                 'consulta-parcelas-LP' => ($_POST['consulta-parcelas-LP'] == 'Sim' ? true : false),
                                 'feirao-nome-limpo' => ($_POST['feirao-nome-limpo'] == 'Sim' ? true : false),
                                 'abreporanoemi' => ($_POST['abreporanoemi'] == 'Sim' ? true : false),
@@ -196,6 +201,27 @@ if (isset($_GET['relatorio'])) {
                         ))
                 );
         }
+
+        if ($relatorio == "telaanaliini") { 
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dtini' => $_POST['dtini'],
+                                'dtfin' => $_POST['dtfin'],
+                                'etbcod' => intval($_POST['etbcod']),
+                                'tipooperacao' => $_POST['tipooperacao']
+                        ))
+                );
+        }
+
+        if ($relatorio == "relcpn-v012018") { 
+                $parametros = array(
+                        "parametros" => array(array(
+                                'dti' => $_POST['dti'],
+                                'dtf' => $_POST['dtf'],
+                                'etbcod' => intval($_POST['etbcod'])
+                        ))
+                );
+        }
         
         $apiEntrada = array(
                 'usercod' => $_POST['usercod'],
@@ -224,12 +250,9 @@ if (isset($_GET['operacao'])) {
 	$operacao = $_GET['operacao'];
 
 	if ($operacao == "excluir") {
-                $hora = explode(':', $_POST['hrprocessar']);
-                $hrprocessar = $hora[0] * 3600 + $hora[1] * 60;
-
+                
 		$apiEntrada = array(
-			'dtprocessar' => $_POST['dtprocessar'],
-			'hrprocessar' => $hrprocessar
+			'id-recid' => $_POST['recID']
 		);
 	
 		$relatorios = chamaAPI(null, '/relatorios/agendamento', json_encode($apiEntrada), 'DELETE');
