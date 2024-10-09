@@ -10,6 +10,10 @@ if ($metodo=="GET"){
       case "listagem":
         include 'tsrelat.php';
       break;
+
+      case "agendamento":
+        include 'tsrelagend.php';
+      break;
       default:
         $jsonSaida = json_decode(json_encode(
         array("status" => "400",
@@ -23,6 +27,10 @@ if ($metodo=="GET"){
     switch ($funcao) {
       case "inserir":
         include 'tsrelat_inserir.php';
+      break;
+
+      case "agendamento":
+        include 'tsrelagend_inserir.php';
       break;
 
       default:
@@ -47,6 +55,10 @@ if ($metodo=="GET"){
   
   if ($metodo=="DELETE"){
     switch ($funcao) {
+      case "agendamento":
+        include 'tsrelagend_excluir.php';
+      break;
+
       default:
         $jsonSaida = json_decode(json_encode(
         array("status" => "400",
